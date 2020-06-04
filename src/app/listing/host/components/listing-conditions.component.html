@@ -3,7 +3,7 @@
   <div class="col-6">
     <h2>Review the conditions for renting on Wurkings</h2>
     <p>Wurkings has the following requirements before all users can rent from you.</p>
-    <form action="" method="post" class="">
+    <form [formGroup]="conditionsForm" novalidate>
 
       <div class="form-group">
         <div class="row">
@@ -27,29 +27,37 @@
             </div>
             <div class="col-md-6 border-top">
               <h6 class="mt-3">Add additional requirements</h6>
+
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" value="">Government Issued-ID submitted to Wurkings.
+                  <input type="checkbox"
+                         [(ngModel)]="conditions.forPositivelyReviewedOnly"
+                         class="form-check-input"
+                         formControlName="isPositivelyReviewed">Recommended by others, and has no negative reviews.
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" value="">Recommended by others, and has no negative reviews.
+                  <input type="checkbox"
+                         [(ngModel)]="conditions.forAll"
+                         class="form-check-input"
+                         formControlName="isAvailableToAll">Anyone can rent.
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" value="">Anyone can rent.
+                  <input type="checkbox"
+                         [(ngModel)]="conditions.forStudentsOnly"
+                         class="form-check-input"
+                         formControlName="isStudent">Only student can rent.
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" value="">Only student can rent.
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" value="">Working Class.
+                  <input type="checkbox"
+                         [(ngModel)]="conditions.forWorkingClassOnly"
+                         class="form-check-input"
+                         formControlName="isWorkingClass">Working Class.
                 </label>
               </div>
             </div>
@@ -60,7 +68,7 @@
             <button type="button" class="btn btn-warning btn-block">Back</button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-info btn-block" (click)="nextPage()">Proceed</button>
+            <button type="button" class="btn btn-info btn-block" (click)="goToNext(conditionsForm)">Proceed</button>
           </div>
         </div>
       </div>

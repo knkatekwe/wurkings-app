@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ListingData, Title, Pricing, Rules, Description, Images } from './listing-data';
+import { ListingData, Title, Pricing, Description, Images, Conditions } from './listing-data';
 import { WorkflowService } from './workflow/workflow.service';
 import { STEPS } from './workflow/workflow.model';
 
@@ -87,24 +87,24 @@ export class ListingDataService {
 		this.workflowService.validateStep(STEPS.pricing);
   }
 
-  getRules(): Rules {
+  getConditions(): Conditions {
 		// Return the Title data
-		const rules: Rules = {
-			isGovernmentIssuedIdRequired: this.listingData.isGovernmentIssuedIdRequired,
-			isPositivelyReviewed: this.listingData.isPositivelyReviewed,
-      isStudent: this.listingData.isStudent,
-      isWorkingClass: this.listingData.isWorkingClass
+		const rules: Conditions = {
+			forAll: this.listingData.forAll,
+			forPositivelyReviewedOnly: this.listingData.forPositivelyReviewedOnly,
+      forStudentsOnly: this.listingData.forStudentsOnly,
+      forWorkingClassOnly: this.listingData.forWorkingClassOnly
 		};
 		return rules;
 	}
 
-	setRules(data: Rules) {
+	setConditions(data: Conditions) {
 		// Update the Title data only when the Title Form had been validated successfully
 		this.isRulesFormValid = true;
-		this.listingData.isGovernmentIssuedIdRequired = data.isGovernmentIssuedIdRequired;
-		this.listingData.isPositivelyReviewed = data.isPositivelyReviewed;
-    this.listingData.isStudent = data.isStudent;
-    this.listingData.isWorkingClass = data.isWorkingClass;
+		this.listingData.forAll = data.forAll;
+		this.listingData.forPositivelyReviewedOnly = data.forPositivelyReviewedOnly;
+    this.listingData.forStudentsOnly = data.forStudentsOnly;
+    this.listingData.forWorkingClassOnly = data.forWorkingClassOnly;
 		// Validate Title Step in Descriptionflow
 		this.workflowService.validateStep(STEPS.title);
 	}

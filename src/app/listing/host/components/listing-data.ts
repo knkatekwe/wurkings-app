@@ -6,10 +6,10 @@ export class ListingData {
   catergoryId: string = "";
   locationId: string = "";
   userId: string = "";
-  isGovernmentIssuedIdRequired: boolean = false;
-  isPositivelyReviewed: boolean = false;
-  isStudent: boolean = false;
-  isWorkingClass: boolean = false;
+  forAll: boolean = false;
+  forPositivelyReviewedOnly: boolean = false;
+  forStudentsOnly: boolean = false;
+  forWorkingClassOnly: boolean = false;
   outbound: boolean = false;
   is_active: boolean = false;
   created_at: string = "";
@@ -48,9 +48,9 @@ export class Pricing{
   pricing: number;
 }
 
-export class Rules{
-  isGovernmentIssuedIdRequired: boolean;
-  isPositivelyReviewed: boolean;
-  isStudent: boolean;
-  isWorkingClass: boolean;
+export class Conditions{
+  forAll: boolean;
+  forPositivelyReviewedOnly: boolean;
+  forStudentsOnly: boolean;
+  forWorkingClassOnly: boolean;
 }
