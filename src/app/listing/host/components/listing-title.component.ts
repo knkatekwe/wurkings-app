@@ -10,6 +10,7 @@ import { Title } from './listing-data';
 	styleUrls: [ './listing-title.component.css' ]
 })
 export class ListingTitleComponent implements OnInit {
+
 	title: Title;
 
 	constructor(private router: Router, private listingDataService: ListingDataService) {}

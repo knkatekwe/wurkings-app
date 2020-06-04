@@ -36,9 +36,12 @@ export class ListingDataService {
 		this.workflowService.validateStep(STEPS.title);
 	}
 
-	getDescription(): string {
-		// Return the description type
-		return this.listingData.description;
+	getDescription(): Description {
+    // Return the description type
+    const description: Description = {
+			description: this.listingData.description
+		};
+		return description;
 	}
 
 	setDescription(data: Description) {
@@ -68,15 +71,18 @@ export class ListingDataService {
 		this.workflowService.validateStep(STEPS.images);
   }
 
-  getPricing(): number {
-		// Return the description type
-		return this.listingData.pricing;
+  getPricing(): Pricing {
+    // Return the description type
+    const pricing: Pricing = {
+			pricing: this.listingData.pricing
+		};
+		return pricing;
 	}
 
 	setPricing(data: Pricing) {
 		// Update the work type only when the Description Form had been validated successfully
 		this.isPricingFormValid = true;
-		this.listingData.pricing = data.price;
+		this.listingData.pricing = data.pricing;
 		// Validate Description Step in Descriptionflow
 		this.workflowService.validateStep(STEPS.pricing);
   }

@@ -1,8 +1,8 @@
 export const STEPS = {
     title: 'title',
     description: 'description',
-    images: 'images',
+    images: 'pictures',
     pricing: 'pricing',
-    rules: 'rules',
+    rules: 'conditions',
     review: 'review'
 };

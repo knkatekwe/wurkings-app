@@ -45,7 +45,7 @@ export class Images{
 }
 
 export class Pricing{
-  price: number;
+  pricing: number;
 }
 
 export class Rules{
