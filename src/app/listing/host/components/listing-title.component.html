@@ -1,0 +1,62 @@
+<!--start-->
+<div class="row mt-5">
+  <div class="col-6">
+    <h2>Lets Get Started Listing Your Commodity</h2>
+    <form [formGroup]="titleForm" novalidate>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+
+            <label for=""></label>
+            <input type="text"
+                   formControlName="title"
+                   [(ngModel)]="title.title"
+                   class="form-control"
+                   placeholder="Listing Title"/>
+            <small *ngIf="titleField.touched && titleField.invalid"
+                   class="alert text-danger text-muted">Title is required</small>
+          </div>
+
+          <div class="col-md-6">
+            <label for=""></label>
+            <select type="text"
+                    formControlName="categoryId"
+                    [(ngModel)]="title.categoryId"
+                    class="form-control"
+                    placeholder="Select Category">
+              <option value='1'>Electronics</option>
+              <option value='2'>Motor Vehicle</option>
+            </select>
+            <small *ngIf="category.touched && category.invalid"
+                   class="alert text-danger text-muted">Category is required</small>
+
+          </div>
+
+          <div class="col">
+            <label for=""></label>
+            <input type="text"
+                   formControlName="locationId"
+                   [(ngModel)]="title.locationId"
+                   class="form-control"
+                   placeholder="Select Location">
+                   <small *ngIf="location.touched && location.invalid"
+                   class="alert text-danger text-muted">Location is required</small>
+          </div>
+
+        </div>
+        <div class="pt-4">
+          <button type="button" (click)="goToNext(titleForm)" [disabled]="titleForm.invalid" class="btn btn-info btn-block">Get Started</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!--side image-->
+  <div class="col-6">
+    <div class="">
+      <img src="../../../assets/pictures/celebrating-friends.jpg" alt="" height="400px" class="rounded">
+    </div>
+  </div>
+  <!--/side image-->
+</div>
+<!--/start-->
