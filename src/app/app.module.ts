@@ -20,6 +20,8 @@ import { ProfileModule } from './profile/profile.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { ListingDataService } from './listing/host/components/listing-data.service';
 import { WorkflowService } from './listing/host/components/listing-flow-config/workflow.service';
+import { RentalsComponent } from './rentals/rentals.component';
+import { RentalsModule } from './rentals/rentals.module';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
