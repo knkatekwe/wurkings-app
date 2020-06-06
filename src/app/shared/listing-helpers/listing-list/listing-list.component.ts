@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Article, ArticleListConfig, ArticlesService } from '../../core';
+import { Article, ArticleListConfig, ArticlesService } from '../../../core';
 @Component({
   selector: 'app-article-list',
   styleUrls: ['listing-list.component.css'],

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { ArticleListComponent, ArticleMetaComponent, ArticlePreviewComponent } from './listing-helpers';
 import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
-import { ListErrorsComponent } from './list-errors.component';
+import { ListErrorsComponent } from './list-errors/list-errors.component';
 import { ShowAuthedDirective } from './show-authed.directive';
 
 @NgModule({

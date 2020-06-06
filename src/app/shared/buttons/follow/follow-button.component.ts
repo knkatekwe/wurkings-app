@@ -1,27 +1,28 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Article, ArticlesService, UserService } from '../../core';
-import { of } from 'rxjs';
+import { Profile, ProfilesService, UserService } from '../../../core';
 import { concatMap ,  tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
-  selector: 'app-favorite-button',
-  templateUrl: './favorite-button.component.html'
+  selector: 'app-follow-button',
+  templateUrl: './follow-button.component.html'
 })
-export class FavoriteButtonComponent {
+export class FollowButtonComponent {
   constructor(
-    private articlesService: ArticlesService,
+    private profilesService: ProfilesService,
     private router: Router,
     private userService: UserService
   ) {}
 
-  @Input() article: Article;
+  @Input() profile: Profile;
   @Output() toggle = new EventEmitter<boolean>();
   isSubmitting = false;
 
-  toggleFavorite() {
+  toggleFollowing() {
     this.isSubmitting = true;
+    // TODO: remove nested subscribes, use mergeMap
 
     this.userService.isAuthenticated.pipe(concatMap(
       (authenticated) => {
@@ -31,9 +32,9 @@ export class FavoriteButtonComponent {
           return of(null);
         }
 
-        // Favorite the article if it isn't favorited yet
-        if (!this.article.favorited) {
-          return this.articlesService.favorite(this.article.slug)
+        // Follow this profile if we aren't already
+        if (!this.profile.following) {
+          return this.profilesService.follow(this.profile.username)
           .pipe(tap(
             data => {
               this.isSubmitting = false;
@@ -42,9 +43,9 @@ export class FavoriteButtonComponent {
             err => this.isSubmitting = false
           ));
 
-        // Otherwise, unfavorite the article
+        // Otherwise, unfollow this profile
         } else {
-          return this.articlesService.unfavorite(this.article.slug)
+          return this.profilesService.unfollow(this.profile.username)
           .pipe(tap(
             data => {
               this.isSubmitting = false;
@@ -53,7 +54,6 @@ export class FavoriteButtonComponent {
             err => this.isSubmitting = false
           ));
         }
-
       }
     )).subscribe();
   }
