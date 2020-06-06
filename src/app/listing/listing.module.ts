@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ListingComponent } from './listing.component';
-import { ListCommentComponent } from './listing-comment.component';
+import { ListCommentComponent } from './host/listing-comment/listing-comment.component';
 // import { ArticleResolver } from './listing-resolver.service';
 // import { MarkdownPipe } from './markdown.pipe';
 import { SharedModule } from '../shared';

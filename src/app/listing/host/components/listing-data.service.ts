@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ListingData, Title, Pricing, Description, Images, Conditions } from './listing-data';
-import { WorkflowService } from './workflow/workflow.service';
-import { STEPS } from './workflow/workflow.model';
+import { WorkflowService } from './listing-flow-config/workflow.service';
+import { STEPS } from './listing-flow-config/workflow.model';
 
 @Injectable({
 	providedIn: 'root'

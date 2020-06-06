@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ListingDataService } from './listing-data.service';
-import { Conditions } from './listing-data';
+import { ListingDataService } from '../listing-data.service';
+import { Conditions } from '../listing-data';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({

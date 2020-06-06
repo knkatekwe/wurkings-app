@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Pricing } from './listing-data';
-import { ListingDataService } from './listing-data.service';
+import { Pricing } from '../listing-data';
+import { ListingDataService } from '../listing-data.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({

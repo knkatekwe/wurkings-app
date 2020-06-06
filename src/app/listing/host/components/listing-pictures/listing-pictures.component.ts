@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UploadFileService } from 'src/app/core/services/upload-file.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { ListingDataService } from './listing-data.service';
-import { Images } from './listing-data';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { Images } from '../listing-data';
+import { ListingDataService } from '../listing-data.service';
 
 @Component({
   selector: 'app-listing-pictures',

@@ -18,9 +18,8 @@ import {NglModule} from 'ng-lightning';
 import { ChatModule } from './chat/chat.module';
 import { ProfileModule } from './profile/profile.module';
 import { NotificationsModule } from './notifications/notifications.module';
-import { HostModule } from './listing/host/host.module';
 import { ListingDataService } from './listing/host/components/listing-data.service';
-import { WorkflowService } from './listing/host/components/workflow/workflow.service';
+import { WorkflowService } from './listing/host/components/listing-flow-config/workflow.service';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],

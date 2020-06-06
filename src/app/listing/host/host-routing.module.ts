@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HostComponent } from './host.component';
-import { ListingTitleComponent } from './components/listing-title.component';
-import { ListingDescriptionComponent } from './components/listing-description.component';
-import { ListingPicturesComponent } from './components/listing-pictures.component';
-import { ListingPricingComponent } from './components/listing-pricing.component';
-import { ListingConditionsComponent } from './components/listing-conditions.component';
-import { WorkflowGuard } from './components/workflow/workflow-guard.service';
+import { ListingTitleComponent } from './components/listing-title/listing-title.component';
+import { ListingDescriptionComponent } from './components/listing-description/listing-description.component';
+import { ListingPicturesComponent } from './components/listing-pictures/listing-pictures.component';
+import { ListingPricingComponent } from './components/listing-pricing/listing-pricing.component';
+import { ListingConditionsComponent } from './components/listing-conditions/listing-conditions.component';
+import { WorkflowGuard } from './components/listing-flow-config/workflow-guard.service';
 
 
 const routes: Routes = [
