@@ -1,24 +1,17 @@
-<p>list preview works</p>
-
-<!-- <div class="listing-preview">
-  <app-listing-meta [listing]="listing">
-    <app-favorite-button
-      [listing]="listing"
-      (toggle)="onToggleFavorite($event)"
-      class="pull-xs-right">
-      {{listing.favoritesCount}}
-    </app-favorite-button>
-  </app-listing-meta>
-
-  <a [routerLink]="['/listing', listing.slug]" class="preview-link">
-    <h1>{{ listing.title }}</h1>
-    <p>{{ listing.description }}</p>
-    <span>Read more...</span>
-    <ul class="tag-list">
-      <li class="tag-default tag-pill tag-outline"
-        *ngFor="let tag of listing.tagList">
-        {{ tag }}
-      </li>
-    </ul>
-  </a>
-</div> -->
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="../../../../assets/pictures/phpThumb.jpg" alt="Card image cap">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <small class="text-muted">Electronics</small>
+      <a routerLink="/"><i class="fa fa-heart-o fa"></i></a>
+    </div>
+    <h5 class="card-title mt-2">Lenovo E51</h5>
+    <p class="card-text">i5-6200U CPU, 8GIG RAM, 256SSD...</p>
+    <div class="d-flex justify-content-between">
+      <p class="text-muted"><img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+         width="30"
+         height="30" class="rounded-circle border"><small class="ml-1">Kumbirai</small></p>
+      <p class="text-muted"><strong>$10</strong><small>/week</small></p>
+    </div>
+  </div>
+</div>

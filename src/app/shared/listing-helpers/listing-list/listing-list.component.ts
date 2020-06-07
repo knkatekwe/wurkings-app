@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { Article, ArticleListConfig, ArticlesService } from '../../../core';
 @Component({
-  selector: 'app-article-list',
+  selector: 'app-listing-list',
   styleUrls: ['listing-list.component.css'],
   templateUrl: './listing-list.component.html'
 })
