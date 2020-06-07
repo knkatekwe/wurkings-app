@@ -8,6 +8,8 @@ import { ArticleListComponent, ArticleMetaComponent, ArticlePreviewComponent } f
 import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
 import { ListErrorsComponent } from './list-errors/list-errors.component';
 import { ShowAuthedDirective } from './show-authed.directive';
+import {NglModule} from 'ng-lightning';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { ShowAuthedDirective } from './show-authed.directive';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    NgbModule,
+    NglModule
   ],
   declarations: [
     ArticleListComponent,
@@ -35,6 +39,7 @@ import { ShowAuthedDirective } from './show-authed.directive';
     FollowButtonComponent,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
     HttpClientModule,
     ListErrorsComponent,
     RouterModule,

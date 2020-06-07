@@ -14,7 +14,6 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AccountModule } from './account/account.module';
-import {NglModule} from 'ng-lightning';
 import { ChatModule } from './chat/chat.module';
 import { ProfileModule } from './profile/profile.module';
 import { NotificationsModule } from './notifications/notifications.module';
@@ -35,7 +34,6 @@ import { RentalsModule } from './rentals/rentals.module';
     ChatModule,
     ProfileModule,
     NotificationsModule,
-    NgbModule
 
   ],
   providers: [
