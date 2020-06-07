@@ -7,6 +7,11 @@ import { User, UserService } from '../../../core';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
+
+  navbarOpen = false;
+
+  public isCollapsed = false;
+
   constructor(
     private userService: UserService
   ) {}
@@ -20,4 +25,9 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
+
 }

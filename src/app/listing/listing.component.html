@@ -1,131 +1,40 @@
-<p>listing component works!</p>
-<!-- <router-outlet></router-outlet> -->
+<div class="container">
 
-<!-- <div class="listing-page">
+  <h2 class="mb-4">Dashboard</h2>
 
-  <div class="banner">
-    <div class="container">
-      <h1>{{ listing.title }}</h1>
+  <div class="row">
 
-      <app-listing-meta [listing]="listing">
+    <div class="col-md-8">
 
-          <span [hidden]="!canModify">
-          <a class="btn btn-sm btn-outline-secondary"
-             [routerLink]="['/editor', listing.slug]">
-            <i class="ion-edit"></i> Edit Article
-          </a>
-
-          <button class="btn btn-sm btn-outline-danger"
-            [ngClass]="{disabled: isDeleting}"
-            (click)="deleteArticle()">
-            <i class="ion-trash-a"></i> Delete Article
-          </button>
-        </span>
-
-        <span [hidden]="canModify">
-          <app-follow-button
-            [profile]="listing.author"
-            (toggle)="onToggleFollowing($event)">
-          </app-follow-button>
-
-          <app-favorite-button
-            [listing]="listing"
-            (toggle)="onToggleFavorite($event)">
-            {{ listing.favorited ? 'Unfavorite' : 'Favorite' }} Article <span class="counter">({{ listing.favoritesCount }})</span>
-          </app-favorite-button>
-        </span>
-
-      </app-listing-meta>
-    </div>
-  </div>
-
-  <div class="container page">
-
-    <div class="row listing-content">
-      <div class="col-md-12">
-
-        <div [innerHTML]="listing.body"></div>
-
-        <ul class="tag-list">
-          <li *ngFor="let tag of listing.tagList"
-            class="tag-default tag-pill tag-outline">
-            {{ tag }}
-          </li>
-        </ul>
-
-      </div>
-    </div>
-
-    <hr />
-
-    <div class="listing-actions">
-      <app-listing-meta [listing]="listing">
-
-          <span [hidden]="!canModify">
-          <a class="btn btn-sm btn-outline-secondary"
-             [routerLink]="['/editor', listing.slug]">
-            <i class="ion-edit"></i> Edit Article
-          </a>
-
-          <button class="btn btn-sm btn-outline-danger"
-            [ngClass]="{disabled: isDeleting}"
-            (click)="deleteArticle()">
-            <i class="ion-trash-a"></i> Delete Article
-          </button>
-        </span>
-
-        <span [hidden]="canModify">
-          <app-follow-button
-            [profile]="listing.author"
-            (toggle)="onToggleFollowing($event)">
-          </app-follow-button>
-
-          <app-favorite-button
-            [listing]="listing"
-            (toggle)="onToggleFavorite($event)">
-            {{ listing.favorited ? 'Unfavorite' : 'Favorite' }} Article <span class="counter">({{ listing.favoritesCount }})</span>
-          </app-favorite-button>
-        </span>
-
-      </app-listing-meta>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-12 col-md-8 offset-md-2">
-
-        <div *appShowAuthed="true">
-          <app-list-errors [errors]="commentFormErrors"></app-list-errors>
-          <form class="card comment-form" (ngSubmit)="addComment()">
-            <fieldset [disabled]="isSubmitting">
-              <div class="card-block">
-                <textarea class="form-control"
-                  placeholder="Write a comment..."
-                  rows="3"
-                  [formControl]="commentControl"
-                ></textarea>
-              </div>
-              <div class="card-footer">
-                <img [src]="currentUser.image" class="comment-author-img" />
-                <button class="btn btn-sm btn-primary" type="submit">
-                 Post Comment
-                </button>
-              </div>
-            </fieldset>
-          </form>
+      <div class="card w-full">
+        <div class="card-body">
+          <h5 class="card-title">Requests</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         </div>
-
-        <div *appShowAuthed="false">
-          <a [routerLink]="['/login']">Sign in</a> or <a [routerLink]="['/register']">sign up</a> to add comments on this listing.
-        </div>
-
-        <app-listing-comment
-          *ngFor="let comment of comments"
-          [comment]="comment"
-          (deleteComment)="onDeleteComment(comment)">
-        </app-listing-comment>
-
       </div>
+
+      <hr class="my-4">
+
+      <div class="card w-full">
+        <div class="card-body">
+          <h5 class="card-title">Reservations</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card w-full">
+        <div class="card-body">
+          <h5 class="card-title">Notifications</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+
     </div>
 
   </div>
-</div> -->
+
+</div>

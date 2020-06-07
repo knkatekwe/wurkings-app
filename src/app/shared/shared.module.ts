@@ -39,6 +39,7 @@ import { ShowAuthedDirective } from './show-authed.directive';
     ListErrorsComponent,
     RouterModule,
     ShowAuthedDirective
+
   ]
 })
 export class SharedModule {}
