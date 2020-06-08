@@ -32,7 +32,7 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-md-10">
+      <div class="col-md-12">
         <!-- <div class="feed-toggle">
           <ul class="nav nav-pills outline-active">
             <li class="nav-item">
@@ -60,31 +60,6 @@
         <div class="mt-4"></div>
 
         <app-listing-list [limit]="10" [config]="listConfig"></app-listing-list>
-      </div>
-
-      <div class="col-md-2">
-
-        <div class="mt-4 mb-4"></div>
-
-        <div class="sidebar">
-          <p>Popular Tags</p>
-
-          <div class="tag-list">
-            <a *ngFor="let tag of tags"
-               (click)="setListTo('all', {tag: tag})"
-               class="tag-default tag-pill">
-               {{ tag }}
-            </a>
-          </div>
-
-          <div [hidden]="tagsLoaded">
-            Loading tags...
-          </div>
-
-          <div [hidden]="!tagsLoaded || tags.length > 0">
-            No tags are here... yet.
-          </div>
-        </div>
       </div>
 
     </div>
