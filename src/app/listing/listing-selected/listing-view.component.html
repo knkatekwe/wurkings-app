@@ -1,0 +1,139 @@
+<div class="container">
+
+  <div class="row py-2">
+    <div class="d-flex justify-content-between">
+      <a>
+        <i class="fa fa-map-marker pl-3" aria-hidden="true"></i>
+      </a>
+      <a>
+        <small class="text-muted pl-1">Ruvimbo, Chinhoyi, Mashonaland West, Zimbabwe</small>
+      </a>
+    </div>
+
+
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6" >
+
+        <ngb-carousel *ngIf="images">
+          <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+              <img [src]="pictures[0].imageUrl" alt="Random first slide"
+              class="img-fluid w-75 h-75 mx-auto d-block">
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+              <img [src]="pictures[1].imageUrl" alt="Random second slide"
+              class="img-fluid w-75 h-75 mx-auto d-block">
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+              <img [src]="pictures[2].imageUrl" alt="Random third slide"
+              class="img-fluid w-75 h-75 mx-auto d-block">
+            </div>
+          </ng-template>
+        </ngb-carousel>
+
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="pt-6"></div>
+
+      <div class="d-flex justify-content-between">
+        <a routerLink="/">
+          <small class="text-muted">Electronics</small>
+        </a>
+        <div>
+          <a routerLink="/" class="pr-2"><small class="pr-1">Save</small><i class="fa fa-heart-o fa"></i></a>
+        <a routerLink="/"><small class="pr-1">Share</small><i class="fa fa-share-alt-square"></i></a>
+        </div>
+      </div>
+
+      <h3>Lenovo E51<span class="badge badge-secondary">New</span></h3>
+
+      <p>i5-6200U CPU, 8GIG RAM, 256SSD</p>
+
+      <div class="border-bottom"></div>
+
+      <h6 class="pt-3">Detailed Description</h6>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <div class="border-bottom"></div>
+
+      <div class="d-flex justify-content-between pt-3">
+
+        <p><strong>Belongs to:</strong> Kumbirai Nigel</p>
+
+        <a routerLink="/profile">
+          <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+            width="30"
+            height="30" class="rounded-circle border">
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6" >
+
+        <h5 class="pt-4 pb-2">
+          Conditions/Rules
+        </h5>
+
+        <span><p><i class="fa fa-check-circle pr-1" aria-hidden="true"></i>Student Can Rent</p></span>
+        <span><p><i class="fa fa-check-circle pr-1" aria-hidden="true"></i>Working Class</p></span>
+
+        <h6>Personal Conditions</h6>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    </div>
+
+    <div class="col-md-6 sticky">
+
+      <div class="pt-6"></div>
+
+      <div class="card py-4" style="width: 25rem;">
+        <div class="card-body">
+
+          <div class="d-flex justify-content-between">
+            <div>
+              <span><h5 class="card-title">$10/week</h5></span>
+
+            </div>
+            <div>
+              <a routerLink="/" class="pr-2"><i class="fa fa-star-o pr-1"><small class="pr-1 text-muted">5.0(8)</small></i></a>
+            </div>
+          </div>
+
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block">Reserve</button>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6" >
+
+      <h5 class="pt-4 pb-2">
+        Reviews
+      </h5>
+
+  </div>
+
+  </div>
+
+</div>

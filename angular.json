@@ -24,18 +24,12 @@
               "src/assets"
             ],
             "styles": [
-              // "node_modules/@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.min.css",
-              // "node_modules/@angular/cdk/overlay-prebuilt.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "src/assets/main.css"
             ],
-            "scripts": [
-              // "node_modules/jquery/dist/jquery.min.js",
-              // "node_modules/popper.js/dist/umd/popper.min.js",
-              // "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -133,5 +127,12 @@
   "defaultProject": "wurkings-app",
   "cli": {
     "analytics": "27844742-a863-4ee8-a0c3-b51797abbb21"
+  },
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "spec": false
+      }
+    }
   }
 }

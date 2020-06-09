@@ -7,6 +7,7 @@ import { ListCommentComponent } from './host/listing-comment/listing-comment.com
 // import { MarkdownPipe } from './markdown.pipe';
 import { SharedModule } from '../shared';
 import { ListingRoutingModule } from './listing-routing.module';
+import { ListingViewComponent } from './listing-selected/listing-view.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { ListingRoutingModule } from './listing-routing.module';
   declarations: [
     ListingComponent,
     ListCommentComponent,
+    ListingViewComponent,
     // MarkdownPipe
   ],
 
