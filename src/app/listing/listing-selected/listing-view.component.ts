@@ -12,9 +12,7 @@ export class ListingViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-
-  pictures: {imageUrl: any}[] = [
+  pictures: {imageUrl: string}[] = [
     {
       "imageUrl":"https://www.notebookcheck.net/typo3temp/_processed_/4/b/csm_LenovoE50-80__1__8f23e3bfde.jpg"
     },

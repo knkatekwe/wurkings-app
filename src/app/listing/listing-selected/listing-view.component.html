@@ -18,22 +18,10 @@
 
     <div class="col-md-6" >
 
-        <ngb-carousel *ngIf="images">
-          <ng-template ngbSlide>
+        <ngb-carousel *ngIf="pictures">
+          <ng-template ngbSlide *ngFor="let picture of pictures">
             <div class="picsum-img-wrapper">
-              <img [src]="pictures[0].imageUrl" alt="Random first slide"
-              class="img-fluid w-75 h-75 mx-auto d-block">
-            </div>
-          </ng-template>
-          <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
-              <img [src]="pictures[1].imageUrl" alt="Random second slide"
-              class="img-fluid w-75 h-75 mx-auto d-block">
-            </div>
-          </ng-template>
-          <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
-              <img [src]="pictures[2].imageUrl" alt="Random third slide"
+              <img [src]="picture.imageUrl" alt="Random first slide"
               class="img-fluid w-75 h-75 mx-auto d-block">
             </div>
           </ng-template>
