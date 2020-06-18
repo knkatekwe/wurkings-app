@@ -1,0 +1,136 @@
+<div class="card col-md-6 offset-md-3">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+
+    <form [formGroup]="form" novalidate>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+
+            <label for=""></label>
+            <input type="text"
+                   formControlName="title"
+                   [(ngModel)]="listing.title"
+                   class="form-control"
+                   placeholder="Listing Title"/>
+            <small *ngIf="f.title.touched && f.title.invalid"
+                   class="alert text-danger text-muted">Title is required</small>
+          </div>
+
+          <div class="col-md-6">
+            <label for=""></label>
+            <select type="text"
+                    formControlName="category"
+                    [(ngModel)]="listing.catergory.id"
+                    class="form-control"
+                    placeholder="Select Category">
+              <option value='1'>Electronics</option>
+              <option value='2'>Motor Vehicle</option>
+            </select>
+            <small *ngIf="f.category.touched && f.category.invalid"
+                   class="alert text-danger text-muted">Category is required</small>
+
+          </div>
+
+          <div class="col-md-12">
+            <label for=""></label>
+            <input type="text"
+                   formControlName="location"
+                   [(ngModel)]="listing.location.id"
+                   class="form-control"
+                   placeholder="Select Location">
+                   <small *ngIf="f.location.touched && f.location.invalid"
+                   class="alert text-danger text-muted">Location is required</small>
+          </div>
+
+          <div class="col-md-12">
+            <label for=""></label>
+            <textarea type="text"
+                      formControlName="description"
+                      [(ngModel)]="listing.description"
+                      rows="8"
+                      class="form-control" placeholder=""
+                      placeholder="Tell us about your listing :)"></textarea>
+            <small *ngIf="f.description.touched && f.description.invalid"
+                   class="alert text-danger text-muted">Description is required</small>
+          </div>
+
+          <div class="col-md-12">
+           <div class="jumbotron">
+              <!--imported-->
+            <div *ngIf="currentFileUpload" class="progress">
+              <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                {{progress.percentage}}%</div>
+            </div>
+
+            <label class="btn btn-default">
+              <input type="file" (change)="selectFile($event)">
+            </label>
+
+            <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+            <!--/imported-->
+           </div>
+          </div>
+
+            <div class="col-md-6">
+              <!-- <label for=""></label> -->
+              <input type="text"
+                     formControlName="price"
+                     [(ngModel)]="listing.price"
+                     class="form-control"
+                     placeholder="Price"/>
+              <small *ngIf="f.pricing.touched && f.pricing.invalid"
+                     class="alert text-danger text-muted">Pricing is required</small>
+            </div>
+            <div class="col-md-6">
+              <!-- <label for=""></label> -->
+              <select type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId"
+                placeholder="Select Category">
+                <option value="1">Hour</option>
+                <option value="2">Day</option>
+                <option value="3">Week</option>
+                <option value="3">Month</option>
+              </select>
+              <small id="helpId" class="text-muted"> </small>
+            </div>
+
+            <div class="col-md-12">
+              <h6 class="mt-3">Add additional requirements</h6>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox"
+                         [(ngModel)]="listing.forAll"
+                         class="form-check-input"
+                         formControlName="isAvailableToAll">Anyone can rent.
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox"
+                         [(ngModel)]="listing.onlyStudent"
+                         class="form-check-input"
+                         formControlName="isStudent">Only student can rent.
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox"
+                         [(ngModel)]="listing.onlyEmployed"
+                         class="form-check-input"
+                         formControlName="isWorkingClass">Working Class.
+                </label>
+              </div>
+            </div>
+
+        </div>
+        <div class="pt-4">
+          <button type="button" [disabled]="form.invalid" (click)="onSubmit()" class="btn btn-info btn-block">Save</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

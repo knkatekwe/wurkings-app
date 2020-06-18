@@ -2,12 +2,12 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ListingComponent } from './listing.component';
-import { ListCommentComponent } from './host/listing-comment/listing-comment.component';
 // import { ArticleResolver } from './listing-resolver.service';
 // import { MarkdownPipe } from './markdown.pipe';
 import { SharedModule } from '../shared';
 import { ListingRoutingModule } from './listing-routing.module';
-import { ListingViewComponent } from './listing-selected/listing-view.component';
+import { ListingViewComponent } from './listing-view/listing-view.component';
+import { ListingEditComponent } from './listing-edit/listing-edit.component';
 
 @NgModule({
   imports: [
@@ -17,8 +17,8 @@ import { ListingViewComponent } from './listing-selected/listing-view.component'
   ],
   declarations: [
     ListingComponent,
-    ListCommentComponent,
     ListingViewComponent,
+    ListingEditComponent
     // MarkdownPipe
   ],
 

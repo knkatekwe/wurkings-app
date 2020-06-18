@@ -10,22 +10,22 @@
 
     <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li class="nav-item" *appShowAuthed="true">
           <a class="nav-link text-success" routerLink="/inbox">Inbox</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *appShowAuthed="true">
           <a class="nav-link text-success" routerLink="/notifications">Notifications</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *appShowAuthed="true">
           <a class="nav-link text-success" routerLink="/listing">Reservations</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-success " routerLink="/">Help</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *appShowAuthed="false">
           <a class="btn btn-success action-button" role="button" routerLink="/login">Sign In</a>
         </li>
-        <li ngbDropdown class="nav-item" class="d-inline-block">
+        <li ngbDropdown class="nav-item" class="d-inline-block" *appShowAuthed="true">
           <a ngbDropdownToggle id="navbarDropdownMenuLink" class="nav-link" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"

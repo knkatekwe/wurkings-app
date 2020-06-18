@@ -17,8 +17,6 @@ import { AccountModule } from './account/account.module';
 import { ChatModule } from './chat/chat.module';
 import { ProfileModule } from './profile/profile.module';
 import { NotificationsModule } from './notifications/notifications.module';
-import { ListingDataService } from './listing/host/components/listing-data.service';
-import { WorkflowService } from './listing/host/components/listing-flow-config/workflow.service';
 import { RentalsComponent } from './rentals/rentals.component';
 import { RentalsModule } from './rentals/rentals.module';
 
@@ -36,12 +34,7 @@ import { RentalsModule } from './rentals/rentals.module';
     NotificationsModule,
 
   ],
-  providers: [
-    { provide: ListingDataService,
-      useClass: ListingDataService },
-    { provide: WorkflowService,
-      useClass: WorkflowService }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

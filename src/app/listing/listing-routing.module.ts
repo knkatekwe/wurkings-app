@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListingComponent } from './listing.component';
 import { ListingModule } from './listing.module';
-import { ListingViewComponent } from './listing-selected/listing-view.component';
+import { ListingViewComponent } from './listing-view/listing-view.component';
+import { ListingDetailComponent } from '../shared/listing-helpers/listing-detail/listing-detail.component';
+import { ListingEditComponent } from './listing-edit/listing-edit.component';
 // import { ArticleResolver } from './listing-resolver.service';
 
 const routes: Routes = [
@@ -18,8 +20,8 @@ const routes: Routes = [
     component: ListingViewComponent
   },
   {
-    path: 'become-a-host',
-    loadChildren: () => import('./host/host.module').then(m => m.HostModule)
+    path: 'id',
+    component: ListingEditComponent
   }
 ];
 

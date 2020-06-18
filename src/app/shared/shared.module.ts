@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { ArticleListComponent, ArticleMetaComponent, ArticlePreviewComponent } from './listing-helpers';
+import { ArticleListComponent, ArticleMetaComponent, ArticlePreviewComponent, ListingDetailComponent } from './listing-helpers';
 import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
 import { ListErrorsComponent } from './list-errors/list-errors.component';
 import { ShowAuthedDirective } from './show-authed.directive';
@@ -42,7 +42,8 @@ import { ChatMessagesComponent } from './chat-helpers/chat-messages/chat-message
     NotificationPreviewComponent,
     ChatPreviewComponent,
     ChatListComponent,
-    ChatMessagesComponent
+    ChatMessagesComponent,
+    ListingDetailComponent
   ],
   exports: [
     ArticleListComponent,
@@ -64,7 +65,8 @@ import { ChatMessagesComponent } from './chat-helpers/chat-messages/chat-message
     NotificationPreviewComponent,
     ChatListComponent,
     ChatMessagesComponent,
-    ChatPreviewComponent
+    ChatPreviewComponent,
+    ListingDetailComponent
 
   ]
 })
