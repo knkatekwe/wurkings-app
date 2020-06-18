@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User, UserService } from '../../../core';
+import { User, UserService, UserObject } from '../../../core';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout-header',
@@ -11,7 +13,8 @@ export class HeaderComponent implements OnInit {
   navbarOpen = false;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private route: Router
   ) {}
 
   currentUser: User;
@@ -22,11 +25,17 @@ export class HeaderComponent implements OnInit {
         this.currentUser = userData;
       }
     );
+    //console.log(this.currentUser)
   }
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
     console.log('button was clicked')
+  }
+
+  logout(){
+    this.userService.purgeAuth();
+    this.route.navigateByUrl('/')
   }
 
 }

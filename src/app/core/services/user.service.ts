@@ -4,7 +4,7 @@ import { Observable ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
-import { User } from '../models';
+import { User, UserObject } from '../models';
 import { map ,  distinctUntilChanged } from 'rxjs/operators';
 
 
@@ -27,22 +27,36 @@ export class UserService {
   populate() {
     // If JWT detected, attempt to get & store user's info
     if (this.jwtService.getToken()) {
-      this.apiService.get('/user')
+      this.apiService.get('/users/me')
       .subscribe(
-        data => this.setAuth(data.user),
-        err => this.purgeAuth()
+        data => {this.setAuth1(data);
+        console.log('tapfuura nepo king, token riripo!!!!!!')},
+        err => {this.purgeAuth();
+          console.log('tapfuura nepano, then purged the token!!!!!!')}
       );
+      //console.log()
     } else {
       // Remove any potential remnants of previous auth states
+      console.log('tabva tabvisa token racho repa localStorage!!!!!')
       this.purgeAuth();
     }
+    console.log()
   }
 
-  setAuth(user: User) {
-    // Save JWT sent from server in localstorage
-    this.jwtService.saveToken(user.token);
+  setAuth1(user: User) {
+    //console.log('token has been set!')
     // Set current user data into observable
     this.currentUserSubject.next(user);
+    // Set isAuthenticated to true
+    this.isAuthenticatedSubject.next(true);
+  }
+
+  setAuth(user: UserObject) {
+    // Save JWT sent from server in localstorage
+    this.jwtService.saveToken(user.jwt);
+    //console.log('token has been set!')
+    // Set current user data into observable
+    this.currentUserSubject.next(user.user);
     // Set isAuthenticated to true
     this.isAuthenticatedSubject.next(true);
   }
@@ -56,13 +70,29 @@ export class UserService {
     this.isAuthenticatedSubject.next(false);
   }
 
-  attemptAuth(type, credentials): Observable<User> {
-    const route = (type === 'login') ? '/login' : '';
-    return this.apiService.post('/users' + route, {user: credentials})
+  postMethod(data: any): Observable<any> {
+     return this.http.get('http://localhost:1337/auth/local', data);
+  }
+
+  login(credentials: any): Observable<UserObject> {
+    return this.apiService.post('/auth/local' , credentials)
       .pipe(map(
       data => {
-        this.setAuth(data.user);
+        this.setAuth(data);
+        //console.log(data)
         return data;
+      }
+    ));
+  }
+
+  register(registrationData): Observable<any> {
+
+    return this.apiService.post('/auth/local/register' , registrationData)
+      .pipe(map(
+        registrationData => {
+        this.setAuth(registrationData.user);
+        console.log(registrationData)
+        return registrationData;
       }
     ));
   }
@@ -74,7 +104,7 @@ export class UserService {
   // Update the user on the server (email, pass, etc)
   update(user): Observable<User> {
     return this.apiService
-    .put('/user', { user })
+    .put('/auth/local', { user })
     .pipe(map(data => {
       // Update the currentUser observable
       this.currentUserSubject.next(data.user);

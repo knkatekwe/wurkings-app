@@ -1,6 +1,8 @@
+import { Listing } from './listing.model';
+
 export interface PaymentRate {
   id: string;
-  listingId: string;
+  listing: Listing;//
   title: string;
   price: string;
   is_active: string;

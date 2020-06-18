@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { ArticleListConfig, TagsService, UserService } from '../core';
+import { UserService } from '../core';
 
 @Component({
   selector: 'app-home-page',
@@ -10,22 +9,20 @@ import { ArticleListConfig, TagsService, UserService } from '../core';
 })
 export class HomeComponent implements OnInit {
 
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-
-
   constructor(
     private router: Router,
-    private tagsService: TagsService,
+    // private tagsService: TagsService,
     private userService: UserService
   ) {}
 
   opened = false;
   prompt = 'error';
   isAuthenticated: boolean;
-  listConfig: ArticleListConfig = {
-    type: 'all',
-    filters: {}
-  };
+  currentUser;
+  // listConfig: ArticleListConfig = {
+  //   type: 'all',
+  //   filters: {}
+  // };
   tags: Array<string> = [];
   tagsLoaded = false;
 
@@ -33,21 +30,18 @@ export class HomeComponent implements OnInit {
     this.userService.isAuthenticated.subscribe(
       (authenticated) => {
         this.isAuthenticated = authenticated;
-
-        // set the article list accordingly
-        if (authenticated) {
-          this.setListTo('feed');
-        } else {
-          this.setListTo('all');
-        }
+        console.log(this.isAuthenticated)
       }
     );
 
-    this.tagsService.getAll()
-    .subscribe(tags => {
-      this.tags = tags;
-      this.tagsLoaded = true;
-    });
+    this.currentUser = this.userService.getCurrentUser()
+    console.log(this.currentUser)
+
+    // this.tagsService.getAll()
+    // .subscribe(tags => {
+    //   this.tags = tags;
+    //   this.tagsLoaded = true;
+    // });
   }
 
   open() {
@@ -58,14 +52,14 @@ export class HomeComponent implements OnInit {
     this.opened = false;
   }
 
-  setListTo(type: string = '', filters: Object = {}) {
-    // If feed is requested but user is not authenticated, redirect to login
-    if (type === 'feed' && !this.isAuthenticated) {
-      this.router.navigateByUrl('/login');
-      return;
-    }
+  // setListTo(type: string = '', filters: Object = {}) {
+  //   // If feed is requested but user is not authenticated, redirect to login
+  //   if (type === 'feed' && !this.isAuthenticated) {
+  //     this.router.navigateByUrl('/login');
+  //     return;
+  //   }
 
-    // Otherwise, set the list object
-    this.listConfig = {type: type, filters: filters};
-  }
+  //   // Otherwise, set the list object
+  //   this.listConfig = {type: type, filters: filters};
+  // }
 }

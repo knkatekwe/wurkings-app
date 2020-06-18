@@ -20,8 +20,8 @@ export class ListingDataService {
 		// Return the Title data
 		const title: Title = {
 			title: this.listingData.title,
-			categoryId: this.listingData.catergoryId,
-			locationId: this.listingData.locationId
+			category: this.listingData.catergory.id,
+			location: this.listingData.location.id
 		};
 		return title;
 	}
@@ -30,8 +30,8 @@ export class ListingDataService {
 		// Update the Title data only when the Title Form had been validated successfully
 		this.isTitleFormValid = true;
 		this.listingData.title = data.title;
-		this.listingData.catergoryId = data.categoryId;
-		this.listingData.locationId = data.locationId;
+		this.listingData.catergory.id = data.category;
+		this.listingData.location.id = data.location;
 		// Validate Title Step in Descriptionflow
 		this.workflowService.validateStep(STEPS.title);
 	}

@@ -43,7 +43,7 @@
             <a class="p-2" ngbDropdownItem routerLink="/profile">Manage Listings</a>
             <a class="p-2" ngbDropdownItem routerLink="/">Account</a>
             <div class="border-top"></div>
-            <a class="p-2" ngbDropdownItem routerLink="/login">Log out</a>
+            <a class="p-2" ngbDropdownItem (click)='logout()'>Log out</a>
           </div>
         </li>
       </ul>

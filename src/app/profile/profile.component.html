@@ -13,7 +13,7 @@
           <div class="col-md-6">
               <div class="profile-head">
                           <h5>
-                              Hello, I'm Kumbirai Nigel Katekwe
+                              Hello, I'm {{currentUser.username}}
                           </h5>
                           <h6>
                               Joined in 2020
@@ -70,3 +70,5 @@
       </div>
   </form>
 </div>
+
+<pre>{{currentUser|json}}</pre>

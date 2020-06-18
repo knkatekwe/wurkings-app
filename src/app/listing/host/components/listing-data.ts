@@ -1,26 +1,29 @@
+import { Catergory } from 'src/app/core';
+import { Location } from 'src/app/core/models/location.model';
+
 export class ListingData {
-  id: string = "";
-  title: string = "";
-  description: string = "";
-  pricing: number = 0;
-  catergoryId: string = "";
-  locationId: string = "";
-  userId: string = "";
-  forAll: boolean = false;
-  forPositivelyReviewedOnly: boolean = false;
-  forStudentsOnly: boolean = false;
-  forWorkingClassOnly: boolean = false;
-  outbound: boolean = false;
-  is_active: boolean = false;
-  created_at: string = "";
-  updated_at: string = "";
+  id: string;
+  title: string;
+  description: string;
+  pricing: number;
+  catergory: Catergory;
+  location: Location;
+  userId: string;
+  forAll: boolean;
+  forPositivelyReviewedOnly: boolean;
+  forStudentsOnly: boolean;
+  forWorkingClassOnly: boolean;
+  outbound: boolean;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
 
   clear(){
     this.id = '';
     this.title = '';
     this.description = '';
-    this.catergoryId = '';
-    this.locationId = '';
+    this.catergory.id = '';
+    this.location.id = '';
     this.userId = '';
     this.outbound = false;
     this.is_active = false;
@@ -32,8 +35,8 @@ export class ListingData {
 
 export class Title{
  title: string;
- categoryId: string;
- locationId: string;
+ category: string;
+ location: string;
 }
 
 export class Description{

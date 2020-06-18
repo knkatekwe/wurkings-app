@@ -43,25 +43,25 @@ export class SettingsComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 
-  submitForm() {
-    this.isSubmitting = true;
+  // submitForm() {
+  //   this.isSubmitting = true;
 
-    // update the model
-    this.updateUser(this.settingsForm.value);
+  //   // update the model
+  //   this.updateUser(this.settingsForm.value);
 
-    this.userService
-    .update(this.user)
-    .subscribe(
-      updatedUser => this.router.navigateByUrl('/profile/' + updatedUser.username),
-      err => {
-        this.errors = err;
-        this.isSubmitting = false;
-      }
-    );
-  }
+  //   this.userService
+  //   .update(this.user)
+  //   .subscribe(
+  //     updatedUser => this.router.navigateByUrl('/profile/' + updatedUser.username),
+  //     err => {
+  //       this.errors = err;
+  //       this.isSubmitting = false;
+  //     }
+  //   );
+  // }
 
-  updateUser(values: Object) {
-    Object.assign(this.user, values);
-  }
+  // updateUser(values: Object) {
+  //   Object.assign(this.user, values);
+  // }
 
 }

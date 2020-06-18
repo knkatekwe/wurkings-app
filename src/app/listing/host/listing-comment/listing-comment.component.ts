@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit, OnDestroy } from '@angular/core';
 
-import { Comment, User, UserService } from '../../../core';
+import { User, UserService } from '../../../core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -21,11 +21,11 @@ export class ListCommentComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Load the current user's data
-    this.subscription = this.userService.currentUser.subscribe(
-      (userData: User) => {
-        this.canModify = (userData.username === this.comment.author.username);
-      }
-    );
+    // this.subscription = this.userService.currentUser.subscribe(
+    //   (userData: User) => {
+    //     this.canModify = (userData.username === this.comment.author.username);
+    //   }
+    // );
   }
 
   ngOnDestroy() {

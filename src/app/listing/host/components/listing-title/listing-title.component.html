@@ -22,7 +22,7 @@
             <label for=""></label>
             <select type="text"
                     formControlName="categoryId"
-                    [(ngModel)]="title.categoryId"
+                    [(ngModel)]="title.category"
                     class="form-control"
                     placeholder="Select Category">
               <option value='1'>Electronics</option>
@@ -37,7 +37,7 @@
             <label for=""></label>
             <input type="text"
                    formControlName="locationId"
-                   [(ngModel)]="title.locationId"
+                   [(ngModel)]="title.location"
                    class="form-control"
                    placeholder="Select Location">
                    <small *ngIf="location.touched && location.invalid"
