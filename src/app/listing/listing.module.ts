@@ -8,6 +8,7 @@ import { SharedModule } from '../shared';
 import { ListingRoutingModule } from './listing-routing.module';
 import { ListingViewComponent } from './listing-view/listing-view.component';
 import { ListingEditComponent } from './listing-edit/listing-edit.component';
+import { ListingResolver } from './listing-view/listing-resolver.service';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { ListingEditComponent } from './listing-edit/listing-edit.component';
   ],
 
   providers: [
-    // ArticleResolver
+    ListingResolver
   ]
 })
 export class ListingModule {}

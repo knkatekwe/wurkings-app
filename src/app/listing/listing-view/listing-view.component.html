@@ -10,8 +10,6 @@
       </a>
     </div>
 
-
-
   </div>
 
   <div class="row">
@@ -43,21 +41,24 @@
         </div>
       </div>
 
-      <h3>Lenovo E51<span class="badge badge-secondary">New</span></h3>
+      <h3>{{listing.title}}<span class="badge badge-secondary">New</span></h3>
 
-      <p>i5-6200U CPU, 8GIG RAM, 256SSD</p>
+      <p>{{listing.description}}</p>
 
       <div class="border-bottom"></div>
 
-      <h6 class="pt-3">Detailed Description</h6>
+      <h5 class="pt-4 pb-2">
+        Conditions/Rules
+      </h5>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <span><p><i class="fa fa-check-circle pr-1" aria-hidden="true"></i>Student Can Rent</p></span>
+      <span><p><i class="fa fa-check-circle pr-1" aria-hidden="true"></i>Working Class</p></span>
 
       <div class="border-bottom"></div>
 
       <div class="d-flex justify-content-between pt-3">
 
-        <p><strong>Belongs to:</strong> Kumbirai Nigel</p>
+        <p><strong>Belongs to:</strong> {{listing.owner.username}}</p>
 
         <a routerLink="/profile">
           <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
@@ -74,16 +75,11 @@
 
     <div class="col-md-6">
 
-        <h5 class="pt-4 pb-2">
-          Conditions/Rules
-        </h5>
+      <h5 class="pt-4 pb-2">
+        Reviews
+      </h5>
 
-        <span><p><i class="fa fa-check-circle pr-1" aria-hidden="true"></i>Student Can Rent</p></span>
-        <span><p><i class="fa fa-check-circle pr-1" aria-hidden="true"></i>Working Class</p></span>
-
-        <h6>Personal Conditions</h6>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <app-review-list></app-review-list>
 
     </div>
 
@@ -91,22 +87,67 @@
 
       <div class="pt-6"></div>
 
-      <div class="card py-4" style="width: 25rem;">
+      <div class="card py-4 offset-md-1" style="width: 25rem;">
         <div class="card-body">
 
           <div class="d-flex justify-content-between">
             <div>
-              <span><h5 class="card-title">$10/week</h5></span>
+              <span><h5 class="card-title">$ {{listing.price}}/day</h5></span>
 
             </div>
             <div>
-              <a routerLink="/" class="pr-2"><i class="fa fa-star-o pr-1"><small class="pr-1 text-muted">5.0(8)</small></i></a>
+              <a class="pr-2"><i class="fa fa-star-o pr-1"><small class="pr-1 text-muted">5.0(8)</small></i></a>
             </div>
           </div>
 
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block">Reserve</button>
+          <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+
+          <div  class="row">
+            <div class="col">
+              <div class="form-group">
+                <small id="helpId" class="form-text text-muted">From</small>
+                <input type="date"
+                  class="form-control" name="" id="" aria-describedby="helpId">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <small id="helpId" class="form-text text-muted">To</small>
+                <input type="date"
+                  class="form-control" name="" id="" aria-describedby="helpId">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- <div class="">
+            <div class="form-group">
+              <small id="helpId" class="form-text text-muted">Specify Hours</small>
+              <input type="text"
+                class="form-control" name="" id=""
+                aria-describedby="helpId"
+                placeholder="">
+            </div>
+          </div> -->
+
+          <button type="button" name="" id="" class="btn btn-primary btn btn-block">Reserve</button>
+
+          <p class="text-sm text-center mt-2">You won't be charged just yet</p>
+          <div class="d-flex justify-content-between">
+            <P>${{listing.price}}</P>
+            <P>${{listing.price}}</P>
+          </div>
+          <div class="d-flex justify-content-between">
+            <P>Service Fee</P>
+            <P>$20</P>
+          </div>
+          <div class="border-bottom mb-2"></div>
+          <div class="d-flex justify-content-between">
+            <P>Total</P>
+            <P>${{listing.price + 2}}</P>
+          </div>
+
         </div>
       </div>
 
@@ -116,9 +157,7 @@
 
     <div class="col-md-6" >
 
-      <h5 class="pt-4 pb-2">
-        Reviews
-      </h5>
+
 
   </div>
 

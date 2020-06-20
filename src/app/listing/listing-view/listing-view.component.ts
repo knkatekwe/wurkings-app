@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserService, ListingsService, Listing, User } from 'src/app/core';
 
 @Component({
   selector: 'app-listing-view',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListingViewComponent implements OnInit {
 
-  constructor() { }
+  listing: Listing;
+  currentUser: User;
+  canModify: boolean;
 
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute,
+		private articlesService: ListingsService,
+		//private commentsService: CommentsService,
+		private router: Router,
+		private userService: UserService) { }
+
+  ngOnInit(){
+
+    // Retreive the prefetched article
+		this.route.data.subscribe((data: { listing: Listing }) => {
+      this.listing = data.listing;
+      console.log(this.listing)
+
+			// Load the comments on this article
+			//this.populateComments();
+		});
+
+		// Load the current user's data
+		this.userService.currentUser.subscribe((userData: User) => {
+			this.currentUser = userData;
+
+			this.canModify = this.currentUser.username === this.listing.owner.username;
+		});
+
   }
 
   pictures: {imageUrl: string}[] = [

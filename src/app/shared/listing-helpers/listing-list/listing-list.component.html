@@ -1,72 +1,20 @@
 
 <div class="row">
 
-  <div class="col-md-6 col-lg-4">
-
-    <app-listing-preview></app-listing-preview>
-
-  </div>
-
-  <div class="col-md-6 col-lg-4">
-
-    <app-listing-preview></app-listing-preview>
-
-  </div>
-
-  <div class="col-md-6 col-lg-4">
-
-    <app-listing-preview></app-listing-preview>
-
-  </div>
-
-  <div class="col-md-6 col-lg-4">
-
-    <app-listing-preview></app-listing-preview>
-
-  </div>
-
-  <div class="col-md-6 col-lg-4">
-
-    <app-listing-preview></app-listing-preview>
-
-  </div>
-
-  <div class="col-md-6 col-lg-4">
-
-    <app-listing-preview></app-listing-preview>
-
-  </div>
-
-
+    <app-listing-preview class="col-md-6 col-lg-4"
+        *ngFor="let listing of results"
+        [listing]="listing">
+    </app-listing-preview>
 
 </div>
 
-<!-- <app-listing-preview
-  *ngFor="let listing of results"
-  [listing]="listing">
-</app-listing-preview>
-
-<div class="app-listing-preview"
+<div class="app-article-preview"
   [hidden]="!loading">
-  Loading listing...
+  Loading listings...
 </div>
 
-<div class="app-listing-preview"
-  [hidden]="loading || results.length">
-  No listing are here... yet.
-</div>
+<!-- <div class="app-article-preview"
+  [hidden]="loading">
+  No listings are here... yet.
+</div> -->
 
-<nav [hidden]="loading || totalPages.length <= 1">
-  <ul class="pagination">
-
-    <li class="page-item"
-      [ngClass]="{'active': pageNumber === currentPage}"
-      *ngFor="let pageNumber of totalPages"
-      (click)="setPageTo(pageNumber)">
-
-      <a class="page-link" >{{ pageNumber }}</a>
-
-    </li>
-
-  </ul>
-</nav> -->

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ArticlesService, UserService } from '../../../core';
+import { ListingsService, UserService } from '../../../core';
 import { of } from 'rxjs';
 import { concatMap ,  tap } from 'rxjs/operators';
 
@@ -11,7 +11,7 @@ import { concatMap ,  tap } from 'rxjs/operators';
 })
 export class FavoriteButtonComponent {
   constructor(
-    private articlesService: ArticlesService,
+    private articlesService: ListingsService,
     private router: Router,
     private userService: UserService
   ) {}

@@ -1,40 +1,32 @@
 import { Component, Input } from '@angular/core';
 
-import { ArticlesService } from '../../../core';
+import { ListingsService, ListingListConfig, Listing } from '../../../core';
 @Component({
   selector: 'app-listing-list',
   styleUrls: ['listing-list.component.css'],
   templateUrl: './listing-list.component.html'
 })
-export class ArticleListComponent {
+export class ListingListComponent {
   constructor(
-    private articlesService: ArticlesService
+    private listingsService: ListingsService
   ) {}
 
-  @Input() limit: number;
-  // @Input()
-  // set config(config: ArticleListConfig) {
-  //   if (config) {
-  //     this.query = config;
-  //     this.currentPage = 1;
-  //     this.runQuery();
-  //   }
-  // }
-
-  // query: ArticleListConfig;
-  // results: Article[];
-  loading = false;
-  currentPage = 1;
-  totalPages: Array<number> = [1];
-
-  setPageTo(pageNumber) {
-    this.currentPage = pageNumber;
-    this.runQuery();
+  @Input()
+  set config(config: ListingListConfig) {
+    if (config) {
+      this.query = config;
+      // this.currentPage = 1;
+      this.runQuery();
+    }
   }
+
+  query: ListingListConfig;
+  results: Listing[];
+  loading = false;
 
   runQuery() {
     this.loading = true;
-    // this.results = [];
+    this.results = [];
 
     // Create limit and offset filter (if necessary)
     // if (this.limit) {
@@ -42,13 +34,15 @@ export class ArticleListComponent {
     //   this.query.filters.offset =  (this.limit * (this.currentPage - 1));
     // }
 
-    // this.articlesService.query(this.query)
-    // .subscribe(data => {
-    //   this.loading = false;
-    //   this.results = data.articles;
+    this.listingsService.query(this.query)
+    .subscribe(data => {
+      this.loading = false;
+      this.results = data;
+      console.log('tasvika nepa query!!!!!!!')
+      console.log(this.results)
 
-    //   // Used from http://www.jstips.co/en/create-range-0...n-easily-using-one-line/
-    //   this.totalPages = Array.from(new Array(Math.ceil(data.articlesCount / this.limit)), (val, index) => index + 1);
-    // });
+      // Used from http://www.jstips.co/en/create-range-0...n-easily-using-one-line/
+      // this.totalPages = Array.from(new Array(Math.ceil(data.listingsCount / this.limit)), (val, index) => index + 1);
+    });
   }
 }

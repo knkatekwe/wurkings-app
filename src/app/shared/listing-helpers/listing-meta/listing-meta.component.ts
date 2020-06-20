@@ -4,6 +4,6 @@ import { Component, Input } from '@angular/core';
   selector: 'app-listing-meta',
   templateUrl: './listing-meta.component.html'
 })
-export class ArticleMetaComponent {
+export class ListingMetaComponent {
   //@Input() article: Article;
 }

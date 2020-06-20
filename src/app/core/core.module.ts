@@ -5,7 +5,7 @@ import { HttpTokenInterceptor } from './interceptors/http.token.interceptor';
 
 import {
   ApiService,
-  ArticlesService,
+  ListingsService,
   AuthGuard,
   JwtService,
   ProfilesService,
@@ -20,7 +20,7 @@ import {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
     ApiService,
-    ArticlesService,
+    ListingsService,
     AuthGuard,
     JwtService,
     ProfilesService,

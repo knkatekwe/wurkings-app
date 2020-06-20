@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { ArticleListComponent, ArticleMetaComponent, ArticlePreviewComponent, ListingDetailComponent } from './listing-helpers';
+import { ListingListComponent, ListingMetaComponent, ListingPreviewComponent, ListingDetailComponent } from './listing-helpers';
 import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
 import { ListErrorsComponent } from './list-errors/list-errors.component';
 import { ShowAuthedDirective } from './show-authed.directive';
@@ -29,9 +29,9 @@ import { ChatMessagesComponent } from './chat-helpers/chat-messages/chat-message
     NglModule
   ],
   declarations: [
-    ArticleListComponent,
-    ArticleMetaComponent,
-    ArticlePreviewComponent,
+    ListingListComponent,
+    ListingMetaComponent,
+    ListingPreviewComponent,
     FavoriteButtonComponent,
     FollowButtonComponent,
     ListErrorsComponent,
@@ -46,9 +46,9 @@ import { ChatMessagesComponent } from './chat-helpers/chat-messages/chat-message
     ListingDetailComponent
   ],
   exports: [
-    ArticleListComponent,
-    ArticleMetaComponent,
-    ArticlePreviewComponent,
+    ListingListComponent,
+    ListingMetaComponent,
+    ListingPreviewComponent,
     CommonModule,
     FavoriteButtonComponent,
     FollowButtonComponent,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../core';
+import { UserService, ListingListConfig } from '../core';
 
 @Component({
   selector: 'app-home-page',
@@ -19,10 +19,12 @@ export class HomeComponent implements OnInit {
   prompt = 'error';
   isAuthenticated: boolean;
   currentUser;
-  // listConfig: ArticleListConfig = {
-  //   type: 'all',
-  //   filters: {}
-  // };
+  listConfig: ListingListConfig = {
+    type: 'all',
+    filters: {
+      outbound: false
+    }
+  };
   tags: Array<string> = [];
   tagsLoaded = false;
 
@@ -52,14 +54,14 @@ export class HomeComponent implements OnInit {
     this.opened = false;
   }
 
-  // setListTo(type: string = '', filters: Object = {}) {
-  //   // If feed is requested but user is not authenticated, redirect to login
-  //   if (type === 'feed' && !this.isAuthenticated) {
-  //     this.router.navigateByUrl('/login');
-  //     return;
-  //   }
+  setListTo(type: string = '', filters: Object = {}) {
+    // If feed is requested but user is not authenticated, redirect to login
+    // if (type === 'feed' && !this.isAuthenticated) {
+    //   this.router.navigateByUrl('/login');
+    //   return;
+    // }
 
-  //   // Otherwise, set the list object
-  //   this.listConfig = {type: type, filters: filters};
-  // }
+    // Otherwise, set the list object
+    this.listConfig = {type: type, filters: filters};
+  }
 }

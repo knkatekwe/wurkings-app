@@ -1,20 +1,21 @@
 import { Component, Input } from '@angular/core';
+import { Listing } from 'src/app/core';
 
 @Component({
   selector: 'app-listing-preview',
   templateUrl: './listing-preview.component.html'
 })
-export class ArticlePreviewComponent {
+export class ListingPreviewComponent {
 
-  // @Input() Listing: Article;
+  @Input() listing: Listing;
 
-  // onToggleFavorite(favorited: boolean) {
-  //   this.Listing['favorited'] = favorited;
+  onToggleFavorite(favorited: boolean) {
+    this.listing['favorited'] = favorited;
 
-  //   if (favorited) {
-  //     this.Listing['favoritesCount']++;
-  //   } else {
-  //     this.Listing['favoritesCount']--;
-  //   }
-  // }
+    if (favorited) {
+      this.listing['favoritesCount']++;
+    } else {
+      this.listing['favoritesCount']--;
+    }
+  }
 }
