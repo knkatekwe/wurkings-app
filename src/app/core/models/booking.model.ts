@@ -6,11 +6,23 @@ export interface Booking {
   id: string;
   listing: Listing;//
   user: User;//
-  payment_rate: PaymentRate;//
+  payment_rate?: PaymentRate;//
   start_date: string;
   end_date: string;
-  status: string;
+  totalAmount?: number;
+  status?: string;
   created_at: string;
   updated_at: string;
-  is_active: boolean;
+  is_active?: boolean;
+}
+
+export class bookingStatus{
+  status?: string[] = [
+    'accepted',
+    'active',
+    'cancelled',
+    'overdue',
+    'pending',
+    'completed',
+  ]
 }

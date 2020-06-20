@@ -29,7 +29,7 @@ export class Role {
 }
 
 export class User {
-  id: number;
+  id: string;
   username: string;
   lastName: string;
   email: string;
