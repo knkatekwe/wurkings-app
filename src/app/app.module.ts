@@ -17,9 +17,7 @@ import { AccountModule } from './account/account.module';
 import { ChatModule } from './chat/chat.module';
 import { ProfileModule } from './profile/profile.module';
 import { NotificationsModule } from './notifications/notifications.module';
-import { RentalsComponent } from './rentals/rentals.component';
-import { RentalsModule } from './rentals/rentals.module';
-import { RequestsComponent } from './requests/requests.component';
+import { RequestsModule } from './requests/requests.module';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
@@ -33,6 +31,7 @@ import { RequestsComponent } from './requests/requests.component';
     ChatModule,
     ProfileModule,
     NotificationsModule,
+    RequestsModule,
 
   ],
   providers: [],
