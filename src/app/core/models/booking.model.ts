@@ -9,7 +9,9 @@ export interface Booking {
   payment_rate?: PaymentRate;//
   start_date: string;
   end_date: string;
-  totalAmount?: number;
+  total_amount?: number;
+  total_for_rental?: number;
+  service_fee?: number;
   status?: string;
   created_at: string;
   updated_at: string;

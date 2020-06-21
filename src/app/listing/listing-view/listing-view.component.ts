@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService, ListingsService, Listing, User } from 'src/app/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-listing-view',
@@ -10,10 +11,22 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 })
 export class ListingViewComponent implements OnInit {
 
+  @Output() request = new EventEmitter();
+
   selectedListing: Listing;
   currentUser: User;
   canModify: boolean;
   user: string;
+
+  serviceFee: number;
+  totalForRental: number;
+  totalAmount: number;
+
+  startDate: string;
+  endDate: string;
+  numberOfDays: number;
+
+  show: boolean;
 
   constructor(private route: ActivatedRoute,
 		private articlesService: ListingsService,
@@ -23,6 +36,8 @@ export class ListingViewComponent implements OnInit {
 		private userService: UserService) { }
 
   ngOnInit(){
+
+    this.show = true
 
     // Retreive the prefetched article
 		this.route.data.subscribe((data: { listing: Listing }) => {
@@ -46,11 +61,14 @@ export class ListingViewComponent implements OnInit {
   }
 
   form = new FormGroup({
+
     start_date: new FormControl('', [Validators.required]),
     end_date: new FormControl('', [Validators.required]),
     user: new FormControl('', Validators.required),
     listing: new FormControl('', Validators.required),
-    totalAmount: new FormControl('', Validators.required),
+    total_amount: new FormControl('', Validators.required),
+    service_fee: new FormControl('', Validators.required),
+    total_for_rental: new FormControl('', Validators.required),
     status: new FormControl('pending', Validators.required),
 
   });
@@ -59,11 +77,35 @@ export class ListingViewComponent implements OnInit {
     return this.form.controls;
   }
 
+  calculate(start: string, end: string){
+
+    console.log('the length is: ' + end.length + ', the date being: ' + end)
+
+    if(end.length != 10){
+      this.show = true
+      return
+    }
+
+    this.numberOfDays = this.differenceInDays(start, end);
+    console.log('The number of days is: ' + this.numberOfDays)
+    // if(this.numberOfDays == 0){
+    //   this.totalAmount = this.selectedListing.price + this.serviceFee;
+    //   return
+    // }
+    this.totalForRental = this.selectedListing.price * this.numberOfDays;
+    console.log('The total for the rental is: ' + this.totalForRental)
+    this.serviceFee = ((this.selectedListing.price * this.numberOfDays) * 0.05);
+    console.log('The total service fee for the rental is: ' + this.serviceFee)
+    this.totalAmount = this.totalForRental + this.serviceFee;
+    console.log('The total amount for the rental is: ' + this.totalAmount)
+    this.show = false
+  }
+
   onSubmit(){
     console.log(this.form.value);
 
-    console.log('The difference in days is:' + this.differenceInDays('2020-06-20','2020-06-22'));
-    console.log('The difference in hours is:' + this.differenceInHours('2020-06-20','2020-06-22'));
+    // console.log('The difference in days is:' + this.differenceInDays('2020-06-20','2020-06-22'));
+    // console.log('The difference in hours is:' + this.differenceInHours('2020-06-20','2020-06-22'));
 
   }
 

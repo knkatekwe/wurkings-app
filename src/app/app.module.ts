@@ -19,6 +19,7 @@ import { ProfileModule } from './profile/profile.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { RentalsComponent } from './rentals/rentals.component';
 import { RentalsModule } from './rentals/rentals.module';
+import { RequestsComponent } from './requests/requests.component';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
