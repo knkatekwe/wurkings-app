@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BookingListConfig, UserService, BookingService, User } from '../core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-requests',
@@ -7,9 +9,68 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestsComponent implements OnInit {
 
-  constructor() { }
+  isAuthenticated: boolean;
+  currentUser;
+
+  constructor(private bookingService: BookingService,
+              private userService: UserService,
+              private router: Router) { }
 
   ngOnInit(): void {
+    // this.userService.isAuthenticated.subscribe(
+    //   (authenticated) => {
+    //     this.isAuthenticated = authenticated;
+
+    //     // set the article list accordingly
+    //     if (authenticated) {
+    //       this.setListTo('feed');
+    //     } else {
+    //       this.setListTo('all');
+    //     }
+    //   }
+    // );
+
+    this.userService.currentUser.subscribe(
+      (userData) => {
+        this.currentUser = userData;
+      }
+    );
+
+    console.log(this.currentUser)
+
+    this.bookingService.queryBookings(this.currentUser.id).subscribe(data => {console.log(data)})
+    this.bookingService.queryMyBookings(this.currentUser.id).subscribe(data => {console.log(data)})
+
+  }
+
+  listConfig: BookingListConfig = {
+    type: 'all',
+    filters: {
+
+      status: 'pending'
+
+    }
+  };
+
+
+
+  setListTo(type: string = '', filters: Object = {}) {
+    // If feed is requested but user is not authenticated, redirect to login
+    if (type === 'all' && !this.isAuthenticated) {
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
+    // Otherwise, set the list object
+    this.listConfig = {type: type, filters: filters};
+  }
+
+  submitRequest(){
+
+  }
+
+  updateRequest(){
+
   }
 
 }

@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="banner">
+    <div class="d-flex justify-content-between">
+
+      <img src="../../../assets/pictures/phpThumb.jpg" class="img-thumbnail" height="150px" width="150px">
+
+      <div class="">
+        <h6 class="text-center">{{selectedBooking.listing.title}}</h6>
+        <p class="text-center"><strong>${{selectedBooking.listing.price}}</strong> <small>/day</small></p>
+        <span class="badge badge-pill badge-info">{{selectedBooking.start_date | date: 'longDate'}}</span>
+        <span><small> - </small></span>
+        <span class="badge badge-pill badge-info">{{selectedBooking.end_date | date: 'longDate'}}</span>
+        <p class="text-center mt-2"><small>Rental Amount:  </small> <strong>${{selectedBooking.total_for_rental}}</strong></p>
+      </div>
+
+      <div class="">
+        <div><a [routerLink]="['/']"
+                [hidden]="true"
+                class="btn btn-success active"
+                role="button">Pay <i class="fa fa-shopping-cart"></i></a></div>
+        <div>
+          <a [routerLink]="['/']"
+              [hidden]="true"
+              class="btn btn-info active"
+              role="button">Accept Deal <i class="fa fa-money-bill"></i></a>
+        </div>
+        <div>
+          <a [routerLink]="['/']"
+              [hidden]="false"
+              class="btn btn-danger active"
+              role="button">Cancel Deal <i class="fa fa-shopping-cart"></i></a>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

@@ -1,9 +1,8 @@
 <div class="inbox_people">
 
-  <app-chat-preview></app-chat-preview>
-  <app-chat-preview></app-chat-preview>
-  <app-chat-preview></app-chat-preview>
-  <app-chat-preview></app-chat-preview>
-  <app-chat-preview></app-chat-preview>
+  <app-chat-preview
+    *ngFor="let booking of results"
+    [booking]="booking">
+  </app-chat-preview>
 
 </div>

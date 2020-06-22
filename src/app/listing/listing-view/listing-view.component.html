@@ -118,6 +118,7 @@
                     class="form-control"
                     formControlName="start_date"
                     [(ngModel)]="startDate"
+                    (change)="calculate(startDate, endDate)"
                     aria-describedby="helpId">
                 </div>
               </div>

@@ -4,7 +4,7 @@ export class BookingListConfig{
 
   filters: {
     status?: string,
-    user: string,
+    user?: string,
     owner?: string,
     is_active?: number
   };

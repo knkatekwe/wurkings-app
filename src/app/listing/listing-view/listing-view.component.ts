@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService, ListingsService, Listing, User } from 'src/app/core';
+import { UserService, ListingsService, Listing, User, BookingService} from 'src/app/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { EventEmitter } from 'events';
 
@@ -11,8 +11,10 @@ import { EventEmitter } from 'events';
 })
 export class ListingViewComponent implements OnInit {
 
-  @Output() request = new EventEmitter();
+  // @Output() requestBooking = new EventEmitter();
 
+  isSubmitting: boolean;
+  errors: Error;
   selectedListing: Listing;
   currentUser: User;
   canModify: boolean;
@@ -30,7 +32,7 @@ export class ListingViewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
 		private articlesService: ListingsService,
-    //private commentsService: CommentsService,
+    private bookingService: BookingService,
     private formBuilder: FormBuilder,
 		private router: Router,
 		private userService: UserService) { }
@@ -38,6 +40,7 @@ export class ListingViewComponent implements OnInit {
   ngOnInit(){
 
     this.show = true
+
 
     // Retreive the prefetched article
 		this.route.data.subscribe((data: { listing: Listing }) => {
@@ -81,7 +84,7 @@ export class ListingViewComponent implements OnInit {
 
     console.log('the length is: ' + end.length + ', the date being: ' + end)
 
-    if(end.length != 10){
+    if(end.length != 10 || start.length != 10){
       this.show = true
       return
     }
@@ -102,11 +105,18 @@ export class ListingViewComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.form.value);
-
-    // console.log('The difference in days is:' + this.differenceInDays('2020-06-20','2020-06-22'));
-    // console.log('The difference in hours is:' + this.differenceInHours('2020-06-20','2020-06-22'));
-
+    const requestData = this.form.value;
+    console.log(requestData);
+      console.log(requestData)
+      this.bookingService
+      .save(requestData)
+      .subscribe(
+        data => this.router.navigateByUrl('/requests'),
+        err => {
+          this.errors = err;
+          this.isSubmitting = false;
+        }
+      );
   }
 
   differenceInDays(start, end): number{

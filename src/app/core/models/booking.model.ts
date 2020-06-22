@@ -4,18 +4,19 @@ import { PaymentRate } from './payment-rate.model';
 
 export interface Booking {
   id: string;
-  listing: Listing;//
-  user: User;//
-  payment_rate?: PaymentRate;//
   start_date: string;
   end_date: string;
   total_amount?: number;
   total_for_rental?: number;
   service_fee?: number;
   status?: string;
-  created_at: string;
-  updated_at: string;
   is_active?: boolean;
+
+  listing: Listing;//
+  user: User;//
+  payment_rate?: PaymentRate;//
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class bookingStatus{
