@@ -35,4 +35,37 @@
 
     </div>
   </div>
+
+  <div class="h-100">
+	  <div class="msg_history" *ngFor="let message of selectedBooking.messages">
+
+		<div [class]="message.user === currentUser.id? 'outgoing_msg':'incoming_msg'">
+		  <div [hidden]="message.user === currentUser.id" class="incoming_msg_img">
+        <img src="https://ptetutorials.com/images/user-profile.png"
+             alt="sunil"> </div>
+		  <div [class]="message.user === currentUser.id? '':'received_msg'">
+			<div [class]="message.user === currentUser.id? 'sent_msg':'received_withd_msg'">
+			  <p>{{message.message_body}}</p>
+			  <span class="time_date">{{message.createdAt | date: 'longDate'}}</span></div>
+		  </div>
+    </div>
+
+	  </div>
+	  <div class="type_msg">
+		<div class="input_msg_write">
+		  <form [formGroup]="form" novalidate>
+        <input type="text"
+               class="write_msg"
+               formControlName="message_body"
+               placeholder="Type a message" />
+        <button class="msg_send_btn"
+                type="submit"
+                [disabled]="!form.valid"
+                (click)="onSubmit()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+      </form>
+		</div>
+    </div>
+    <div style="bottom: 0;"></div>
+  </div>
+
 </div>

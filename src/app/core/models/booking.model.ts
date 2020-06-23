@@ -1,6 +1,7 @@
 import { User } from './user.model';
 import { Listing } from './listing.model';
 import { PaymentRate } from './payment-rate.model';
+import { Message } from './message.model';
 
 export interface Booking {
   id: string;
@@ -11,9 +12,9 @@ export interface Booking {
   service_fee?: number;
   status?: string;
   is_active?: boolean;
-
   listing: Listing;//
   user: User;//
+  messages?: Message[];
   payment_rate?: PaymentRate;//
   createdAt: string;
   updatedAt: string;

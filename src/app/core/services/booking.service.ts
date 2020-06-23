@@ -61,6 +61,12 @@ save(booking): Observable<Booking> {
   }
 }
 
+sendMessage(id: string, message: string): Observable<any> {
+  // Send message for a specified booking
+    return this.apiService.post('/bookings/' + id + '/messages', message)
+      .pipe(map(data => message));
+}
+
 favorite(id): Observable<Booking> {
   return this.apiService.post('/bookings/' + id + '/favorite');
 }

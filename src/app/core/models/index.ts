@@ -16,3 +16,4 @@ export * from './listing-list.config';
 export * from './comment-list.config';
 export * from './booking-list.config';
 export * from './review.model';
+export * from './message.model';

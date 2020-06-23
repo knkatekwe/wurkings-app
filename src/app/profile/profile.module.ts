@@ -4,6 +4,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { SharedModule } from '../shared';
 import { ProfileComponent } from './profile.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
+import { UserResolver } from './user-resolver.service';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { UserReviewsComponent } from './user-reviews/user-reviews.component';
   imports: [
     SharedModule,
     ProfileRoutingModule
-  ]
+  ],
+  providers:[UserResolver]
 })
 export class ProfileModule { }

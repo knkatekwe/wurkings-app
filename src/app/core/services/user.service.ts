@@ -101,6 +101,12 @@ export class UserService {
     return this.currentUserSubject.value;
   }
 
+  getUser(): Observable<any>{
+    return this.http.get('http://localhost:1337/users/me');
+  }
+
+
+
   // Update the user on the server (email, pass, etc)
   update(user): Observable<User> {
     return this.apiService

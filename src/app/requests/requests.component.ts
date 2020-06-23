@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingListConfig, UserService, BookingService, User } from '../core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-requests',
@@ -14,9 +14,19 @@ export class RequestsComponent implements OnInit {
 
   constructor(private bookingService: BookingService,
               private userService: UserService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    // Retreive the prefetched currentUser
+		this.route.data.subscribe((data: { currentUser: any }) => {
+      this.currentUser = data.currentUser;
+      console.log(this.currentUser)
+      	// Load the requests for the user
+			//this.populateComments();
+		});
+
     // this.userService.isAuthenticated.subscribe(
     //   (authenticated) => {
     //     this.isAuthenticated = authenticated;
@@ -36,11 +46,12 @@ export class RequestsComponent implements OnInit {
       }
     );
 
-    console.log(this.currentUser)
+    // console.log(this.currentUser)
 
-    this.bookingService.queryBookings(this.currentUser.id).subscribe(data => {console.log(data)})
-    this.bookingService.queryMyBookings(this.currentUser.id).subscribe(data => {console.log(data)})
+    // this.bookingService.queryBookings(this.currentUser.id).subscribe(data => {console.log(data)})
+    // this.bookingService.queryMyBookings(this.currentUser.id).subscribe(data => {console.log(data)})
 
+    this.router.navigateByUrl('/requests/to-me')
   }
 
   listConfig: BookingListConfig = {

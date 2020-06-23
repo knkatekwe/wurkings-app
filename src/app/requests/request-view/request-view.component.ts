@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Booking, BookingService, UserService, User } from 'src/app/core';
-import { FormBuilder } from '@angular/forms';
+import { Booking, BookingService, UserService, User, Errors } from 'src/app/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -12,6 +12,9 @@ export class RequestViewComponent implements OnInit {
 
   selectedBooking: Booking;
 
+  isCurrentUser: boolean;
+  isSubmitting: boolean;
+  errors: Errors
   currentUser: User;
   canModify: boolean;
   user: string;
@@ -41,6 +44,31 @@ export class RequestViewComponent implements OnInit {
       this.user = this.currentUser.id;
     });
 
+  }
+
+  form = new FormGroup({
+
+    message_body: new FormControl('', [Validators.required]),
+
+  });
+
+  get f(){
+    return this.form.controls;
+  }
+
+  onSubmit(){
+    const message = this.form.value;
+    console.log(message);
+      console.log(message)
+      this.bookingService
+      .sendMessage(this.selectedBooking.id, this.form.value)
+      .subscribe(
+        data => {console.log(data)},
+        err => {
+          this.errors = err;
+          this.isSubmitting = false;
+        }
+      );
   }
 
 }
