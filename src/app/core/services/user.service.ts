@@ -71,7 +71,7 @@ export class UserService {
   }
 
   postMethod(data: any): Observable<any> {
-     return this.http.get('http://localhost:1337/auth/local', data);
+     return this.http.get('https://strapi-wurkings-api.herokuapp.com/auth/local', data);
   }
 
   login(credentials: any): Observable<UserObject> {
@@ -102,7 +102,7 @@ export class UserService {
   }
 
   getUser(): Observable<any>{
-    return this.http.get('http://localhost:1337/users/me');
+    return this.http.get('https://strapi-wurkings-api.herokuapp.com/users/me');
   }
 
 

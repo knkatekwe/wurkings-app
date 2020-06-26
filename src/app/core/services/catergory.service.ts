@@ -23,11 +23,11 @@ return this.apiService.delete('/catergories/' + id);
 }
 
 getPaymentTypes(): Observable<any>{
-return this.http.get('http://localhost:1337/payment-types')
+return this.http.get('https://strapi-wurkings-api.herokuapp.com/payment-types')
 }
 
 getCategories(): Observable<any>{
-  return this.http.get('http://localhost:1337/catergories')
+  return this.http.get('https://strapi-wurkings-api.herokuapp.com/catergories')
   }
 
 favorite(id): Observable<Catergory> {

@@ -31,12 +31,12 @@ query(config: BookingListConfig): Observable<any> {
 
 queryMyBookings(userId: string): Observable<any>{
   const param1 = new HttpParams().set('user.id', userId)
-  return this.http.get('http://localhost:1337/bookings', {params: param1})
+  return this.http.get('https://strapi-wurkings-api.herokuapp.com/bookings', {params: param1})
 }
 
 queryBookings(userId: string): Observable<any>{
   const param1 = new HttpParams().set('listing.owner.id', userId)
-  return this.http.get('http://localhost:1337/bookings', {params: param1})
+  return this.http.get('https://strapi-wurkings-api.herokuapp.com/bookings', {params: param1})
 }
 
 get(id): Observable<Booking> {
@@ -75,7 +75,7 @@ updateBooking(id: string, status): Observable<any> {
 
 getMessages(id: string): Observable<any>{
   const param = new HttpParams().set('booking.id', id)
-  return this.http.get('http://localhost:1337/messages', {params: param})
+  return this.http.get('https://strapi-wurkings-api.herokuapp.com/messages', {params: param})
 }
 
 favorite(id): Observable<Booking> {
