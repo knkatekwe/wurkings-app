@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable, identity } from 'rxjs';
 
 import { ApiService } from './api.service';
@@ -10,7 +10,8 @@ import { Listing, ListingListConfig } from '..';
 @Injectable()
 export class ListingsService {
   constructor(
-    private apiService: ApiService
+    private apiService: ApiService,
+    private http: HttpClient,
   ) {}
 
   query(config: ListingListConfig): Observable<any> {
@@ -49,6 +50,12 @@ export class ListingsService {
       return this.apiService.post('/listings/', {listing: listing})
         .pipe(map(data => listing));
     }
+  }
+
+  updateListing(id: string, listing): Observable<any> {
+    //update listing
+      return this.apiService.put('/listings/' + id, listing)
+        .pipe(map(data => listing));
   }
 
   favorite(id): Observable<Listing> {

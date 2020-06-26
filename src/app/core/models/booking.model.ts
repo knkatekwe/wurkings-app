@@ -18,6 +18,7 @@ export interface Booking {
   payment_rate?: PaymentRate;//
   createdAt: string;
   updatedAt: string;
+  isReserved: boolean;
 }
 
 export class bookingStatus{

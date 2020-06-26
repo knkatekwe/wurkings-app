@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
   listConfig: ListingListConfig = {
     type: 'all',
     filters: {
-      outbound: false
+      outbound: false,
+      isReserved: false
     }
   };
   tags: Array<string> = [];

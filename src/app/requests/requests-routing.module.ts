@@ -32,7 +32,12 @@ const routes: Routes = [
     resolve: {
       booking: BookingResolver
     }
-  }
+  },
+  {
+		path: 'requests',
+		pathMatch: 'full',
+		redirectTo: '/requests/to-me'
+	}
 
 ];
 

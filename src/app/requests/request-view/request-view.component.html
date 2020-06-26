@@ -14,19 +14,25 @@
       </div>
 
       <div class="">
-        <div><a [routerLink]="['/']"
-                [hidden]="true"
-                class="btn btn-success active"
-                role="button">Pay <i class="fa fa-shopping-cart"></i></a></div>
-        <div>
-          <a [routerLink]="['/']"
-              [hidden]="true"
+        <div *ngIf="!isOwner && canPay" class="mb-2">
+          <a  (click)="checkout(selectedBooking.id)"
+              class="btn btn-success active"
+              role="button">Pay <i class="fa fa-shopping-cart"></i></a></div>
+        <div *ngIf="isOwner && isPending" class="mb-2">
+          <a  (click)="acceptBooking(selectedBooking.id, selectedBooking.listing.id)"
               class="btn btn-info active"
               role="button">Accept Deal <i class="fa fa-money-bill"></i></a>
         </div>
-        <div>
-          <a [routerLink]="['/']"
-              [hidden]="false"
+        <div *ngIf="isAccepted" class="mb-2">
+          <a class="btn btn-info disabled"
+              role="button">Deal Accepted <i class="fa fa-money-bill"></i></a>
+        </div>
+        <div *ngIf="isCancelled" class="mb-2">
+          <a  class="btn btn-danger disabled"
+              role="button">Deal Cancelled <i class="fa fa-money-bill"></i></a>
+        </div>
+        <div *ngIf="isPending" class="mb-2">
+          <a  (click)="cancelBooking(selectedBooking.id)"
               class="btn btn-danger active"
               role="button">Cancel Deal <i class="fa fa-shopping-cart"></i></a>
         </div>
@@ -37,16 +43,16 @@
   </div>
 
   <div class="h-100">
-	  <div class="msg_history" *ngFor="let message of selectedBooking.messages">
+	  <div class="msg_history" *ngFor="let message of messages">
 
-		<div [class]="message.user === currentUser.id? 'outgoing_msg':'incoming_msg'">
-		  <div [hidden]="message.user === currentUser.id" class="incoming_msg_img">
+		<div [class]="message.user.id === currentUser.id? 'outgoing_msg':'incoming_msg'">
+		  <div [hidden]="message.user.id === currentUser.id" class="incoming_msg_img">
         <img src="https://ptetutorials.com/images/user-profile.png"
              alt="sunil"> </div>
-		  <div [class]="message.user === currentUser.id? '':'received_msg'">
-			<div [class]="message.user === currentUser.id? 'sent_msg':'received_withd_msg'">
+		  <div [class]="message.user.id === currentUser.id? '':'received_msg'">
+			<div [class]="message.user.id === currentUser.id? 'sent_msg':'received_withd_msg'">
 			  <p>{{message.message_body}}</p>
-			  <span class="time_date">{{message.createdAt | date: 'longDate'}}</span></div>
+			  <span class="time_date">{{message.createdAt | date: 'medium'}}</span></div>
 		  </div>
     </div>
 
@@ -57,11 +63,12 @@
         <input type="text"
                class="write_msg"
                formControlName="message_body"
+               [disabled]="isSubmitting"
                placeholder="Type a message" />
         <button class="msg_send_btn"
                 type="submit"
                 [disabled]="!form.valid"
-                (click)="onSubmit()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                (click)="send()"><i class="fa fa-paper-plane-o"></i></button>
       </form>
 		</div>
     </div>

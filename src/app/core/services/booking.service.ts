@@ -67,6 +67,17 @@ sendMessage(id: string, message: string): Observable<any> {
       .pipe(map(data => message));
 }
 
+updateBooking(id: string, status): Observable<any> {
+  // Send message for a specified booking
+    return this.apiService.put('/bookings/' + id, status)
+      .pipe(map(data => status));
+}
+
+getMessages(id: string): Observable<any>{
+  const param = new HttpParams().set('booking.id', id)
+  return this.http.get('http://localhost:1337/messages', {params: param})
+}
+
 favorite(id): Observable<Booking> {
   return this.apiService.post('/bookings/' + id + '/favorite');
 }

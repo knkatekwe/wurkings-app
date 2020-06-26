@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Listing } from 'src/app/core';
+import { Listing, Catergory } from 'src/app/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { UploadFileService } from 'src/app/core/services/upload-file.service';
 import { Router } from '@angular/router';
+import { CatergoryService } from 'src/app/core/services/catergory.service';
 
 @Component({
   selector: 'app-listing-detail',
@@ -12,27 +13,49 @@ import { Router } from '@angular/router';
 })
 export class ListingDetailComponent implements OnInit {
 
-  listing: Listing;
+  originalName: string;
+  selectedListing: Listing;
 
-  constructor(private router: Router, private uploadService: UploadFileService) { }
+  @Input() set listing(listing: Listing){
+    if(listing){this.originalName = listing.title}
+    this.selectedListing = Object.assign({}, listing)
+  }
+  @Output() save = new EventEmitter();
+  @Output() cancel = new EventEmitter();
+
+  catergories: any;
+  paymentTypes: any;
+
+
+  constructor(private router: Router,
+              private catergoryService: CatergoryService,
+              private uploadService: UploadFileService) { }
 
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
 
   ngOnInit() {
+    this.catergoryService.getCategories()
+      .subscribe(data => {this.catergories = data
+      console.log(data)})
+    this.catergoryService.getPaymentTypes()
+      .subscribe(data => {this.paymentTypes = data
+        console.log(data)})
   }
 
   form = new FormGroup({
 		title: new FormControl('', Validators.required),
-		category: new FormControl('', Validators.required),
-    location: new FormControl('', Validators.required),
+		catergory: new FormControl('', Validators.required),
+    state: new FormControl('', Validators.required),
+    city: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
-    picture: new FormControl('', Validators.required),
+    picture: new FormControl(''),
     price: new FormControl('', Validators.required),
-    allCan: new FormControl('', Validators.required),
-    onlyStudent: new FormControl('', Validators.required),
-    onlyWorking: new FormControl('', Validators.required),
+    paymentRate: new FormControl('', Validators.required),
+    allCan: new FormControl(''),
+    onlyStudent: new FormControl(''),
+    onlyWorking: new FormControl(''),
   });
 
   data = this.form.value

@@ -5,5 +5,5 @@ export class Message{
   message_body: string;
   createdAt: string;
   updatedAt: string;
-  user: string;
+  user: User;
 }

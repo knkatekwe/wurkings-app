@@ -8,13 +8,16 @@ export class Listing {
   description: string;
   price: number;
   catergory?: Catergory;//
-  location?: Location;//
-  owner: User;//
+  city?: string;//
+  state?: string;//
+  owner: any;//
+  paymentRate?: string;
   outbound: boolean;
   forAll?: boolean;
   onlyStudent?: boolean;
   onlyEmployed?: boolean;
   isActive: boolean;
+  isReserved: boolean;
   created_at: string;
   updated_at: string;
 }

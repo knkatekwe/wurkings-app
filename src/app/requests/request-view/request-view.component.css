@@ -127,7 +127,8 @@ width: 100%;
 
 .outgoing_msg {
 overflow: hidden;
-margin: 26px 0 26px;
+margin: 5px;
+/* margin: 26px 0 26px; */
 }
 
 .sent_msg {

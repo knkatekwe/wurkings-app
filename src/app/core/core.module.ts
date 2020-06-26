@@ -13,6 +13,7 @@ import {
   UserService,
   BookingService,
 } from './services';
+import { CatergoryService } from './services/catergory.service';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import {
     TagsService,
     UserService,
     BookingService,
+    CatergoryService,
 
   ],
   declarations: []

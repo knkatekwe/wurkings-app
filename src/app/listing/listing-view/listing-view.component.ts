@@ -31,7 +31,7 @@ export class ListingViewComponent implements OnInit {
   show: boolean;
 
   constructor(private route: ActivatedRoute,
-		private articlesService: ListingsService,
+		private listingService: ListingsService,
     private bookingService: BookingService,
     private formBuilder: FormBuilder,
 		private router: Router,
@@ -72,7 +72,7 @@ export class ListingViewComponent implements OnInit {
     total_amount: new FormControl('', Validators.required),
     service_fee: new FormControl('', Validators.required),
     total_for_rental: new FormControl('', Validators.required),
-    status: new FormControl('pending', Validators.required),
+    status: new FormControl('PENDING', Validators.required),
 
   });
 
@@ -111,7 +111,7 @@ export class ListingViewComponent implements OnInit {
       this.bookingService
       .save(requestData)
       .subscribe(
-        data => this.router.navigateByUrl('/requests'),
+        data => {this.router.navigateByUrl('/requests')},
         err => {
           this.errors = err;
           this.isSubmitting = false;

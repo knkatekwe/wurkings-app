@@ -8,6 +8,7 @@ export class ListingListConfig{
     owner?: string,
     outbound?: boolean,
     favorited?: boolean,
+    isReserved?: boolean,
     is_active?: boolean
   };
 

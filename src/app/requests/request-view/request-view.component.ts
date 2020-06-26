@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Booking, BookingService, UserService, User, Errors } from 'src/app/core';
+import { Booking, BookingService, UserService, User, Errors, Message, ListingsService } from 'src/app/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -11,38 +11,59 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RequestViewComponent implements OnInit {
 
   selectedBooking: Booking;
+  messages: Message[];
+  messageControl = new FormControl();
 
   isCurrentUser: boolean;
   isSubmitting: boolean;
   errors: Errors
   currentUser: User;
-  canModify: boolean;
+  isOwner: boolean;
+  canPay: boolean;
+  isCancelled: boolean;
+  isPending: boolean;
+  isAccepted: boolean;
   user: string;
 
   constructor(private route: ActivatedRoute,
     private bookingService: BookingService,
-    private formBuilder: FormBuilder,
+    private listingService: ListingsService,
 		private router: Router,
 		private userService: UserService) { }
 
   ngOnInit() {
 
-    // Retreive the prefetched article
+    // Retreive the prefetched booking
 		this.route.data.subscribe((data: { booking: Booking }) => {
       this.selectedBooking = data.booking;
       console.log(this.selectedBooking)
 
 			// Load the comments on this article
-			//this.populateComments();
-		});
+      this.populateMessages();
 
-		// Load the current user's data
-		this.userService.currentUser.subscribe((userData: User) => {
-			this.currentUser = userData;
+      // Load the current user's data
+		this.userService.currentUser.subscribe((userData: any) => {
+      this.currentUser = userData;
 
-      this.canModify = this.currentUser.id === this.selectedBooking.listing.owner.id;
+      console.log(this.currentUser)
       this.user = this.currentUser.id;
+
+      console.log('from selected booking ' + this.selectedBooking.listing.owner)
+      console.log('from currentUser ' + this.user)
+
+      this.isOwner = this.user === this.selectedBooking.listing.owner;
+      console.log('im owner is: ' + this.isOwner)
+      this.canPay = this.selectedBooking.status ==='ACCEPTED';
+      console.log('is accepted: ' + this.isOwner)
+      this.isAccepted = this.selectedBooking.status ==='ACCEPTED';
+      console.log('can be paid for: ' + this.canPay)
+      this.isPending = this.selectedBooking.status ==='PENDING';
+      console.log('is still pending acceptence: ' + this.isPending)
+      this.isCancelled = this.selectedBooking.status ==='CANCELLED';
+      console.log('is cancelled: ' + this.isCancelled)
     });
+
+		});
 
   }
 
@@ -56,14 +77,47 @@ export class RequestViewComponent implements OnInit {
     return this.form.controls;
   }
 
-  onSubmit(){
+  populateMessages(){
+    this.bookingService.getMessages(this.selectedBooking.id)
+      .subscribe(res => {this.messages = res
+        console.log('...these are the messages for the booking...')
+      console.log(this.messages)})
+  }
+
+  acceptBooking(id, idl){
+    this.isSubmitting = true;
+    this.bookingService.updateBooking(id, {status: 'ACCEPTED'})
+      .subscribe(res => {this.selectedBooking
+        this.listingService.updateListing(idl, {isReserved: true})
+          .subscribe(res =>{this.selectedBooking})
+        this.isSubmitting = false;})
+  }
+
+  cancelBooking(id){
+    this.isSubmitting = true;
+    this.bookingService.updateBooking(id, {status: 'CANCELLED'})
+      .subscribe(res => {this.selectedBooking
+        this.isSubmitting = false;})
+  }
+
+  checkout(id){
+    this.isSubmitting = true;
+    console.log('...checkout button pressed...')
+    this.isSubmitting = false;
+  }
+
+  send(){
+    this.isSubmitting = true;
     const message = this.form.value;
+    const messageBody = this.messageControl.value;
     console.log(message);
-      console.log(message)
       this.bookingService
-      .sendMessage(this.selectedBooking.id, this.form.value)
+      .sendMessage(this.selectedBooking.id, message)
       .subscribe(
-        data => {console.log(data)},
+        data => {console.log(data)
+          this.form.reset('');
+				  this.isSubmitting = false
+          this.populateMessages()},
         err => {
           this.errors = err;
           this.isSubmitting = false;
