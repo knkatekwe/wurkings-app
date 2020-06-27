@@ -152,6 +152,7 @@
 
             <button type="button" class="btn btn-primary btn btn-block"
                     (click)="onSubmit()"
+                    [hidden]="canModify"
                     [disabled]="!form.valid">Reserve</button>
 
           </form>

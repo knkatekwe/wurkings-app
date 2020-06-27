@@ -41,7 +41,6 @@ export class ListingViewComponent implements OnInit {
 
     this.show = true
 
-
     // Retreive the prefetched article
 		this.route.data.subscribe((data: { listing: Listing }) => {
       this.selectedListing = data.listing;
@@ -106,9 +105,9 @@ export class ListingViewComponent implements OnInit {
 
   onSubmit(){
     const requestData = this.form.value;
-    console.log(requestData);
       console.log(requestData)
-      this.bookingService
+      if(this.currentUser){
+        this.bookingService
       .save(requestData)
       .subscribe(
         data => {this.router.navigateByUrl('/requests')},
@@ -117,6 +116,9 @@ export class ListingViewComponent implements OnInit {
           this.isSubmitting = false;
         }
       );
+      }else{
+        this.router.navigateByUrl('/login')
+      }
   }
 
   differenceInDays(start, end): number{
