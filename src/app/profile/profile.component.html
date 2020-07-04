@@ -3,7 +3,7 @@
       <div class="row">
           <div class="col-md-4">
               <div class="profile-img">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                  <img src="../../../../assets/pictures/thumb__ser.png" alt=""/>
                   <div class="file btn btn-lg btn-primary">
                       Change Photo
                       <input type="file" name="file"/>
@@ -13,12 +13,12 @@
           <div class="col-md-6">
               <div class="profile-head">
                           <h5>
-                              Hello, I'm {{currentUser.username}}
+                              Hello, I'm {{user.username}}
                           </h5>
                           <h6>
                               Joined in 2020
                           </h6>
-                          <a class="proile-rating" routerLink="/profile/reviews">Reviews by you</a>
+                          <a *ngIf="canModify" class="proile-rating" routerLink="/profile/reviews">Reviews by you</a>
                   <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
                       <li class="nav-item">
                           <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -33,7 +33,7 @@
               </div>
           </div>
           <div class="col-md-2">
-              <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+              <input *ngIf="canModify" type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
           </div>
       </div>
       <div class="row">
@@ -71,4 +71,4 @@
   </form>
 </div>
 
-<pre>{{currentUser|json}}</pre>
+<pre>{{user|json}}</pre>

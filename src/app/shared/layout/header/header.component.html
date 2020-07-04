@@ -13,11 +13,11 @@
         <!-- <li class="nav-item" *appShowAuthed="true">
           <a class="nav-link text-success" routerLink="/inbox">Inbox</a>
         </li> -->
-        <li class="nav-item" *appShowAuthed="true">
+        <!-- <li class="nav-item" *appShowAuthed="true">
           <a class="nav-link text-success" routerLink="/notifications">Notifications</a>
-        </li>
+        </li> -->
         <li class="nav-item" *appShowAuthed="true">
-          <a class="nav-link text-success" routerLink="/requests">Requests</a>
+          <a class="nav-link text-success" [routerLink]="['/requests']">Requests</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-success " routerLink="/">Help</a>
@@ -28,12 +28,12 @@
         <li ngbDropdown class="nav-item" class="d-inline-block" *appShowAuthed="true">
           <a ngbDropdownToggle id="navbarDropdownMenuLink" class="nav-link" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+            <img src="../../../../assets/pictures/thumb__ser.png"
               width="30"
               height="30" class="rounded-circle">
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
-            <a class="p-2" ngbDropdownItem routerLink="/profile">Profile</a>
+            <a class="p-2" ngbDropdownItem [routerLink]="['/profile', currentUser.id]">Profile</a>
             <a class="p-2" ngbDropdownItem routerLink="/rentals">Rentals</a>
             <a class="p-2" ngbDropdownItem routerLink="/wishlist">Wishlist</a>
             <div class="border-top"></div>

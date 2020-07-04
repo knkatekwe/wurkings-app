@@ -7,7 +7,6 @@ import { JwtService } from './jwt.service';
 import { User, UserObject } from '../models';
 import { map ,  distinctUntilChanged } from 'rxjs/operators';
 
-
 @Injectable()
 export class UserService {
   private currentUserSubject = new BehaviorSubject<User>({} as User);
@@ -70,9 +69,9 @@ export class UserService {
     this.isAuthenticatedSubject.next(false);
   }
 
-  postMethod(data: any): Observable<any> {
-     return this.http.get('https://strapi-wurkings-api.herokuapp.com/auth/local', data);
-  }
+  // postMethod(data: any): Observable<any> {
+  //    return this.http.get('http://localhost:1337/auth/local', data);
+  // }
 
   login(credentials: any): Observable<UserObject> {
     return this.apiService.post('/auth/local' , credentials)
@@ -102,10 +101,13 @@ export class UserService {
   }
 
   getUser(): Observable<any>{
-    return this.http.get('https://strapi-wurkings-api.herokuapp.com/users/me');
+    return this.http.get('http://localhost:1337/users/me');
   }
 
-
+  get(id): Observable<UserObject> {
+    return this.apiService.get('/users/' + id)
+      .pipe(map(data => data));
+  }
 
   // Update the user on the server (email, pass, etc)
   update(user): Observable<User> {

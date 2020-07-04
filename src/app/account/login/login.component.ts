@@ -1,7 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 import { UserService, Errors } from 'src/app/core';
 
 // import { AccountService, AlertService } from '@app/_services';
@@ -13,6 +12,7 @@ export class LoginComponent implements OnInit {
     submitted = false;
     errors: Errors = {errors: {}};
     isSubmitting = false;
+    failed: boolean;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+      this.failed = false;
         this.form = this.formBuilder.group({
             identifier: ['', Validators.required],
             password: ['', Validators.required]
@@ -33,7 +34,13 @@ export class LoginComponent implements OnInit {
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.form.controls; }
+    get identifier(){
+      return this.form.get('identifier')
+    }
+
+    get password(){
+      return this.form.get('password')
+    }
 
     onSubmit() {
       //this.isSubmitting = true;
@@ -44,10 +51,13 @@ export class LoginComponent implements OnInit {
       this.userService
       .login(credentials)
       .subscribe(
-        data => this.router.navigateByUrl('/profile'),
+        data => {
+          console.log('login successful!')
+          this.router.navigateByUrl('/')},
         err => {
           this.errors = err;
           this.isSubmitting = false;
+          this.failed = true;
         }
       );
     }

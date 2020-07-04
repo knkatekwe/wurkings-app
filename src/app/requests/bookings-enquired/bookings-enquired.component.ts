@@ -13,6 +13,7 @@ export class BookingsEnquiredComponent implements OnInit {
 
   currentUser: any;
   results: Booking[];
+
 	bookingsConfig: BookingListConfig = {
 		type: 'all',
 		filters: {}

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class UserResolver implements Resolve<any> {
+export class CurrentUserResolver implements Resolve<any> {
 
 constructor(private userService: UserService,
   private router: Router) { }
@@ -15,7 +15,7 @@ constructor(private userService: UserService,
     state: RouterStateSnapshot
   ): Observable<any> {
 
-    return this.userService.get(route.params['id'])
+    return this.userService.getUser()
       .pipe(catchError((err) => this.router.navigateByUrl('/login')));
   }
 

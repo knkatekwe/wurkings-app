@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { AuthGuard } from './core';
 
 const routes: Routes = [
   {
@@ -16,11 +17,13 @@ const routes: Routes = [
   },
   {
     path: 'notifications',
-    loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsModule)
+    loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'rentals',
@@ -28,7 +31,8 @@ const routes: Routes = [
   },
   {
     path: 'editor',
-    loadChildren: () => import('./editor/editor.module').then(m => m.EditorModule)
+    loadChildren: () => import('./editor/editor.module').then(m => m.EditorModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'listing',
@@ -36,8 +40,9 @@ const routes: Routes = [
   },
   {
     path: 'requests',
-    loadChildren: () => import('./requests/requests.module').then(m => m.RequestsModule)
-  }
+    loadChildren: () => import('./requests/requests.module').then(m => m.RequestsModule),
+    // canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({

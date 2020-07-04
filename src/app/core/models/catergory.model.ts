@@ -1,7 +1,7 @@
 export interface Catergory {
   id: string;
-  catergory_title: string;
-  is_active: string;
-  created_at: string;
-  updated_at: string;
+  catergoryName: string;
+  isActive: string;
+  createdAt: string;
+  updatedAt: string;
 }

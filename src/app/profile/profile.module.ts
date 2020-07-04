@@ -5,6 +5,7 @@ import { SharedModule } from '../shared';
 import { ProfileComponent } from './profile.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
 import { UserResolver } from './user-resolver.service';
+import { CurrentUserResolver } from './current-user-resolver.service';
 
 
 @NgModule({
@@ -13,6 +14,6 @@ import { UserResolver } from './user-resolver.service';
     SharedModule,
     ProfileRoutingModule
   ],
-  providers:[UserResolver]
+  providers:[UserResolver, CurrentUserResolver]
 })
 export class ProfileModule { }

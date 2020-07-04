@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService, UserObject, User } from '../core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -9,16 +10,29 @@ import { UserService, UserObject, User } from '../core';
 export class ProfileComponent implements OnInit {
 
   currentUser: User;
+  user: User;
+  canModify: boolean;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
 
-    this.userService.currentUser.subscribe(
-      (userData) => {
-        this.currentUser = userData;
-      }
-    );
+    // Retreive the prefetched article
+		this.route.data.subscribe((data: { user: User }) => {
+      this.user = data.user;
+      console.log(this.user)
+
+			// Load the comments on this article
+			//this.populateComments();
+		});
+
+		// Load the current user's data
+		this.userService.currentUser.subscribe((userData: User) => {
+			this.currentUser = userData;
+
+      this.canModify = this.user.id === this.currentUser.id;
+    });
 
   }
 

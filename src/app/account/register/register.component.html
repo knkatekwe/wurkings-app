@@ -7,43 +7,53 @@
     <div class="card-body">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-group">
-                <label for="username">First Name</label>
-                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <!-- <label for="username">First Name</label> -->
+                <input type="text" formControlName="username" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                       placeholder="First Name"/>
                 <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                     <div *ngIf="f.username.errors.required">First Name is required</div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="last_name">Last Name</label>
-                <input type="text" formControlName="last_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+                <!-- <label for="last_name">Last Name</label> -->
+                <input type="text" formControlName="last_name" class="form-control"
+                       placeholder="Last Name"
+                       [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
                 <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
                     <div *ngIf="f.lastName.errors.required">Last Name is required</div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="username">Email</label>
-                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <!-- <label for="username">Email</label> -->
+                <input type="text" formControlName="email" class="form-control"
+                       placeholder="Email"
+                       [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                     <div *ngIf="f.email.errors.required">Email is required</div>
                 </div>
             </div>
             <div class="form-group">
-              <label for="phone_number">Phone Number</label>
-              <input type="text" formControlName="phone_number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }" />
+              <!-- <label for="phone_number">Phone Number</label> -->
+              <input type="text" formControlName="phone_number"
+                      class="form-control" placeholder="Phone Number"
+                      [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }" />
               <div *ngIf="submitted && f.phone_number.errors" class="invalid-feedback">
                   <div *ngIf="f.phone_number.errors.required">Phone Number is required</div>
               </div>
           </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <!-- <label for="password">Password</label> -->
+                <input type="password" formControlName="password"
+                       class="form-control" placeholder="Password"
+                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password is required</div>
                     <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
                 </div>
             </div>
             <div class="form-group">
-                <button [disabled]="loading" class="btn btn-primary w-100">
+                <button [disabled]="loading || form.invalid" class="btn btn-primary w-100">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Register
                 </button>
