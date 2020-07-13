@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup , Validators, FormBuilder } from '@angular/forms';
 import { Listing, Catergory } from 'src/app/core';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { UploadFileService } from 'src/app/core/services/upload-file.service';
 import { Router } from '@angular/router';
 import { CatergoryService } from 'src/app/core/services/catergory.service';
@@ -14,16 +13,19 @@ import { CatergoryService } from 'src/app/core/services/catergory.service';
 export class ListingDetailComponent implements OnInit {
 
   originalName: string;
+
   selectedListing: Listing;
 
   @Input() catergories: any;
   @Input() paymentTypes: any;
+
   @Input() set listing(listing: Listing){
     if(listing){this.originalName = listing.title}
     this.selectedListing = Object.assign({}, listing)
   }
-  @Output() save = new EventEmitter();
-  @Output() cancel = new EventEmitter();
+  @Output() saved = new EventEmitter();
+  @Output() deleted = new EventEmitter();
+
   form: FormGroup;
 
 
@@ -32,11 +34,10 @@ export class ListingDetailComponent implements OnInit {
               private catergoryService: CatergoryService,
               private uploadService: UploadFileService) { }
 
-  selectedFiles: FileList;
-  currentFileUpload: File;
-  progress: { percentage: number } = { percentage: 0 };
-
   ngOnInit() {
+
+    console.log('...listing in the listing detail component...')
+    console.log(this.selectedListing)
 
     this.form = this.formBuilder.group({
       title: [null, Validators.required],
@@ -46,7 +47,7 @@ export class ListingDetailComponent implements OnInit {
       description: ['', Validators.required],
       picture: [null],
       price: [null, Validators.required],
-      paymentRate: ['', Validators.required],
+      payment_type: ['', Validators.required],
       allCan: [null],
       onlyStudent: [null],
       onlyWorking: [null],
@@ -54,28 +55,9 @@ export class ListingDetailComponent implements OnInit {
 
   }
 
-  onSubmit(){
-    console.log(this.form.value)
-  }
-
-  selectFile(event) {
-    this.selectedFiles = event.target.files;
-  }
-
-  upload() {
-    this.progress.percentage = 0;
-
-    this.currentFileUpload = this.selectedFiles.item(0);
-    this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.progress.percentage = Math.round(100 * event.loaded / event.total);
-      } else if (event instanceof HttpResponse) {
-        console.log('File is completely uploaded!');
-      }
-    });
-
-    this.selectedFiles = undefined;
-  }
+  // onSubmit(){
+  //   console.log(this.form.value)
+  // }
 
   // convenience getter for easy access to form fields
 // get f() { return this.form.controls; }
@@ -86,7 +68,7 @@ export class ListingDetailComponent implements OnInit {
   get city() { return this.form.get('city'); }
   get description() { return this.form.get('description'); }
   get price() { return this.form.get('price'); }
-  get paymentRate() { return this.form.get('paymentRate'); }
+  get payment_type() { return this.form.get('payment_type'); }
 
 }
 

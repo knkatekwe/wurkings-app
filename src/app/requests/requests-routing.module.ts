@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { RequestsComponent } from './requests.component';
 import { RequestViewComponent } from './request-view/request-view.component';
 import { BookingResolver } from './request-view/booking-resolver.service';
-import { UserResolver } from '../profile/user-resolver.service';
 import { BookingsMadeComponent } from './bookings-made/bookings-made.component';
 import { BookingsEnquiredComponent } from './bookings-enquired/bookings-enquired.component';
 import { CurrentUserResolver } from '../profile/current-user-resolver.service';

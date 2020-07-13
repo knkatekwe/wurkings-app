@@ -67,7 +67,7 @@ sendMessage(id: string, message: string): Observable<any> {
       .pipe(map(data => message));
 }
 
-updateBooking(id: string, status): Observable<any> {
+updateBooking(id: string, status): Observable<Booking> {
   // Send message for a specified booking
     return this.apiService.put('/bookings/' + id, status)
       .pipe(map(data => status));

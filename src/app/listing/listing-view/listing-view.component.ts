@@ -58,8 +58,6 @@ export class ListingViewComponent implements OnInit {
       this.user = this.currentUser.id;
     });
 
-
-
   }
 
   form = new FormGroup({
@@ -110,7 +108,7 @@ export class ListingViewComponent implements OnInit {
         this.bookingService
       .save(requestData)
       .subscribe(
-        data => {this.router.navigateByUrl('/requests')},
+        data => {this.router.navigateByUrl('/requests/by-me')},
         err => {
           this.errors = err;
           this.isSubmitting = false;
@@ -146,7 +144,5 @@ export class ListingViewComponent implements OnInit {
       "imageUrl": "https://www.notebookcheck.net/fileadmin/_processed_/csm_Lenovo_E51_80_Unterseite_a54dcfafd9.jpg"
     }
   ]
-
-
 
 }

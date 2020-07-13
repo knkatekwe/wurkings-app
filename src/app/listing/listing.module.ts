@@ -9,6 +9,7 @@ import { ListingRoutingModule } from './listing-routing.module';
 import { ListingViewComponent } from './listing-view/listing-view.component';
 import { ListingEditComponent } from './listing-edit/listing-edit.component';
 import { ListingResolver } from './listing-view/listing-resolver.service';
+import { ListingCreateComponent } from './listing-create/listing-create.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { ListingResolver } from './listing-view/listing-resolver.service';
   declarations: [
     ListingComponent,
     ListingViewComponent,
-    ListingEditComponent
+    ListingEditComponent,
+    ListingCreateComponent,
     // MarkdownPipe
   ],
 

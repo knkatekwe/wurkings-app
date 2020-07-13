@@ -18,6 +18,8 @@ import { ChatModule } from './chat/chat.module';
 import { ProfileModule } from './profile/profile.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { RequestsModule } from './requests/requests.module';
+import { CheckoutModule } from './checkout/checkout.module';
+import { HelpModule } from './help/help.module';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
@@ -32,6 +34,8 @@ import { RequestsModule } from './requests/requests.module';
     ProfileModule,
     NotificationsModule,
     RequestsModule,
+    CheckoutModule,
+    HelpModule,
 
   ],
   providers: [],

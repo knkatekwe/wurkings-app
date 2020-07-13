@@ -1,4 +1,4 @@
-export interface Catergory {
+export class Catergory {
   id: string;
   catergoryName: string;
   isActive: string;

@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { CatergoryService } from 'src/app/core/services/catergory.service';
 import { UploadFileService } from 'src/app/core/services/upload-file.service';
-import { Listing } from 'src/app/core';
+import { Listing, ListingsService } from 'src/app/core';
 
 @Component({
   selector: 'app-listing-edit',
   templateUrl: './listing-edit.component.html',
-  styleUrls: ['./listing-edit.component.css']
 })
 export class ListingEditComponent implements OnInit {
 
@@ -17,11 +16,21 @@ export class ListingEditComponent implements OnInit {
   listing: Listing;
 
   constructor(private router: Router,
-    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
     private catergoryService: CatergoryService,
-    private uploadService: UploadFileService) { }
+    private listingService: ListingsService) { }
 
   ngOnInit() {
+
+    // Retreive the prefetched article
+		this.route.data.subscribe((data: { listing: Listing }) => {
+      this.listing = data.listing;
+      console.log(this.listing)
+
+			// Load the comments on this article
+			//this.populateComments();
+    });
+
     //load catergories
     this.catergoryService.getCategories()
       .subscribe(data => {this.catergories = data
@@ -33,6 +42,18 @@ export class ListingEditComponent implements OnInit {
         console.log(data)})
   }
 
+
+  update(listing){
+    console.log('...save method from listing update component...')
+    this.listingService.save(listing)
+     .subscribe(listing => {console.log('listing saved successfully')
+                            console.log(listing)},
+                error => {console.log(error)})
+  }
+
+  delete(){
+    console.log('...delete method from listing edit component...')
+  }
 
 
 }

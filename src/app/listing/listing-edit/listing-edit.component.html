@@ -1,7 +1,6 @@
 <app-listing-detail [catergories]='catergories'
                     [paymentTypes]='paymentTypes'
-                    [listing] = 'listing'>
+                    [listing] = 'listing'
+                    (saved)='update($event)'
+                    (deleted)='delete()'>
 </app-listing-detail>
-
-<!-- <pre>{{catergories | json}}</pre>
-<pre>{{paymentTypes | json}}</pre> -->

@@ -2,7 +2,7 @@
   <div class="card-body">
     <h5 class="card-title">Listing Detail</h5>
 
-    <form [formGroup]="form" novalidate>
+    <form [formGroup]="form" (submit)="saved.emit(form.value)" novalidate>
 
       <div class="form-group">
         <div class="row">
@@ -20,7 +20,8 @@
             <label for=""></label>
             <div class="form-group">
               <select class="form-control" id=""
-                      formControlName="catergory">
+                      formControlName="catergory"
+                      >
                 <option>Select Catergory</option>
                 <option *ngFor="let catergory of catergories"
                         [value]="catergory.id">{{catergory.catergoryName}}</option>
@@ -77,38 +78,21 @@
             <label for=""></label>
             <div class="form-group">
               <select class="form-control" id=""
-                      formControlName="paymentRate" [(ngModel)]="selectedListing.paymentRate">
+                      formControlName="payment_type">
                 <option>Pay per...</option>
-                <option *ngFor="let paymentRate of paymentTypes"
-                [value]="paymentRate.id">{{paymentRate.rate}}</option>
+                <option *ngFor="let payment_type of paymentTypes"
+                [value]="payment_type.id">{{payment_type.rate}}</option>
               </select>
             </div>
 
-            <small *ngIf="paymentRate.touched && paymentRate.invalid" class="alert text-danger text-muted">Payment Rate is
+            <small *ngIf="payment_type.touched && payment_type.invalid" class="alert text-danger text-muted">Payment Rate is
               required</small>
 
           </div>
 
 
           <div class="col-md-12 mt-4">
-            <div class="">
-              <div class="jumbotron">
-                <!--imported-->
-                <div *ngIf="currentFileUpload" class="progress">
-                  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-                    attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
-                    [ngStyle]="{width:progress.percentage+'%'}">
-                    {{progress.percentage}}%</div>
-                </div>
-
-                <label class="btn btn-default">
-                  <input type="file" (change)="selectFile($event)">
-                </label>
-
-                <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-                <!--/imported-->
-              </div>
-            </div>
+           <app-image-upload></app-image-upload>
           </div>
 
 
@@ -117,7 +101,7 @@
 
             <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" [(ngModel)]="selectedListing.forAll" class="form-check-input"
+                <input type="checkbox" [(ngModel)]="selectedListing.allCan" class="form-check-input"
                   formControlName="allCan">Anyone can rent.
               </label>
             </div>
@@ -129,7 +113,7 @@
             </div>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" [(ngModel)]="selectedListing.onlyEmployed" class="form-check-input"
+                <input type="checkbox" [(ngModel)]="selectedListing.onlyWorking" class="form-check-input"
                   formControlName="onlyWorking">Working Class.
               </label>
             </div>
@@ -137,9 +121,13 @@
 
         </div>
         <div class="pt-4">
-          <button type="button" [disabled]="form.invalid" (click)="onSubmit()"
+          <button type="submit" [disabled]="form.invalid"
             class="btn btn-info btn-block">Save</button>
         </div>
+        <!-- <div class="pt-4">
+          <button type="button" (click)="deleted.emit()"
+            class="btn btn-info btn-block">Delete</button>
+        </div> -->
       </div>
     </form>
 

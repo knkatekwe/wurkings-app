@@ -42,12 +42,12 @@ export class ListingsService {
   save(listing): Observable<Listing> {
     // If we're updating an existing listing
     if (listing.id) {
-      return this.apiService.put('/listings/' + listing.id, {listing: listing})
+      return this.apiService.put('/listings/' + listing.id, listing)
         .pipe(map(data => listing));
 
     // Otherwise, create a new listing
     } else {
-      return this.apiService.post('/listings/', {listing: listing})
+      return this.apiService.post('/listings/', listing)
         .pipe(map(data => listing));
     }
   }

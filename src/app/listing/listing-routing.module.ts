@@ -6,6 +6,7 @@ import { ListingViewComponent } from './listing-view/listing-view.component';
 import { ListingDetailComponent } from '../shared/listing-helpers/listing-detail/listing-detail.component';
 import { ListingEditComponent } from './listing-edit/listing-edit.component';
 import { ListingResolver } from './listing-view/listing-resolver.service';
+import { ListingCreateComponent } from './listing-create/listing-create.component';
 // import { ArticleResolver } from './listing-resolver.service';
 
 const routes: Routes = [
@@ -21,8 +22,15 @@ const routes: Routes = [
     }
   },
   {
-    path: 'id',
-    component: ListingEditComponent
+    path: 'create',
+    component: ListingCreateComponent
+  },
+  {
+    path: ':id',
+    component: ListingEditComponent,
+    resolve: {
+      listing: ListingResolver
+    }
   }
 ];
 

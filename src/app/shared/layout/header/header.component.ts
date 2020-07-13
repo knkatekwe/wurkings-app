@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   navbarOpen = false;
+  public isMenuCollapsed = true;
 
   constructor(
     private userService: UserService,

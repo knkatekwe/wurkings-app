@@ -23,7 +23,6 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
-    canActivate: [AuthGuard]
   },
   {
     path: 'rentals',
@@ -39,8 +38,17 @@ const routes: Routes = [
     loadChildren: () => import('./listing/listing.module').then(m => m.ListingModule)
   },
   {
+    path: 'help',
+    loadChildren: () => import('./help/help.module').then(m => m.HelpModule)
+  },
+  {
     path: 'requests',
     loadChildren: () => import('./requests/requests.module').then(m => m.RequestsModule),
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'checkout',
+    loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule),
     // canActivate: [AuthGuard]
   },
 ];

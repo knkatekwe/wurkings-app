@@ -1,11 +1,9 @@
 import { Listing } from './listing.model';
 
-export interface PaymentRate {
+export interface PaymentType {
   id: string;
-  listing: Listing;//
-  title: string;
-  price: string;
-  is_active: string;
-  created_at: string;
-  updated_at: string;
+  rate: string;
+  is_active?: string;
+  createdAt: string;
+  updatedAt: string;
 }

@@ -1,0 +1,10 @@
+<div *ngIf="!paidFor">
+<!---->
+</div>
+
+<div *ngIf=paidFor>
+  <h6>Payment Successful</h6>
+  <pre>{{paymentDetail|json}}</pre>
+</div>
+
+<div [hidden]="paidFor" #paypal></div>

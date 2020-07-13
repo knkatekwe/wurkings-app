@@ -1,7 +1,7 @@
 import { User } from './user.model';
 import { Listing } from './listing.model';
-import { PaymentRate } from './payment-rate.model';
 import { Message } from './message.model';
+import { PaymentType } from './payment-rate.model';
 
 export interface Booking {
   id: string;
@@ -15,7 +15,7 @@ export interface Booking {
   listing: Listing;//
   user: User;//
   messages?: Message[];
-  payment_rate?: PaymentRate;//
+  payment_rate?: PaymentType;//
   createdAt: string;
   updatedAt: string;
   isReserved: boolean;

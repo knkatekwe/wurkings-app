@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Booking, BookingService, UserService, User, Errors, Message, ListingsService } from 'src/app/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -32,13 +32,12 @@ export class RequestViewComponent implements OnInit {
 		private userService: UserService) { }
 
   ngOnInit() {
-
     // Retreive the prefetched booking
 		this.route.data.subscribe((data: { booking: Booking }) => {
       this.selectedBooking = data.booking;
       console.log(this.selectedBooking)
 
-			// Load the comments on this article
+			// Load the messages on this booking
       this.populateMessages();
 
       // Load the current user's data
@@ -68,13 +67,23 @@ export class RequestViewComponent implements OnInit {
   }
 
   form = new FormGroup({
-
     message_body: new FormControl('', [Validators.required]),
-
   });
 
   get f(){
     return this.form.controls;
+  }
+
+  bookingAccepted(){
+    this.isAccepted = true
+    this.isCancelled = false
+    this.isPending = false
+  }
+
+  bookingCancelled(){
+    this.isAccepted = false
+    this.isCancelled = true
+    this.isPending = false
   }
 
   populateMessages(){
@@ -87,29 +96,30 @@ export class RequestViewComponent implements OnInit {
   acceptBooking(id, idl){
     this.isSubmitting = true;
     this.bookingService.updateBooking(id, {status: 'ACCEPTED'})
-      .subscribe(res => {this.selectedBooking
+      .subscribe(res => {
         this.listingService.updateListing(idl, {isReserved: true})
           .subscribe(res =>{this.selectedBooking})
         this.isSubmitting = false;})
+    this.bookingAccepted
   }
 
   cancelBooking(id){
     this.isSubmitting = true;
     this.bookingService.updateBooking(id, {status: 'CANCELLED'})
-      .subscribe(res => {this.selectedBooking
+      .subscribe(res => {
         this.isSubmitting = false;})
+    this.bookingCancelled
   }
 
   checkout(id){
     this.isSubmitting = true;
-    console.log('...checkout button pressed...')
+    this.router.navigate(['/checkout/payment', id])
     this.isSubmitting = false;
   }
 
   send(){
     this.isSubmitting = true;
     const message = this.form.value;
-    const messageBody = this.messageControl.value;
     console.log(message);
       this.bookingService
       .sendMessage(this.selectedBooking.id, message)

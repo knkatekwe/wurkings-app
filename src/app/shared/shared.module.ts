@@ -8,7 +8,6 @@ import { ListingListComponent, ListingMetaComponent, ListingPreviewComponent, Li
 import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
 import { ListErrorsComponent } from './list-errors/list-errors.component';
 import { ShowAuthedDirective } from './show-authed.directive';
-import {NglModule} from 'ng-lightning';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewPreviewComponent } from './review-helpers/review-preview/review-preview.component';
 import { ReviewListComponent } from './review-helpers/review-list/review-list.component';
@@ -17,6 +16,10 @@ import { NotificationPreviewComponent } from './notification-helpers/notificatio
 import { ChatPreviewComponent } from './chat-helpers/chat-preview/chat-preview.component';
 import { ChatListComponent } from './chat-helpers/chat-list/chat-list.component';
 import { ChatMessagesComponent } from './chat-helpers/chat-messages/chat-messages.component';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { CheckoutProductComponent } from './checkout-helpers/checkout-product/checkout-product.component';
+import { CheckoutFailureComponent } from './checkout-helpers/checkout-failure/checkout-failure.component';
+import { CheckoutSuccessfulComponent } from './checkout-helpers/checkout-successful/checkout-successful.component';
 
 @NgModule({
   imports: [
@@ -26,7 +29,6 @@ import { ChatMessagesComponent } from './chat-helpers/chat-messages/chat-message
     HttpClientModule,
     RouterModule,
     NgbModule,
-    NglModule
   ],
   declarations: [
     ListingListComponent,
@@ -43,7 +45,11 @@ import { ChatMessagesComponent } from './chat-helpers/chat-messages/chat-message
     ChatPreviewComponent,
     ChatListComponent,
     ChatMessagesComponent,
-    ListingDetailComponent
+    ListingDetailComponent,
+    ImageUploadComponent,
+    CheckoutProductComponent,
+    CheckoutFailureComponent,
+    CheckoutSuccessfulComponent
   ],
   exports: [
     ListingListComponent,
@@ -66,7 +72,11 @@ import { ChatMessagesComponent } from './chat-helpers/chat-messages/chat-message
     ChatListComponent,
     ChatMessagesComponent,
     ChatPreviewComponent,
-    ListingDetailComponent
+    ListingDetailComponent,
+    ImageUploadComponent,
+    CheckoutProductComponent,
+    CheckoutFailureComponent,
+    CheckoutSuccessfulComponent
 
   ]
 })

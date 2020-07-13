@@ -19,15 +19,6 @@
                               Joined in 2020
                           </h6>
                           <a *ngIf="canModify" class="proile-rating" routerLink="/profile/reviews">Reviews by you</a>
-                  <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
-                      <li class="nav-item">
-                          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                      </li>
-                  </ul> -->
-
                   <hr/>
 
               </div>
@@ -43,11 +34,11 @@
                   <p>IDENTITY VERIFICATION</p>
                   <a href="">Identity Verified</a><br/>
                   <hr/>
-                  <p>Kumbirai Nigel Confirmed</p>
+                  <p>{{user.username}} Confirmed</p>
                   <a href="">Email Address</a><br/>
                   <a href="">Phone Number</a><br/>
                   <a href="">Identification</a><br/>
-                  <p>Learn more about how confirming account info helps keep the Airbnb community secure.</p>
+                  <p>Learn more about how confirming account info helps keep the Wurkings community secure.</p>
               </div>
           </div>
           <div class="col-md-8">
@@ -71,4 +62,4 @@
   </form>
 </div>
 
-<pre>{{user|json}}</pre>
+<!-- <pre>{{user|json}}</pre> -->
