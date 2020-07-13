@@ -47,7 +47,8 @@ export class ListingEditComponent implements OnInit {
     console.log('...save method from listing update component...')
     this.listingService.save(listing)
      .subscribe(listing => {console.log('listing saved successfully')
-                            console.log(listing)},
+                            console.log(listing)
+                            this.router.navigateByUrl('/')},
                 error => {console.log(error)})
   }
 
