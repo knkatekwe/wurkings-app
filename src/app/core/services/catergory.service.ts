@@ -4,6 +4,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiService } from '.';
 import { Catergory } from '..';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
+const API_ENDPOINT = environment.api_url;
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +26,11 @@ return this.apiService.delete('/catergories/' + id);
 }
 
 getPaymentTypes(): Observable<any>{
-return this.http.get('http://localhost:1337/payment-types')
+return this.http.get(API_ENDPOINT + '/payment-types')
 }
 
 getCategories(): Observable<any>{
-  return this.http.get('http://localhost:1337/catergories')
+  return this.http.get(API_ENDPOINT + '/catergories')
   }
 
 favorite(id): Observable<Catergory> {

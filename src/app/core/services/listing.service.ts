@@ -6,6 +6,9 @@ import { ApiService } from './api.service';
 // import { Listing, ListingListConfig } from '../models';
 import { map } from 'rxjs/operators';
 import { Listing, ListingListConfig } from '..';
+import { environment } from 'src/environments/environment';
+
+const API_ENDPOINT = environment.api_url;
 
 @Injectable()
 export class ListingsService {

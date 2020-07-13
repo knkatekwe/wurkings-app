@@ -6,6 +6,9 @@ import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { User, UserObject } from '../models';
 import { map ,  distinctUntilChanged } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
+const API_ENDPOINT = environment.api_url;
 
 @Injectable()
 export class UserService {
@@ -101,7 +104,7 @@ export class UserService {
   }
 
   getUser(): Observable<any>{
-    return this.http.get('http://localhost:1337/users/me');
+    return this.http.get(API_ENDPOINT + '/users/me');
   }
 
   get(id): Observable<UserObject> {
