@@ -1,4 +1,4 @@
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 14rem;">
   <a [routerLink]="['/listing/preview', listing.id]">
     <img class="card-img-top" src="../../../../assets/pictures/phpThumb.jpg" alt="Card image cap">
   </a>
@@ -11,7 +11,7 @@
       <a *ngIf="user.id === listing.owner.id" [routerLink]="['/listing', listing.id]"><i class="fa fa-pencil"></i></a>
     </div>
     <a [routerLink]="['/listing/preview', listing.id]">
-      <h5 class="card-title mt-2">{{listing.title}}</h5>
+      <h6 class="card-title mt-2">{{listing.title}}</h6>
     </a>
     <!-- <p class="card-text">{{listing.description | slice:0:30}}</p> -->
     <div class="d-flex justify-content-between">
@@ -20,7 +20,7 @@
           width="30"
           height="30" class="rounded-circle border"><small class="ml-1">{{listing.owner.username}}</small></p>
       </a>
-      <p class="text-muted"><strong>{{listing.price | currency: 'USD': true}}</strong><small>/{{listing.payment_type.rate}}</small></p>
+      <p class="text-muted text-sm"><strong>{{listing.price | currency: 'USD': true}}</strong><small>/{{listing.payment_type.rate}}</small></p>
     </div>
   </div>
 </div>
