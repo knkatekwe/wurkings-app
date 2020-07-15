@@ -5,7 +5,8 @@
   <div class="card-body">
     <div class="d-flex justify-content-between">
       <a [routerLink]="['/listing/preview', listing.id]">
-        <small class="text-muted">{{listing.catergory.catergoryName}}</small>
+        <!-- <span class="badge badge-pill badge-info">Info</span> -->
+        <span class="badge badge-pill badge-success text-xs">{{listing.catergory.catergoryName}}</span>
       </a>
       <a *ngIf="!(user.id === listing.owner.id)" routerLink="/"><i class="fa fa-heart-o fa"></i></a>
       <a *ngIf="user.id === listing.owner.id" [routerLink]="['/listing', listing.id]"><i class="fa fa-pencil"></i></a>
@@ -17,10 +18,10 @@
     <div class="d-flex justify-content-between">
       <a [routerLink]="['/profile', listing.owner.id]">
         <p class="text-muted"><img src="../../../../assets/pictures/thumb__ser.png"
-          width="30"
-          height="30" class="rounded-circle border"><small class="ml-1">{{listing.owner.username}}</small></p>
+          width="25"
+          height="25" class="rounded-circle border"><small class="ml-1">{{listing.owner.username}}</small></p>
       </a>
-      <p class="text-muted text-sm"><strong>{{listing.price | currency: 'USD': true}}</strong><small>/{{listing.payment_type.rate}}</small></p>
+      <small class="text-muted text-sm mt-1"><strong>{{listing.price | currency: 'USD': true}}</strong>/{{listing.payment_type.rate}}</small>
     </div>
   </div>
 </div>
