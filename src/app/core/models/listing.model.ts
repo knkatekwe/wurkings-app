@@ -5,7 +5,7 @@ import { PaymentType } from '.';
 
 export class Listing {
   id: string;
-  title: string = '';
+  title: string;
   description: string;
   price: number;
   catergory?: Catergory;//

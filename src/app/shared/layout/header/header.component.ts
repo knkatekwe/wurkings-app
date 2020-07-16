@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User, UserService, UserObject } from '../../../core';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-layout-header',
@@ -18,15 +19,10 @@ export class HeaderComponent implements OnInit {
     private route: Router
   ) {}
 
-  currentUser: User;
+  currentUser$: Observable<User>;
 
   ngOnInit() {
-    this.userService.currentUser.subscribe(
-      (userData) => {
-        this.currentUser = userData;
-      }
-    );
-    //console.log(this.currentUser)
+    this.currentUser$ = this.userService.currentUser
   }
 
   toggleNavbar() {

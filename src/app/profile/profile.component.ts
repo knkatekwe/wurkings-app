@@ -30,7 +30,6 @@ export class ProfileComponent implements OnInit {
 		// Load the current user's data
 		this.userService.currentUser.subscribe((userData: User) => {
 			this.currentUser = userData;
-
       this.canModify = this.user.id === this.currentUser.id;
     });
 

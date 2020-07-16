@@ -32,7 +32,9 @@
               height="30" class="rounded-circle">
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
-            <a class="p-2" ngbDropdownItem [routerLink]="['/profile', currentUser.id]">Profile</a>
+            <ng-container *ngIf="currentUser$ | async as user">
+              <a class="p-2" ngbDropdownItem [routerLink]="['/profile', user.id]">Profile</a>
+            </ng-container>
             <a class="p-2" ngbDropdownItem [routerLink]="['/rentals']">Rentals</a>
             <!-- <a class="p-2" ngbDropdownItem routerLink="/wishlist">Wishlist</a> -->
             <!-- <div class="border-top"></div>

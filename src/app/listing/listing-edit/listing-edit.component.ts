@@ -45,6 +45,7 @@ export class ListingEditComponent implements OnInit {
 
   update(listing){
     console.log('...save method from listing update component...')
+    console.log(listing)
     this.listingService.save(listing)
      .subscribe(listing => {console.log('listing saved successfully')
                             console.log(listing)

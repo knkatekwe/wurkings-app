@@ -6,6 +6,9 @@
 
       <div class="form-group">
         <div class="row">
+
+          <input type="hidden" formControlName="id" [(ngModel)]="selectedListing.id" />
+
           <div class="col-md-6">
 
             <label for=""></label>
@@ -21,7 +24,7 @@
             <div class="form-group">
               <select class="form-control" id=""
                       formControlName="catergory"
-                      >
+                      [(ngModel)]="selectedListing.catergory.id">
                 <option>Select Catergory</option>
                 <option *ngFor="let catergory of catergories"
                         [value]="catergory.id">{{catergory.catergoryName}}</option>
@@ -78,7 +81,8 @@
             <label for=""></label>
             <div class="form-group">
               <select class="form-control" id=""
-                      formControlName="payment_type">
+                      formControlName="payment_type"
+                      [(ngModel)]="selectedListing.payment_type.id">
                 <option>Pay per...</option>
                 <option *ngFor="let payment_type of paymentTypes"
                 [value]="payment_type.id">{{payment_type.rate}}</option>
