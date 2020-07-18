@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
+import { ApiService, API_ENDPOINT } from './api.service';
 import { Observable } from 'rxjs';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Booking, BookingListConfig } from '..';
-import { environment } from 'src/environments/environment';
-
-const API_ENDPOINT = environment.api_url;
 
 @Injectable({
   providedIn: 'root'

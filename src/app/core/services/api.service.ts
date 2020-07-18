@@ -3,8 +3,9 @@ import { environment } from '../../../environments/environment';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Observable ,  throwError } from 'rxjs';
 
-import { JwtService } from './jwt.service';
 import { catchError } from 'rxjs/operators';
+
+export const API_ENDPOINT = environment.api_url;
 
 @Injectable()
 export class ApiService {

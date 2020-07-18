@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ApiService } from '.';
+import { ApiService, API_ENDPOINT } from '.';
 import { Catergory } from '..';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-
-const API_ENDPOINT = environment.api_url;
 
 @Injectable({
   providedIn: 'root'

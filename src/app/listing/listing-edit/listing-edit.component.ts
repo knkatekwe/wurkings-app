@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
 import { CatergoryService } from 'src/app/core/services/catergory.service';
-import { UploadFileService } from 'src/app/core/services/upload-file.service';
 import { Listing, ListingsService } from 'src/app/core';
 
 @Component({

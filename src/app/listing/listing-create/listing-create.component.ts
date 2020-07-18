@@ -36,6 +36,20 @@ export class ListingCreateComponent implements OnInit {
         console.log(data)})
   }
 
+  handleImageChange() {
+    this.listing.image = "https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/13/image.jpeg";
+  }
+
+  handleImageUpload(imageUrl: string) {
+    this.form.controls.image.setValue(imageUrl);
+    console.log('...an image has been set in listing create component...')
+    console.log(imageUrl)
+  }
+
+  handleImageError() {
+    this.listing.image = '';
+  }
+
   save(listing){
     console.log('...save method from listing create component...')
     console.log(listing)
@@ -53,7 +67,7 @@ export class ListingCreateComponent implements OnInit {
       state: [null, Validators.required],
       city: [null, Validators.required],
       description: ['', Validators.required],
-      picture: [null],
+      image: [null],
       price: [null, Validators.required],
       payment_type: ['', Validators.required],
       allCan: [null],

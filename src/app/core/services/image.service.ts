@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+import { API_ENDPOINT, ApiService } from './api.service';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class ImageService {
+	constructor(private http: HttpClient, private apiService: ApiService) {}
 
-  constructor(private http: HttpClient) {}
+	upload(image): Observable<string | any> {
 
+		const formData = new FormData();
 
-  public uploadImage(image: File): Observable<any> {
-    const formData = new FormData();
+		formData.append('files', image);
 
-    formData.append('image', image);
-
-    return this.http.post('/api/v1/image-upload', formData);
-  }
-
+    return this.apiService.post('/upload', formData)
+      .pipe(map((data) => console.log(data)));
+	}
 }

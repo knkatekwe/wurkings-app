@@ -2,13 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
 
-import { ApiService } from './api.service';
+import { ApiService, API_ENDPOINT } from './api.service';
 import { JwtService } from './jwt.service';
 import { User, UserObject } from '../models';
 import { map ,  distinctUntilChanged } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-
-const API_ENDPOINT = environment.api_url;
 
 @Injectable()
 export class UserService {

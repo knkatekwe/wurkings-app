@@ -46,7 +46,7 @@ export class ListingDetailComponent implements OnInit {
       state: [null, Validators.required],
       city: [null, Validators.required],
       description: ['', Validators.required],
-      picture: [null],
+      image: [null],
       price: [null, Validators.required],
       payment_type: ['', Validators.required],
       allCan: [null],
@@ -55,6 +55,21 @@ export class ListingDetailComponent implements OnInit {
     });
 
   }
+
+  handleImageChange() {
+    this.listing.image = "https://wurkings.s3.amazonaws.com/photo_1559028012_481c04fa702d_8fe9b4972e.jpeg";
+  }
+
+  handleImageUpload(imageUrl: string) {
+    this.form.controls.image.setValue(imageUrl);
+    console.log('...an image has been set in listing detail component...')
+    console.log(imageUrl)
+  }
+
+  handleImageError() {
+    this.listing.image = '';
+  }
+
   // convenience getter for easy access to form fields
   // get f() { return this.form.controls; }
 
