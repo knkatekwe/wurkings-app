@@ -6,7 +6,6 @@
         <i class="fa fa-map-marker pl-3" aria-hidden="true"></i>
       </a>
       <a>
-        <!-- <small class="text-muted pl-1">Ruvimbo, Chinhoyi, Mashonaland West, Zimbabwe</small> -->
         <small class="text-muted pl-1">{{selectedListing.city}}, {{selectedListing.state}}</small>
       </a>
     </div>
@@ -20,7 +19,7 @@
         <ngb-carousel *ngIf="pictures">
           <ng-template ngbSlide *ngFor="let picture of pictures">
             <div class="picsum-img-wrapper">
-              <img [src]="picture.imageUrl" alt="Random first slide"
+              <img [src]="selectedListing.image" alt="Random first slide"
               class="img-fluid w-75 h-75 mx-auto d-block">
             </div>
           </ng-template>

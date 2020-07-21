@@ -12,8 +12,14 @@ export class User {
   lastName: string;
   email: string;
   phone_number: string;
+  dob?: string;
   about?: string;
   physical_address?: string
+  governmentIssuedId?: string;
+  address2: string;
+  city: string;
+  state: string;
+  zip: string;
   provider: string;
   confirmed: boolean;
   blocked: boolean;

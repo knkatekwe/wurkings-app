@@ -5,46 +5,42 @@
   <div class="row">
 
     <div class="col-md-4">
-
+      <a [routerLink]="['/profile/settings/personal-info']">
       <div class="card w-full">
-        <div class="card-body">
-          <h5 class="card-title">Personal Info</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-      </div>
+          <div class="card-body">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <h5 class="card-title">Personal Info</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          </div>
 
+      </div>
+    </a>
     </div>
     <div class="col-md-4">
-
+      <a [routerLink]="['/profile/settings/login-security']">
       <div class="card w-full">
+
         <div class="card-body">
+          <i class="fa fa-user-secret" aria-hidden="true"></i>
           <h5 class="card-title">Login & Security</h5>
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         </div>
-      </div>
 
+      </div>
+    </a>
     </div>
     <div class="col-md-4">
 
+      <a [routerLink]="['/profile/settings/payments']">
       <div class="card w-full">
         <div class="card-body">
+          <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
           <h5 class="card-title">Payments & Payouts</h5>
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         </div>
       </div>
-
+    </a>
     </div>
-
-    <!-- <div class="col-md-4">
-
-      <div class="card w-full">
-        <div class="card-body">
-          <h5 class="card-title">Notifications</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-      </div>
-
-    </div> -->
 
   </div>
 

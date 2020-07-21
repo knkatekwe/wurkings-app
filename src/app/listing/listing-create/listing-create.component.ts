@@ -67,7 +67,7 @@ export class ListingCreateComponent implements OnInit {
       state: [null, Validators.required],
       city: [null, Validators.required],
       description: ['', Validators.required],
-      image: [null],
+      image: [null, Validators.required],
       price: [null, Validators.required],
       payment_type: ['', Validators.required],
       allCan: [null],

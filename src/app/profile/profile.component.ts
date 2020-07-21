@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService, UserObject, User } from '../core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   canModify: boolean;
 
   constructor(private userService: UserService,
+              private router: Router,
               private route: ActivatedRoute,) { }
 
   ngOnInit(){
@@ -33,6 +34,10 @@ export class ProfileComponent implements OnInit {
       this.canModify = this.user.id === this.currentUser.id;
     });
 
+  }
+
+  navigate(){
+    this.router.navigateByUrl('profile/settings/personal-info')
   }
 
 }

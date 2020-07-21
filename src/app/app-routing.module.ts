@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'notifications',
     loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'profile',
@@ -31,7 +31,7 @@ const routes: Routes = [
   {
     path: 'editor',
     loadChildren: () => import('./editor/editor.module').then(m => m.EditorModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'listing',
