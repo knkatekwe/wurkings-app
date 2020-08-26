@@ -16,10 +16,12 @@ import { NotificationPreviewComponent } from './notification-helpers/notificatio
 import { ChatPreviewComponent } from './chat-helpers/chat-preview/chat-preview.component';
 import { ChatListComponent } from './chat-helpers/chat-list/chat-list.component';
 import { ChatMessagesComponent } from './chat-helpers/chat-messages/chat-messages.component';
-import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { CheckoutProductComponent } from './checkout-helpers/checkout-product/checkout-product.component';
 import { CheckoutFailureComponent } from './checkout-helpers/checkout-failure/checkout-failure.component';
 import { CheckoutSuccessfulComponent } from './checkout-helpers/checkout-successful/checkout-successful.component';
+import { ImageUploadComponent } from './images-helpers/image-upload/image-upload.component';
+import { ProfileUploadComponent } from './images-helpers/profile-upload/profile-upload.component';
+
 
 @NgModule({
   imports: [
@@ -47,6 +49,7 @@ import { CheckoutSuccessfulComponent } from './checkout-helpers/checkout-success
     ChatMessagesComponent,
     ListingDetailComponent,
     ImageUploadComponent,
+    ProfileUploadComponent,
     CheckoutProductComponent,
     CheckoutFailureComponent,
     CheckoutSuccessfulComponent
@@ -76,7 +79,8 @@ import { CheckoutSuccessfulComponent } from './checkout-helpers/checkout-success
     ImageUploadComponent,
     CheckoutProductComponent,
     CheckoutFailureComponent,
-    CheckoutSuccessfulComponent
+    CheckoutSuccessfulComponent,
+    ProfileUploadComponent,
 
   ]
 })

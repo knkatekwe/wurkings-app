@@ -1,17 +1,24 @@
 
-<div class="row">
+
+
+<div class="app-article-preview" *ngIf="loading$ | async; else content">
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border text-success" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </div>
+</div>
+
+<ng-template #content>
+  <div class="row">
 
     <app-listing-preview class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
-        *ngFor="let listing of results"
+        *ngFor="let listing of listing$ | async"
         [listing]="listing">
     </app-listing-preview>
 
 </div>
-
-<div class="app-article-preview"
-  [hidden]="!loading">
-  Loading listings...
-</div>
+</ng-template>
 
 <!-- <div class="app-article-preview"
   [hidden]="loading">

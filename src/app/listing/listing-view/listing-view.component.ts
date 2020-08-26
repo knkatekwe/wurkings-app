@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef, Output } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService, ListingsService, Listing, User, BookingService} from 'src/app/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-listing-view',
@@ -54,7 +53,7 @@ export class ListingViewComponent implements OnInit {
 		this.userService.currentUser.subscribe((userData: User) => {
 			this.currentUser = userData;
 
-      this.canModify = this.currentUser.username === this.selectedListing.owner.username;
+      // this.canModify = this.currentUser.username === this.selectedListing.owner.username;
       this.user = this.currentUser.id;
     });
 

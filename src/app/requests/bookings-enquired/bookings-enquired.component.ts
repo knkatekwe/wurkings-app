@@ -14,11 +14,6 @@ export class BookingsEnquiredComponent implements OnInit {
   currentUser: any;
   results: Booking[];
 
-	bookingsConfig: BookingListConfig = {
-		type: 'all',
-		filters: {}
-	};
-
 	ngOnInit() {
     this.route.parent.data.subscribe(
       (data: {currentUser: any}) => {

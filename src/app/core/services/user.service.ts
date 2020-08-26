@@ -4,7 +4,7 @@ import { Observable ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
 
 import { ApiService, API_ENDPOINT } from './api.service';
 import { JwtService } from './jwt.service';
-import { User, UserObject } from '../models';
+import { User, UserObject, Uzer } from '../models';
 import { map ,  distinctUntilChanged } from 'rxjs/operators';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class UserService {
   constructor (
     private apiService: ApiService,
     private http: HttpClient,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {}
 
   // Verify JWT in localstorage with server & load user's info.
@@ -26,11 +26,12 @@ export class UserService {
   populate() {
     // If JWT detected, attempt to get & store user's info
     if (this.jwtService.getToken()) {
-      this.apiService.get('/users/me')
+      this.apiService.get('/auth/user')
       .subscribe(
         data => {this.setAuth1(data);
         console.log('tapfuura nepo king, token riripo!!!!!!')},
         err => {this.purgeAuth();
+          console.log(err)
           console.log('tapfuura nepano, then purged the token!!!!!!')}
       );
       //console.log()
@@ -45,17 +46,17 @@ export class UserService {
   setAuth1(user: User) {
     //console.log('token has been set!')
     // Set current user data into observable
-    this.currentUserSubject.next(user);
+    // this.currentUserSubject.next(user);
     // Set isAuthenticated to true
     this.isAuthenticatedSubject.next(true);
   }
 
-  setAuth(user: UserObject) {
+  setAuth(user) {
     // Save JWT sent from server in localstorage
-    this.jwtService.saveToken(user.jwt);
+    this.jwtService.saveToken(user.access_token);
     //console.log('token has been set!')
     // Set current user data into observable
-    this.currentUserSubject.next(user.user);
+    // this.currentUserSubject.next(user);
     // Set isAuthenticated to true
     this.isAuthenticatedSubject.next(true);
   }
@@ -73,26 +74,28 @@ export class UserService {
   //    return this.http.get('http://localhost:1337/auth/local', data);
   // }
 
-  login(credentials: any): Observable<UserObject> {
-    return this.apiService.post('/auth/local' , credentials)
+  login(credentials: any): Observable<any> {
+    return this.apiService.post('/auth/login' , credentials)
       .pipe(map(
-      data => {
-        this.setAuth(data);
-        //console.log(data)
+        data => {this.setAuth(data);
         return data;
-      }
+      },
+        error => {return error}
     ));
   }
 
-  register(registrationData): Observable<any> {
+  register(data): Observable<any> {
 
-    return this.apiService.post('/auth/local/register' , registrationData)
+    return this.apiService.post('/auth/signup' , data)
       .pipe(map(
-        registrationData => {
-        this.setAuth(registrationData.user);
-        console.log(registrationData)
-        return registrationData;
-      }
+        res => {
+        console.log(res)
+        return res;
+      },
+        err => {
+          console.log(err)
+          return err
+        }
     ));
   }
 
@@ -101,22 +104,32 @@ export class UserService {
   }
 
   getUser(): Observable<any>{
-    return this.http.get(API_ENDPOINT + '/users/me');
+    return this.http.get(API_ENDPOINT + '/auth/user');
   }
 
   get(id): Observable<UserObject> {
-    return this.apiService.get('/users/' + id)
+    return this.apiService.get('/auth/' + id)
       .pipe(map(data => data));
   }
 
   // Update the user on the server (email, pass, etc)
-  update(user): Observable<User> {
-    return this.apiService
-    .put('/auth/local', { user })
+  update(id, user): Observable<any> {
+    return this.http
+    .post(API_ENDPOINT + '/auth/userinfo/' + id, user)
     .pipe(map(data => {
       // Update the currentUser observable
-      this.currentUserSubject.next(data.user);
-      return data.user;
+      // this.currentUserSubject.next(data);
+      return data;
+    }));
+  }
+
+  changePassword(id, data): Observable<any> {
+    return this.http
+    .post(API_ENDPOINT + '/auth/password/' + id, data)
+    .pipe(map(data => {
+      // Update the currentUser observable
+      // this.currentUserSubject.next(data);
+      return data;
     }));
   }
 

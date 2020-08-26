@@ -8,27 +8,46 @@ export class Role {
 
 export class User {
   id: string;
-  username: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   email: string;
   phone_number: string;
-  dob?: string;
+  date_of_birth?: string;
+  gender?: string;
   about?: string;
   physical_address?: string
-  governmentIssuedId?: string;
-  address2: string;
-  city: string;
-  state: string;
-  zip: string;
-  provider: string;
-  confirmed: boolean;
-  blocked: boolean;
-  role: Role;
-  created_at: Date;
-  updated_at: Date;
+  occupation: string;
+  profile_picture_url: string;
+  wallpaper_url: string;
+  city?: string;
+  state?: string;
+  zip?: string;
+  provider?: string;
+  confirmed?: boolean;
+  blocked?: boolean;
+  role?: Role;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 export class UserObject{
   jwt: string
   user: User
+}
+
+export class Uzer {
+  id: number | string;
+  username: string;
+  email: string;
+  first_name?: string;
+  last_name?: string;
+  type?: string;
+  phone_number?: string;
+  date_of_birth?: string;
+  gender?: string;
+  about?: string;
+  physical_address?: string;
+  occupation?: string;
+  profile_picture_url?: string;
+  wallpaper_url?: string;
 }

@@ -10,6 +10,7 @@ import { ListingViewComponent } from './listing-view/listing-view.component';
 import { ListingEditComponent } from './listing-edit/listing-edit.component';
 import { ListingResolver } from './listing-view/listing-resolver.service';
 import { ListingCreateComponent } from './listing-create/listing-create.component';
+import { ListingService } from './state/listing.service';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { ListingCreateComponent } from './listing-create/listing-create.componen
   ],
 
   providers: [
-    ListingResolver
+    ListingResolver,
+    ListingService
   ]
 })
 export class ListingModule {}

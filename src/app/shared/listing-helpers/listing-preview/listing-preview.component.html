@@ -11,12 +11,12 @@
       <a *ngIf="!(user.id === listing.owner.id)" routerLink="/"><i class="fa fa-heart-o fa"></i></a>
       <a *ngIf="user.id === listing.owner.id" [routerLink]="['/listing', listing.id]"><i class="fa fa-pencil"></i></a>
     </div>
-    <a [routerLink]="['/listing/preview', listing.id]">
+    <a [routerLink]="['/listing/preview', listing.id]" class="text-decoration-none">
       <h6 class="card-title mt-2">{{listing.title}}</h6>
     </a>
     <!-- <p class="card-text">{{listing.description | slice:0:30}}</p> -->
     <div class="d-flex justify-content-between">
-      <a [routerLink]="['/profile', listing.owner.id]">
+      <a [routerLink]="['/profile', listing.owner.id]" class="text-decoration-none">
         <p class="text-muted"><img src="../../../../assets/pictures/thumb__ser.png"
           width="25"
           height="25" class="rounded-circle border"><small class="ml-1">{{listing.owner.username}}</small></p>

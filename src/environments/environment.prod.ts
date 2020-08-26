@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   // api_url: 'http://localhost:1337'
-  api_url: 'https://strapi-wurkings-api.herokuapp.com'
+  api_url: 'http://wurkings-api.herokuapp.com/api'
 
 };

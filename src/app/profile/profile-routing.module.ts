@@ -23,7 +23,10 @@ const routes: Routes = [
   },
   {
     path: 'settings/login-security',
-    component: LoginSecurityComponent
+    component: LoginSecurityComponent,
+    resolve: {
+      user: CurrentUserResolver
+    }
   },
   {
     path: 'settings/payments',

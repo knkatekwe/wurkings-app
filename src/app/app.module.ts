@@ -20,6 +20,10 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { RequestsModule } from './requests/requests.module';
 import { CheckoutModule } from './checkout/checkout.module';
 import { HelpModule } from './help/help.module';
+import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
@@ -36,9 +40,11 @@ import { HelpModule } from './help/help.module';
     RequestsModule,
     CheckoutModule,
     HelpModule,
+    environment.production ? [] : AkitaNgDevtools.forRoot(),
+    AkitaNgRouterStoreModule,
 
   ],
-  providers: [],
+  providers: [{ provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'http://wurkings-api.herokuapp.com/api' }}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

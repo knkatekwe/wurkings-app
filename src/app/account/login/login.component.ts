@@ -25,8 +25,9 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
       this.failed = false;
         this.form = this.formBuilder.group({
-            identifier: ['', Validators.required],
-            password: ['', Validators.required]
+            email: ['', Validators.required],
+            password: ['', Validators.required],
+            remember_me: [false]
         });
 
         // get return url from route parameters or default to '/'
@@ -34,8 +35,8 @@ export class LoginComponent implements OnInit {
     }
 
     // convenience getter for easy access to form fields
-    get identifier(){
-      return this.form.get('identifier')
+    get email(){
+      return this.form.get('email')
     }
 
     get password(){
@@ -53,8 +54,10 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log('login successful!')
+          console.log(data)
           this.router.navigateByUrl('/')},
         err => {
+          console.log(err)
           this.errors = err;
           this.isSubmitting = false;
           this.failed = true;

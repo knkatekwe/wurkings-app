@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
+const AUTH = 'access_token'
 
 @Injectable()
-export class JwtService {
+export class JwtService{
+
+  constructor(private cookieService: CookieService){}
 
   getToken(): String {
-    return window.localStorage['jwt'];
+    return this.cookieService.get(AUTH);
   }
 
-  saveToken(token: String) {
-    window.localStorage['jwt'] = token;
+  saveToken(cookie: string) {
+    this.cookieService.set(AUTH, cookie);
   }
 
   destroyToken() {
-    window.localStorage.removeItem('jwt');
+    this.cookieService.delete(AUTH);
   }
 
 }

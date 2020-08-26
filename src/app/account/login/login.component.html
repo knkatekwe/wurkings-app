@@ -13,10 +13,10 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <!-- <label for="username">Username</label> -->
-                <input type="text" formControlName="identifier"
-                       class="form-control" placeholder="Username / E-mail"/>
-                <small *ngIf="identifier.invalid && identifier.touched" class="alert text-danger text-muted">
-                    Username is required
+                <input type="email" formControlName="email"
+                       class="form-control" placeholder="E-mail"/>
+                <small *ngIf="email.invalid && email.touched" class="alert text-danger text-muted">
+                    Email is required
                 </small>
             </div>
             <div class="form-group">
@@ -28,6 +28,15 @@
                 </small>
             </div>
             <div class="form-group">
+              <div class="col-auto my-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input"
+                         id="remember_me" formControlName="remember_me">
+                  <label class="custom-control-label" for="remember_me">Remember me</label>
+                </div>
+              </div>
+          </div>
+            <div class="form-group">
                 <button [disabled]="!form.valid" class="btn btn-primary w-100">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Login
@@ -36,5 +45,6 @@
             </div>
 
         </form>
+        <!-- <pre>{{form.value | json}}</pre> -->
     </div>
 </div>

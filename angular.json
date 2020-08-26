@@ -126,7 +126,8 @@
   },
   "defaultProject": "wurkings-app",
   "cli": {
-    "analytics": "27844742-a863-4ee8-a0c3-b51797abbb21"
+    "analytics": "27844742-a863-4ee8-a0c3-b51797abbb21",
+    "defaultCollection": "@datorama/akita"
   },
   "schematics": {
     "@schematics/angular": {
