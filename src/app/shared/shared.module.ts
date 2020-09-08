@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { ListingListComponent, ListingMetaComponent, ListingPreviewComponent, ListingDetailComponent } from './listing-helpers';
+import { ListingListComponent, ListingPreviewComponent, ListingDetailComponent } from './listing-helpers';
 import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
 import { ListErrorsComponent } from './list-errors/list-errors.component';
 import { ShowAuthedDirective } from './show-authed.directive';
@@ -38,7 +38,6 @@ import { CategoryListComponent } from './category-helpers/category-list/category
   ],
   declarations: [
     ListingListComponent,
-    ListingMetaComponent,
     ListingPreviewComponent,
     FavoriteButtonComponent,
     FollowButtonComponent,
@@ -63,7 +62,6 @@ import { CategoryListComponent } from './category-helpers/category-list/category
   ],
   exports: [
     ListingListComponent,
-    ListingMetaComponent,
     ListingPreviewComponent,
     CommonModule,
     FavoriteButtonComponent,
