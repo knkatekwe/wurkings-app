@@ -1,5 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 import { ListingComponent } from './listing.component';
 // import { ArticleResolver } from './listing-resolver.service';
