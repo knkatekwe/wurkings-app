@@ -23,7 +23,7 @@ export class HttpErrorIntercept implements HttpInterceptor {
 					//console.log(event)
 				}
 				if (event instanceof HttpResponse && event.status === 201) {
-					//this.alert.confirm('', 'Status created', 'Ok')
+					this.alert.confirm('', event.body, 'Ok')
 					//console.log(event)
 				}
 				if (event instanceof HttpResponse && event.status === 204) {
@@ -34,24 +34,28 @@ export class HttpErrorIntercept implements HttpInterceptor {
 			catchError((error: HttpErrorResponse) => {
 				let errorMessage = '';
 
-        if (error.error instanceof ErrorEvent && error.status === 400) {
+        if (error instanceof HttpErrorResponse && error.status === 400) {
           //this.alert.confirm('Message', error.error.message, 'Ok');
           console.log(error)
 				}
-				if (error.error instanceof ErrorEvent && error.status === 401) {
+				if (error instanceof HttpErrorResponse && error.status === 401) {
           //this.alert.confirm('Message', error.error.message, 'Ok');
+          alert(error.error.message);
           console.log(error)
         }
-        if (error.error instanceof ErrorEvent && error.status === 403) {
+        if (error instanceof HttpErrorResponse && error.status === 403) {
           //this.alert.confirm('Message', error.error.message, 'Ok');
+          alert(error.error.message);
           console.log(error)
         }
-        if (error.error instanceof ErrorEvent && error.status === 404) {
+        if (error.error instanceof HttpErrorResponse && error.status === 404) {
           //this.alert.confirm('Message', 'Oops, found nothing!', 'Ok');
+          alert(error.error.message);
           console.log(error)
 				}
-				if (error.error instanceof ErrorEvent && error.status === 422) {
+				if (error instanceof HttpErrorResponse && error.status === 422) {
           //this.alert.confirm('Message', error.error.message, 'Ok');
+          alert(error.message);
           console.log(error)
 				} else {
           // server-side error

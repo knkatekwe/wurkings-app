@@ -4,8 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService, Errors } from 'src/app/core';
 import { RegularExpressionConstant } from 'src/app/core/models/validation';
 
-// import { AccountService, AlertService } from '@app/_services';
-
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
 	form: FormGroup;
@@ -19,16 +17,14 @@ export class LoginComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private route: ActivatedRoute,
 		private router: Router,
-		private userService: UserService
-	) // private alertService: AlertService
-	{
-	}
+		private userService: UserService // private alertService: AlertService
+	) {}
 
 	ngOnInit() {
 		this.failed = false;
 		this.isSubmitting = false;
 		this.form = this.formBuilder.group({
-			email: [ '', [Validators.required, Validators.pattern(RegularExpressionConstant.EMAIL)] ],
+			email: [ '', [ Validators.required, Validators.pattern(RegularExpressionConstant.EMAIL) ] ],
 			password: [ '', Validators.required ],
 			remember_me: [ false ]
 		});

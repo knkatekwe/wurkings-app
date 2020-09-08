@@ -18,33 +18,33 @@
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="email" class="form-control" placeholder="Email"
           [ngClass]="{'border-danger':f.email.invalid, 'border-success': f.email.valid}" />
-          <div *ngIf="f.email.invalid && f.email.touched" class="invalid-control">
-            Email is required.
-          </div>
+        <div *ngIf="f.email.invalid && f.email.touched" class="invalid-control">
+          Email is required.
+        </div>
       </div>
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="first_name" class="form-control" placeholder="First name"
           [ngClass]="{'border-danger':f.first_name.invalid, 'border-success': f.first_name.valid}" />
-          <div *ngIf="f.first_name.invalid && f.first_name.touched" class="invalid-control">
-            First name is required.
-          </div>
+        <div *ngIf="f.first_name.invalid && f.first_name.touched" class="invalid-control">
+          First name is required.
+        </div>
       </div>
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="last_name" class="form-control" placeholder="Last name"
           [ngClass]="{'border-danger':f.last_name.invalid, 'border-success': f.last_name.valid}" />
-          <div *ngIf="f.last_name.invalid && f.last_name.touched" class="invalid-control">
-            Last name is required.
-          </div>
+        <div *ngIf="f.last_name.invalid && f.last_name.touched" class="invalid-control">
+          Last name is required.
+        </div>
       </div>
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="date" class="form-control" id="dob" formControlName="date_of_birth"
           [ngClass]="{'border-danger':f.date_of_birth.invalid, 'border-success': f.date_of_birth.valid}">
-          <div *ngIf="f.date_of_birth.invalid && f.date_of_birth.touched" class="invalid-control">
-            Date of birth is required.
-          </div>
+        <div *ngIf="f.date_of_birth.invalid && f.date_of_birth.touched" class="invalid-control">
+          Date of birth is required.
+        </div>
       </div>
 
       <div class="form-group">
@@ -61,7 +61,7 @@
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="phone_number" class="form-control" placeholder="Phone number"
-        [ngClass]="{'border-danger':f.phone_number.invalid, 'border-success': f.phone_number.valid}"/>
+          [ngClass]="{'border-danger':f.phone_number.invalid, 'border-success': f.phone_number.valid}" />
         <div *ngIf="f.phone_number.invalid && f.phone_number.touched" class="invalid-control">
           Phone number is required.
         </div>
@@ -69,7 +69,7 @@
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="physical_address" class="form-control" placeholder="Physical address"
-        [ngClass]="{'border-danger':f.physical_address.invalid, 'border-success': f.physical_address.valid}" />
+          [ngClass]="{'border-danger':f.physical_address.invalid, 'border-success': f.physical_address.valid}" />
         <div *ngIf="f.physical_address.invalid && f.physical_address.touched" class="invalid-control">
           Physical address is required.
         </div>
@@ -78,7 +78,7 @@
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="occupation" class="form-control" placeholder="Occupation"
-        [ngClass]="{'border-danger':f.occupation.invalid, 'border-success': f.occupation.valid}" />
+          [ngClass]="{'border-danger':f.occupation.invalid, 'border-success': f.occupation.valid}" />
         <div *ngIf="f.occupation.invalid && f.occupation.touched" class="invalid-control">
           Occupation is required.
         </div>
@@ -86,7 +86,7 @@
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="about" class="form-control" placeholder="About"
-        [ngClass]="{'border-danger':f.about.invalid, 'border-success': f.about.valid}" />
+          [ngClass]="{'border-danger':f.about.invalid, 'border-success': f.about.valid}" />
         <div *ngIf="f.about.invalid && f.about.touched" class="invalid-control">
           About is required.
         </div>
@@ -94,7 +94,7 @@
       <div class="form-group">
         <!-- <label for="password">Password</label> -->
         <input type="password" formControlName="password" class="form-control" placeholder="Password"
-        [ngClass]="{'border-danger':f.password.invalid, 'border-success': f.password.valid}" />
+          [ngClass]="{'border-danger':f.password.invalid, 'border-success': f.password.valid}" />
         <div *ngIf="f.password.invalid && f.password.touched" class="invalid-control">
           Password is required.
         </div>
