@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 		//this.errors = {errors: {}};
 
 		const credentials = this.form.value;
-		console.log(credentials);
+		//console.log(credentials);
 		this.userService.login(credentials).subscribe(
 			(data) => {
 				this.isSubmitting = false;
