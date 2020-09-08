@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     // Retreive the prefetched article
 		this.route.data.subscribe((data: { user: User }) => {
       this.user = data.user;
-      console.log(this.user)
+      //console.log(this.user)
 
 			// Load the comments on this article
 			//this.populateComments();

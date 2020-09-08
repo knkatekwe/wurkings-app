@@ -12,24 +12,30 @@
   <div class="row">
 
     <div class="col-md-8">
-      <form [formGroup]="form" (click)="save()">
+      <form [formGroup]="form" (ngSubmit)="save()">
         <!-- <div class="form-group col-md-12">
           <label for="current">Current Password</label>
           <input type="password" class="form-control" id="current">
         </div> -->
         <div class="form-group col-md-12">
           <label for="new">New Password</label>
-          <input type="password" class="form-control"
-                 id="new" formControlName="password">
+          <input type="password" class="form-control" id="new" formControlName="password"
+            [ngClass]="{'border-danger':f.password.invalid, 'border-success': f.password.valid}">
+          <div *ngIf="f.password.invalid && f.password.touched" class="invalid-control">
+            Password is required.
+          </div>
         </div>
         <div class="form-group col-md-12">
           <label for="confirm">Confirm New Password</label>
-          <input type="password" class="form-control"
-                 id="confirm" formControlName="password_confirmation">
+          <input type="password" class="form-control" id="confirm" formControlName="password_confirmation"
+            [ngClass]="{'border-danger':f.password_confirmation.invalid, 'border-success': f.password_confirmation.valid}">
+          <div *ngIf="f.password_confirmation.invalid && f.password_confirmation.touched" class="invalid-control">
+            Confirmation password is required.
+          </div>
         </div>
 
         <div class="form-group col-md-12">
-          <button [disabled]="!form.valid" type="submit" class="btn btn-primary btn-block">Save</button>
+          <button [disabled]="!form.valid || isSubmitting" type="submit" class="btn btn-primary btn-block">Save</button>
         </div>
       </form>
     </div>
@@ -40,7 +46,8 @@
         <div class="card-body">
           <i class="fa fa-shield" aria-hidden="true"></i>
           <h5 class="card-title">Keeping your account secure</h5>
-          <p class="card-text">We regularly review accounts to make sure they’re secure as possible. We’ll also let you know if there’s more we can do to increase the security of your account.
+          <p class="card-text">We regularly review accounts to make sure they’re secure as possible. We’ll also let you
+            know if there’s more we can do to increase the security of your account.
             Learn about safety tips for guests and hosts.</p>
           <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
         </div>

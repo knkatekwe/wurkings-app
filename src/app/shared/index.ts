@@ -7,5 +7,6 @@ export * from './checkout-helpers';
 export * from './buttons';
 export * from './layout';
 export * from './list-errors/list-errors.component';
+export * from './message-modal/message-modal.component';
 export * from './shared.module';
 export * from './show-authed.directive';

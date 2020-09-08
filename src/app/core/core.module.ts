@@ -15,6 +15,7 @@ import {
   BookingService,
 } from './services';
 import { CatergoryService } from './services/catergory.service';
+import { HttpErrorIntercept } from './interceptors/http.error.interceptor';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { CatergoryService } from './services/catergory.service';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: HttpErrorIntercept, multi: true },
     ApiService,
     ListingsService,
     AuthGuard,

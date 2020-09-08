@@ -4,47 +4,47 @@
 
   <p class="text-muted text-center mt-1">Need to create an account? <a routerLink="/register">Sign up here</a></p>
 
-    <div class="card-body">
+  <div class="card-body">
 
-      <div class="alert alert-danger" role="alert" *ngIf='failed'>
-        <p class="mb-0">Invalid email or password</p>
+    <div class="alert alert-danger" role="alert" *ngIf='failed'>
+      <p class="mb-0">Invalid email or password</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <!-- <label for="username">Username</label> -->
+        <input type="email" formControlName="email" class="form-control"
+          [ngClass]="{'border-danger':f.email.invalid, 'border-success': f.email.valid}" placeholder="E-mail" />
+        <div *ngIf="f.email.invalid && f.email.touched" class="invalid-control">
+          Email is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <!-- <label for="password">Password</label> -->
+        <input type="password" formControlName="password"
+          [ngClass]="{'border-danger':f.password.invalid, 'border-success': f.password.valid}" class="form-control"
+          placeholder="Password" />
+          <div *ngIf="f.password.invalid && f.password.touched" class="invalid-control">
+            Password is required.
+          </div>
+      </div>
+      <div class="form-group">
+        <div class="col-auto my-1">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="remember_me" formControlName="remember_me">
+            <label class="custom-control-label" for="remember_me">Remember me</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button [disabled]="!form.valid || isSubmitting" class="btn btn-primary w-100">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Login
+        </button>
+        <a routerLink="../register" class="btn btn-link">Forgot your Password?</a>
       </div>
 
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <!-- <label for="username">Username</label> -->
-                <input type="email" formControlName="email"
-                       class="form-control" placeholder="E-mail"/>
-                <small *ngIf="email.invalid && email.touched" class="alert text-danger text-muted">
-                    Email is required
-                </small>
-            </div>
-            <div class="form-group">
-                <!-- <label for="password">Password</label> -->
-                <input type="password" formControlName="password"
-                       class="form-control" placeholder="Password"/>
-                <small *ngIf="password.touched && password.invalid" class="alert text-danger text-muted">
-                    Password is required
-                </small>
-            </div>
-            <div class="form-group">
-              <div class="col-auto my-1">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input"
-                         id="remember_me" formControlName="remember_me">
-                  <label class="custom-control-label" for="remember_me">Remember me</label>
-                </div>
-              </div>
-          </div>
-            <div class="form-group">
-                <button [disabled]="!form.valid" class="btn btn-primary w-100">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
-                </button>
-                <a routerLink="../register" class="btn btn-link">Forgot your Password?</a>
-            </div>
-
-        </form>
-        <!-- <pre>{{form.value | json}}</pre> -->
-    </div>
+    </form>
+    <!-- <pre>{{form.value | json}}</pre> -->
+  </div>
 </div>

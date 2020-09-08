@@ -15,6 +15,9 @@
         <!-- <li class="nav-item" *appShowAuthed="true">
           <a class="nav-link text-success" routerLink="/notifications" (click)="isMenuCollapsed = true">Notifications</a>
         </li> -->
+        <li class="nav-item">
+          <a class="nav-link text-success" routerLink="/admin" (click)="isMenuCollapsed = true">Management</a>
+        </li>
         <li class="nav-item" *appShowAuthed="true">
           <a class="nav-link text-success" [routerLink]="['/requests/to-me']" (click)="isMenuCollapsed = true">Requests</a>
         </li>

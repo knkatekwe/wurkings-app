@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
 
 import { AppComponent } from './app.component';
 // import { AuthModule } from './auth/auth.module';
@@ -24,6 +22,7 @@ import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
@@ -31,6 +30,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     CoreModule,
     SharedModule,
+    AdminModule,
     HomeModule,
     AccountModule,
     AppRoutingModule,

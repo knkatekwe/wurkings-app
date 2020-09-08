@@ -13,73 +13,99 @@
 
     <div class="col-md-8">
 
-      <!-- <div class="d-flex justify-content-between">
-        <p>{{user.email}}</p>
-        <p>{{user.username}}</p>
-      </div> -->
+      <div class="">
+        <p class="font-weight-bold">{{user.username}}, {{user.email}}</p>
+
+      </div>
 
       <form [formGroup]="form" (submit)="save()">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="firstname">Firstname</label>
-            <input type="text" class="form-control"
-                   id="firstname" formControlName="first_name"
-                   [(ngModel)]="user.first_name">
+            <input type="text" class="form-control" id="firstname" formControlName="first_name"
+              [ngClass]="{'border-danger':f.first_name.invalid, 'border-success': f.first_name.valid}"
+              [(ngModel)]="user.first_name">
+            <div *ngIf="f.first_name.invalid && f.first_name.touched" class="invalid-control">
+              First name is required.
+            </div>
           </div>
           <div class="form-group col-md-6">
             <label for="lastname">Lastname</label>
-            <input type="text" class="form-control"
-                   id="lastname" formControlName="last_name"
-                   [(ngModel)]="user.last_name">
+            <input type="text" class="form-control" id="lastname" formControlName="last_name"
+              [ngClass]="{'border-danger':f.last_name.invalid, 'border-success': f.last_name.valid}"
+              [(ngModel)]="user.last_name">
+            <div *ngIf="f.last_name.invalid && f.last_name.touched" class="invalid-control">
+              Last name is required.
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputState">Gender</label>
-            <select id="inputState" class="form-control" formControlName="gender"
-                    [(ngModel)]="user.gender">
+            <select id="inputState" class="form-control" formControlName="gender" [(ngModel)]="user.gender"
+              [ngClass]="{'border-danger':f.gender.invalid, 'border-success': f.gender.valid}">
               <option selected>Choose...</option>
               <option value="true">Female</option>
               <option value="false">Male</option>
             </select>
+            <div *ngIf="f.gender.invalid && f.gender.touched" class="invalid-control">
+              Gender is required.
+            </div>
           </div>
           <div class="form-group col-md-6">
             <label for="dob">Date of Birth</label>
-            <input type="date" class="form-control" id="dob"
-                   formControlName="date_of_birth" [(ngModel)]="user.date_of_birth">
+            <input type="date" class="form-control" id="dob" formControlName="date_of_birth"
+              [ngClass]="{'border-danger':f.date_of_birth.invalid, 'border-success': f.date_of_birth.valid}"
+              [(ngModel)]="user.date_of_birth">
+            <div *ngIf="f.date_of_birth.invalid && f.date_of_birth.touched" class="invalid-control">
+              Date of birth is required.
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="occupation">Occupation</label>
-            <input type="text" class="form-control" id="occupation"
-                   formControlName="occupation" [(ngModel)]="user.occupation">
+            <input type="text" class="form-control" id="occupation" formControlName="occupation"
+              [(ngModel)]="user.occupation"
+              [ngClass]="{'border-danger':f.occupation.invalid, 'border-success': f.occupation.valid}">
+            <div *ngIf="f.occupation.invalid && f.occupation.touched" class="invalid-control">
+              Occupation is required.
+            </div>
           </div>
           <div class="form-group col-md-6">
             <label for="phone">Phone Number</label>
-            <input type="text" class="form-control" id="phone"
-                   formControlName="phone_number" [(ngModel)]="user.phone_number">
+            <input type="text" class="form-control" id="phone" formControlName="phone_number"
+              [(ngModel)]="user.phone_number"
+              [ngClass]="{'border-danger':f.phone_number.invalid, 'border-success': f.phone_number.valid}">
+            <div *ngIf="f.phone_number.invalid && f.phone_number.touched" class="invalid-control">
+              Phone number is required.
+            </div>
           </div>
         </div>
         <div class="form-group">
           <div>
-            <label >Profile Picture</label>
+            <label>Profile Picture</label>
           </div>
-          <app-image-upload (imageUploaded)="handleImageUpload($event)"
-                             (imageError)="handleImageError()">
+          <app-image-upload (imageUploaded)="handleImageUpload($event)" (imageError)="handleImageError()">
           </app-image-upload>
         </div>
         <div class="form-group">
           <label for="inputAddress">Address</label>
-          <input type="text" class="form-control"
-                 id="inputAddress" placeholder="1234 Main St"
-                 formControlName="physical_address" [(ngModel)]="user.physical_address">
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+            formControlName="physical_address" [(ngModel)]="user.physical_address"
+            [ngClass]="{'border-danger':f.physical_address.invalid, 'border-success': f.physical_address.valid}">
+          <div *ngIf="f.physical_address.invalid && f.physical_address.touched" class="invalid-control">
+            Physical address is required.
+          </div>
         </div>
         <div class="form-group">
           <label for="about">About</label>
-          <textarea type="text" class="form-control" id="about"
-                    placeholder="Apartment, studio, or floor"
-                    formControlName="about" [(ngModel)]="user.about"></textarea>
+          <textarea type="text" class="form-control" id="about" placeholder="Apartment, studio, or floor"
+            formControlName="about" [(ngModel)]="user.about"
+            [ngClass]="{'border-danger':f.about.invalid, 'border-success': f.about.valid}"></textarea>
+          <div *ngIf="f.about.invalid && f.about.touched" class="invalid-control">
+            About is required.
+          </div>
         </div>
         <!-- <div class="form-row">
           <div class="form-group col-md-4">
@@ -96,7 +122,7 @@
           </div>
         </div> -->
 
-        <button type="submit" class="btn btn-primary btn-block">Save</button>
+        <button [disabled]="form.invalid || isSubmitting" type="submit" class="btn btn-primary btn-block">Save</button>
       </form>
       <!-- <pre>{{form.value | json}}</pre> -->
     </div>
@@ -107,7 +133,8 @@
         <div class="card-body">
           <i class="fa fa-id-card-o" aria-hidden="true"></i>
           <h5 class="card-title">What info is shared with others?</h5>
-          <p class="card-text">Wurkings only releases contact information for hosts and guests after a booking is confirmed.</p>
+          <p class="card-text">Wurkings only releases contact information for hosts and guests after a booking is
+            confirmed.</p>
           <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
         </div>
       </div>

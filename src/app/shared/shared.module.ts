@@ -21,6 +21,10 @@ import { CheckoutFailureComponent } from './checkout-helpers/checkout-failure/ch
 import { CheckoutSuccessfulComponent } from './checkout-helpers/checkout-successful/checkout-successful.component';
 import { ImageUploadComponent } from './images-helpers/image-upload/image-upload.component';
 import { ProfileUploadComponent } from './images-helpers/profile-upload/profile-upload.component';
+import { MessageModalComponent } from './message-modal/message-modal.component';
+import { MessageModalService } from './message-modal/message-modal.service';
+import { CategoryDetailComponent } from './category-helpers/category-detail/category-detail.component';
+import { CategoryListComponent } from './category-helpers/category-list/category-list.component';
 
 
 @NgModule({
@@ -52,7 +56,10 @@ import { ProfileUploadComponent } from './images-helpers/profile-upload/profile-
     ProfileUploadComponent,
     CheckoutProductComponent,
     CheckoutFailureComponent,
-    CheckoutSuccessfulComponent
+    CheckoutSuccessfulComponent,
+    MessageModalComponent,
+    CategoryDetailComponent,
+    CategoryListComponent
   ],
   exports: [
     ListingListComponent,
@@ -81,7 +88,15 @@ import { ProfileUploadComponent } from './images-helpers/profile-upload/profile-
     CheckoutFailureComponent,
     CheckoutSuccessfulComponent,
     ProfileUploadComponent,
-
+    MessageModalComponent,
+    CategoryDetailComponent,
+    CategoryListComponent
+  ],
+  providers:[
+    MessageModalService
+  ],
+  entryComponents:[
+    MessageModalComponent
   ]
 })
 export class SharedModule {}

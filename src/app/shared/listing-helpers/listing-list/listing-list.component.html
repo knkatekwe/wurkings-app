@@ -1,7 +1,7 @@
 
 
 
-<div class="app-article-preview" *ngIf="loading$ | async; else content">
+<div class="app-article-preview">
   <div class="d-flex justify-content-center">
     <div class="spinner-border text-success" role="status">
       <span class="sr-only"></span>
@@ -9,13 +9,13 @@
   </div>
 </div>
 
-<ng-template #content>
+<ng-template>
   <div class="row">
 
-    <app-listing-preview class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+    <!-- <app-listing-preview class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
         *ngFor="let listing of listing$ | async"
         [listing]="listing">
-    </app-listing-preview>
+    </app-listing-preview> -->
 
 </div>
 </ng-template>

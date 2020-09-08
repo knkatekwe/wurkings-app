@@ -2,6 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/core';
+import { RegularExpressionConstant } from 'src/app/core/models/validation';
 
 // import { AccountService, AlertService } from '@app/_services';
 
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
         this.form = this.formBuilder.group({
             username: ['', Validators.required],
-            email: ['', Validators.required],
+            email: ['', [Validators.required, Validators.pattern(RegularExpressionConstant.EMAIL)]],
             first_name: ['', Validators.required],
             last_name: ['', Validators.required],
             phone_number: ['', Validators.required],

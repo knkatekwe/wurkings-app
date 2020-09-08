@@ -1,0 +1,24 @@
+<div class="container">
+  <a class="btn btn-primary mb-3" [routerLink]="['create']" role="button">Create New</a>
+</div>
+<div class="container">
+  <ng-container *ngIf="!(loading$ | async); else loadingTpl">
+
+    <div class="row">
+      <div *ngFor="let category of (category$ | async)" class="card mr-2" style="width: 15rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{category.category_title}}</h5>
+          <a [routerLink]="['.', category.id]" class="card-link">Edit</a>
+          <a [routerLink]="['.']" (click)="delete(category.id)" class="card-link">Delete</a>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <ng-template #loadingTpl>
+    <div class="spinner-border text-center text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </ng-template>
+</div>

@@ -9,110 +9,113 @@
       <div class="form-group">
         <!-- <label for="username">Username</label> -->
         <input type="text" formControlName="username" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Username" />
-        <small *ngIf="f.username.invalid && f.username.touched" class="alert text-danger text-muted">
-          Username is required
-        </small>
+          [ngClass]="{'border-danger':f.username.invalid, 'border-success': f.username.valid}" placeholder="Username" />
+        <div *ngIf="f.username.invalid && f.username.touched" class="invalid-control">
+          Username is required.
+        </div>
       </div>
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="email" class="form-control" placeholder="Email"
-          [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-        <small *ngIf="f.email.invalid && f.email.touched" class="alert text-danger text-muted">
-          Email is required
-        </small>
+          [ngClass]="{'border-danger':f.email.invalid, 'border-success': f.email.valid}" />
+          <div *ngIf="f.email.invalid && f.email.touched" class="invalid-control">
+            Email is required.
+          </div>
       </div>
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="first_name" class="form-control" placeholder="First name"
-          [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
-        <small *ngIf="f.first_name.invalid && f.first_name.touched" class="alert text-danger text-muted">
-          First name is required
-        </small>
-      </div>
-      <div class="form-group">
-        <!-- <label for="username">Email</label> -->
-        <input type="date" class="form-control" id="dob" formControlName="date_of_birth">
-        <small *ngIf="f.date_of_birth.invalid && f.date_of_birth.touched" class="alert text-danger text-muted">
-          Date of birth is required
-        </small>
+          [ngClass]="{'border-danger':f.first_name.invalid, 'border-success': f.first_name.valid}" />
+          <div *ngIf="f.first_name.invalid && f.first_name.touched" class="invalid-control">
+            First name is required.
+          </div>
       </div>
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="last_name" class="form-control" placeholder="Last name"
-          [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
-        <small *ngIf="f.last_name.invalid && f.last_name.touched" class="alert text-danger text-muted">
-          Last name is required
-        </small>
+          [ngClass]="{'border-danger':f.last_name.invalid, 'border-success': f.last_name.valid}" />
+          <div *ngIf="f.last_name.invalid && f.last_name.touched" class="invalid-control">
+            Last name is required.
+          </div>
       </div>
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
-        <select id="inputState" class="form-control" formControlName="gender">
+        <input type="date" class="form-control" id="dob" formControlName="date_of_birth"
+          [ngClass]="{'border-danger':f.date_of_birth.invalid, 'border-success': f.date_of_birth.valid}">
+          <div *ngIf="f.date_of_birth.invalid && f.date_of_birth.touched" class="invalid-control">
+            Date of birth is required.
+          </div>
+      </div>
+
+      <div class="form-group">
+        <!-- <label for="username">Email</label> -->
+        <select id="inputState" class="form-control" formControlName="gender"
+          [ngClass]="{'border-danger':f.gender.invalid, 'border-success': f.gender.valid}">
           <option selected>Choose...</option>
           <option *ngFor="let gender of gender" [value]="gender.value">{{gender.name}}</option>
         </select>
-        <small *ngIf="f.gender.invalid && f.gender.touched" class="alert text-danger text-muted">
-          Gender is required
-        </small>
+        <div *ngIf="f.gender.invalid && f.gender.touched" class="invalid-control">
+          Gender is required.
+        </div>
       </div>
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="phone_number" class="form-control" placeholder="Phone number"
-          [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }" />
-        <small *ngIf="f.phone_number.invalid && f.phone_number.touched" class="alert text-danger text-muted">
-          Phone number is required
-        </small>
+        [ngClass]="{'border-danger':f.phone_number.invalid, 'border-success': f.phone_number.valid}"/>
+        <div *ngIf="f.phone_number.invalid && f.phone_number.touched" class="invalid-control">
+          Phone number is required.
+        </div>
       </div>
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="physical_address" class="form-control" placeholder="Physical address"
-          [ngClass]="{ 'is-invalid': submitted && f.physical_address.errors }" />
-        <small *ngIf="f.physical_address.invalid && f.physical_address.touched" class="alert text-danger text-muted">
-          Physical address is required
-        </small>
+        [ngClass]="{'border-danger':f.physical_address.invalid, 'border-success': f.physical_address.valid}" />
+        <div *ngIf="f.physical_address.invalid && f.physical_address.touched" class="invalid-control">
+          Physical address is required.
+        </div>
       </div>
 
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="occupation" class="form-control" placeholder="Occupation"
-          [ngClass]="{ 'is-invalid': submitted && f.occupation.errors }" />
-        <small *ngIf="f.occupation.invalid && f.occupation.touched" class="alert text-danger text-muted">
-          Occupation is required
-        </small>
+        [ngClass]="{'border-danger':f.occupation.invalid, 'border-success': f.occupation.valid}" />
+        <div *ngIf="f.occupation.invalid && f.occupation.touched" class="invalid-control">
+          Occupation is required.
+        </div>
       </div>
       <div class="form-group">
         <!-- <label for="username">Email</label> -->
         <input type="text" formControlName="about" class="form-control" placeholder="About"
-          [ngClass]="{ 'is-invalid': submitted && f.occupation.errors }" />
-        <small *ngIf="f.about.invalid && f.about.touched" class="alert text-danger text-muted">
-          About is required
-        </small>
+        [ngClass]="{'border-danger':f.about.invalid, 'border-success': f.about.valid}" />
+        <div *ngIf="f.about.invalid && f.about.touched" class="invalid-control">
+          About is required.
+        </div>
       </div>
       <div class="form-group">
         <!-- <label for="password">Password</label> -->
         <input type="password" formControlName="password" class="form-control" placeholder="Password"
-          [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-        <small *ngIf="f.password.invalid && f.password.touched" class="alert text-danger text-muted">
-          Password is required
-        </small>
+        [ngClass]="{'border-danger':f.password.invalid, 'border-success': f.password.valid}" />
+        <div *ngIf="f.password.invalid && f.password.touched" class="invalid-control">
+          Password is required.
+        </div>
       </div>
       <div class="form-group">
         <!-- <label for="password_confirmation">Password Confirmation</label> -->
         <input type="password" formControlName="password_confirmation" class="form-control"
           placeholder="Password  confirmation"
-          [ngClass]="{ 'is-invalid': submitted && f.password_confirmation.errors }" />
+          [ngClass]="{'border-danger':f.password_confirmation.invalid, 'border-success': f.password_confirmation.valid}" />
         <small *ngIf="f.password_confirmation.invalid && f.password_confirmation.touched"
           class="alert text-danger text-muted">
           Password confirmation is required
         </small>
-        <small *ngIf="passwordSimilar" class="alert text-danger text-muted">
-          Passwords not the same :-(
-        </small>
+        <div *ngIf="f.password_confirmation.invalid && f.password_confirmation.touched" class="invalid-control">
+          Password confirmation is required.
+        </div>
 
       </div>
       <div class="form-group">
-        <button [disabled]="loading || form.invalid" class="btn btn-primary w-100">
-          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        <button [disabled]="isSubmitting || form.invalid" class="btn btn-primary w-100">
+          <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
           Register
         </button>
       </div>

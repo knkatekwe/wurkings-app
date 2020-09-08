@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Category Detail</h5>
+
+    <form [formGroup]="form" (submit)="update(form.value)" novalidate>
+
+      <div class="form-group">
+        <div class="row">
+
+          <input type="hidden" formControlName="id" [ngModel]="category?.id" />
+
+          <div class="col-md-12">
+
+            <label for="title"></label>
+            <input type="text" formControlName="category_title" [ngModel]="category?.category_title" id="title"
+              class="form-control"
+              [ngClass]="{'border-danger':f.category_title.invalid, 'border-success': f.category_title.valid}"
+              placeholder="Category Title" />
+            <div *ngIf="f.category_title.invalid && f.category_title.touched" class="invalid-control">
+              Category is required.
+            </div>
+          </div>
+
+          <!-- <div class="col-auto my-1">
+            <div class="custom-control custom-checkbox mr-sm-2">
+              <input type="checkbox" class="custom-control-input" formControlName="active" id="active">
+              <label class="custom-control-label" for="active">Active</label>
+            </div>
+          </div> -->
+
+        </div>
+        <div class="pt-4">
+          <button type="submit" [disabled]="form.invalid || isSubmitting" class="btn btn-info btn-block">Save</button>
+        </div>
+        <!-- <div class="pt-4">
+          <button type="button" (click)="deleted.emit()"
+            class="btn btn-info btn-block">Delete</button>
+        </div> -->
+      </div>
+    </form>
+
+  </div>
+</div>
