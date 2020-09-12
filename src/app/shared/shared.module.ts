@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { ListingListComponent, ListingPreviewComponent, ListingDetailComponent } from './listing-helpers';
+import { ListingListComponent, ListingPreviewComponent } from './listing-helpers';
 import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
 import { ListErrorsComponent } from './list-errors/list-errors.component';
 import { ShowAuthedDirective } from './show-authed.directive';
@@ -25,6 +25,9 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
 import { MessageModalService } from './message-modal/message-modal.service';
 import { CategoryDetailComponent } from './category-helpers/category-detail/category-detail.component';
 import { CategoryListComponent } from './category-helpers/category-list/category-list.component';
+import { ListingDetailComponent } from './listing-helpers/listing/listing-detail/listing-detail.component';
+import { ListingImagesComponent } from './listing-helpers/listing/listing-images/listing-images.component';
+import { ListingPricingComponent } from './listing-helpers/listing/listing-pricing/listing-pricing.component';
 
 
 @NgModule({
@@ -37,6 +40,9 @@ import { CategoryListComponent } from './category-helpers/category-list/category
     NgbModule,
   ],
   declarations: [
+    ListingDetailComponent,
+    ListingImagesComponent,
+    ListingPricingComponent,
     ListingListComponent,
     ListingPreviewComponent,
     FavoriteButtonComponent,
@@ -50,7 +56,6 @@ import { CategoryListComponent } from './category-helpers/category-list/category
     ChatPreviewComponent,
     ChatListComponent,
     ChatMessagesComponent,
-    ListingDetailComponent,
     ImageUploadComponent,
     ProfileUploadComponent,
     CheckoutProductComponent,
@@ -61,6 +66,9 @@ import { CategoryListComponent } from './category-helpers/category-list/category
     CategoryListComponent
   ],
   exports: [
+    ListingDetailComponent,
+    ListingImagesComponent,
+    ListingPricingComponent,
     ListingListComponent,
     ListingPreviewComponent,
     CommonModule,
@@ -80,7 +88,6 @@ import { CategoryListComponent } from './category-helpers/category-list/category
     ChatListComponent,
     ChatMessagesComponent,
     ChatPreviewComponent,
-    ListingDetailComponent,
     ImageUploadComponent,
     CheckoutProductComponent,
     CheckoutFailureComponent,

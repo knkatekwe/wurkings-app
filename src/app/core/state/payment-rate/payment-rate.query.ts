@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
-import { ListingStore, ListingState } from './listing.store';
-import { Listing } from './listing.model';
+import { PaymentRateStore, PaymentRateState } from './payment-rate.store';
 
 @Injectable({ providedIn: 'root' })
-export class ListingQuery extends QueryEntity<ListingState, Listing> {
+export class PaymentRateQuery extends QueryEntity<PaymentRateState> {
 
-  constructor(protected store: ListingStore) {
+  constructor(protected store: PaymentRateStore) {
     super(store);
   }
 
-  getListings(value: string) {
+  getListingPaymentRates(value: string) {
     return this.selectAll({
       filterBy: entity => entity.title.toLowerCase().includes(value)
     });

@@ -1,32 +1,50 @@
 import { Injectable } from '@angular/core';
 import { ListingStore} from './listing.store';
-import { ApiService } from 'src/app/core';
+import { API_ENDPOINT } from 'src/app/core';
+import { HttpClient } from '@angular/common/http';
+import { Listing } from './listing.model';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { cacheable } from '@datorama/akita';
 
 @Injectable({ providedIn: 'root' })
 export class ListingService {
-	constructor(protected listingStore: ListingStore, private apiService: ApiService) {}
+	constructor(protected store: ListingStore, private http: HttpClient) {}
 
-	async getAll() {
-		const response = await this.apiService.get('/listings').toPromise();
-		this.listingStore.set(response);
+	get(): Observable<Listing[]> {
+		const request$ = this.http
+			.get<Listing[]>(API_ENDPOINT + '/listings')
+			.pipe(tap((entities) => this.store.set(entities)));
+
+		return cacheable(this.store, request$);
   }
 
-  async addListing(id, listing) {
-    const commentId = await this.apiService.post('/listings', listing).toPromise();
-
-    this.listingStore.update(id, listing => listing);
+  getListing(id): Observable<Listing>{
+    return this.http.get<Listing>(API_ENDPOINT + '/listings/' + id)
   }
 
-  async editListing(id, listing) {
-    await this.apiService.put('/listings/' + id, listing).toPromise();
-
-    this.listingStore.update(id, listing => listing);
+	add(listing: Listing): Observable<Listing> {
+		return this.http.post<Listing>(API_ENDPOINT + '/listing', listing).pipe(
+			tap((listing) => {
+				this.store.add(listing);
+			})
+		);
   }
 
-  async deleteListing(id) {
-    await this.apiService.delete('/listings' + id).toPromise();
+	delete(id): Observable<any> {
+		return this.http.delete(API_ENDPOINT + '/listing/' + id).pipe(
+			tap((listing) => {
+				this.store.remove(id);
+			})
+		);
+	}
 
-    this.listingStore.remove(id);
-  }
+	update(id, listing: Listing): Observable<any> {
+		return this.http.put(API_ENDPOINT + '/listing/' + id, listing).pipe(
+			tap((listing) => {
+				this.store.update(id, listing);
+			})
+		);
+	}
 
 }

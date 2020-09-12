@@ -1,38 +1,15 @@
+import { Category } from 'src/app/admin/state/category/category.model';
+import { ListingImage } from 'src/app/core';
+import { PaymentRate } from 'src/app/core/state/payment-rate/payment-rate.model';
+
 export interface Listing {
   id: number | string;
+  user_id: number | string
   title: string;
   description: string;
-  image?: string;
-  price: number;
-  catergory?: Catergory;//
-  city?: string;//
-  state?: string;//
-  owner: any;//
-  payment_type?: PaymentType;
-  outbound: boolean;
-  allCan?: boolean;
-  onlyStudent?: boolean;
-  onlyWorking?: boolean;
-  isActive: boolean;
-  isReserved: boolean;
-  created_at: string;
-  updated_at: string;
-}
-
-export class Catergory {
-  id: string;
-  catergoryName: string;
-  isActive: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface PaymentType {
-  id: string;
-  rate: string;
-  is_active?: string;
-  createdAt: string;
-  updatedAt: string;
+  category_id: Category
+  listing_images: ListingImage[]
+  payment_rates: PaymentRate[]
 }
 
 export function createListing(params: Partial<Listing>) {

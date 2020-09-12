@@ -23,6 +23,7 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
 import { AdminModule } from './admin/admin.module';
+import { ListingModule } from './listing/listing.module';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
@@ -32,6 +33,7 @@ import { AdminModule } from './admin/admin.module';
     SharedModule,
     AdminModule,
     HomeModule,
+    //ListingModule,
     AccountModule,
     AppRoutingModule,
     ChatModule,

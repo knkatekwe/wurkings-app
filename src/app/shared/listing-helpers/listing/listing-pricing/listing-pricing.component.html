@@ -1,0 +1,62 @@
+<!-- <div class="card col-md-6 offset-md-3">
+  <div class="card-body">
+    <h5 class="card-title">Listing Detail</h5>
+
+    <form [formGroup]="form" (submit)="saved.emit(form.value)" novalidate>
+
+      <div class="form-group">
+        <div class="row">
+
+          <div class="col-md-6">
+
+            <label for=""></label>
+            <input type="number" formControlName="price" [ngModel]="paymentRate?.price" class="form-control"
+              [ngClass]="{'border-danger':f.price.invalid, 'border-success': f.price.valid}" placeholder="Price" />
+            <div *ngIf="f.price.invalid && f.price.touched" class="invalid-control">
+              Price is required.
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for=""></label>
+            <div class="form-group">
+              <select class="form-control" formControlName="title" [ngModel]="paymentRate?.title"
+                [ngClass]="{'border-danger':f.title.invalid, 'border-success': f.title.valid}">
+                <option selected>Select Option</option>
+                <option *ngFor="let rate of rates" [value]="rate?.title">{{rate?.title}}
+                </option>
+              </select>
+              <div *ngIf="f.title.invalid && f.title.touched" class="invalid-control">
+                Rate is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Cras justo odio
+                <span class="badge badge-primary badge-pill">14</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Dapibus ac facilisis in
+                <span class="badge badge-primary badge-pill">2</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Morbi leo risus
+                <span class="badge badge-primary badge-pill">1</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="pt-4">
+          <button type="submit" [disabled]="form.invalid" class="btn btn-info btn-block">Save</button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div>
+<pre>{{form.value | json}}</pre> -->

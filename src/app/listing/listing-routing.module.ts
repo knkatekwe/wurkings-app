@@ -4,7 +4,9 @@ import { ListingComponent } from './listing.component';
 import { ListingViewComponent } from './listing-view/listing-view.component';
 import { ListingEditComponent } from './listing-edit/listing-edit.component';
 import { ListingResolver } from './listing-view/listing-resolver.service';
-import { ListingCreateComponent } from './listing-create/listing-create.component';
+import { ListingDetailFormComponent } from './listing-new/listing-detail-form/listing-detail-form.component';
+import { ListingPicturesFormComponent } from './listing-new/listing-pictures-form/listing-pictures-form.component';
+import { ListingPricingFormComponent } from './listing-new/listing-pricing-form/listing-pricing-form.component';
 // import { ArticleResolver } from './listing-resolver.service';
 
 const routes: Routes = [
@@ -20,8 +22,20 @@ const routes: Routes = [
     }
   },
   {
-    path: 'create',
-    component: ListingCreateComponent
+    path: 'rent-out',
+    component: ListingDetailFormComponent
+  },
+  {
+    path: 'rent-out/:listingId/pictures',
+    component: ListingPicturesFormComponent
+  },
+  {
+    path: 'rent-out/:listingId/payment-rate',
+    component: ListingPricingFormComponent
+  },
+  {
+    path: 'rent-out/:listingId/review',
+    component: ListingPricingFormComponent
   },
   {
     path: ':id',

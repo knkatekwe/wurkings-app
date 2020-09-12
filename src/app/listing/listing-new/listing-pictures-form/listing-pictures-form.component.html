@@ -1,0 +1,63 @@
+<div class="card col-md-6 offset-md-3">
+  <div class="card-body">
+    <h5 class="card-title">Listing Images</h5>
+
+    <form [formGroup]="form" (submit)="onSubmit()" novalidate>
+
+      <div class="form-group">
+        <input type="file" accept="image/*" class="form-control" (change)="onFileSelected($event)">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Picture description" formControlName="alt">
+      </div>
+
+      <div class="col" >
+
+        <ngb-carousel>
+          <ng-template ngbSlide *ngFor="let image of listingImages$ | async">
+            <div class="picsum-img-wrapper">
+              <img [src]="image.image_url" [alt]="image.alt"
+              class="img-fluid w-75 h-75 mx-auto d-block">
+            </div>
+          </ng-template>
+        </ngb-carousel>
+        <!-- <pre>{{listingImages$ | async | json}}</pre> -->
+
+    </div>
+
+        <!-- <div class="">
+
+          <label class="image-upload-container btn btn-bwm">
+            <span>Select Image</span>
+            <input #imageInput
+                   type="file"
+                   accept="image/*"
+                   (change)="processFile(imageInput)">
+          </label>
+
+          <div *ngIf="selectedFile" class="img-preview-container">
+
+            <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
+                 [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
+            </div>
+
+            <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+              <div class="img-spinning-circle"></div>
+            </div>
+
+            <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
+            <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
+          </div>
+
+          <input type="text" class="form-control" formControlName="alt" placeholder="Image Description"/>
+
+        </div> -->
+        <div class="d-flex adjust-content-between pt-4">
+          <button type="submit" [disabled]="isSubmitting || form.invalid" class="btn btn-warning btn-block mr-2">Submit Picture</button>
+          <button type="button" class="btn btn-success btn-block" (click)="navigate()">Proceed</button>
+        </div>
+    </form>
+
+  </div>
+</div>
+<!-- <pre>{{form.value | json}}</pre> -->

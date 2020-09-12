@@ -1,0 +1,64 @@
+<div class="card col-md-6 offset-md-3">
+  <div class="card-body">
+    <h5 class="card-title">Listing Detail</h5>
+
+    <form [formGroup]="form" (submit)="saved.emit(form.value)" novalidate>
+
+      <div class="form-group">
+        <div class="row">
+
+          <input type="hidden" formControlName="id" [ngModel]="selectedListing?.id" />
+
+          <div class="col-md-6">
+
+            <label for=""></label>
+            <input type="text" formControlName="title" [ngModel]="selectedListing?.title" class="form-control"
+              [ngClass]="{'border-danger':f.title.invalid, 'border-success': f.title.valid}"
+              placeholder="Listing Title" />
+            <div *ngIf="f.title.invalid && f.title.touched" class="invalid-control">
+              Title is required.
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for=""></label>
+            <div class="form-group">
+              <select class="form-control" formControlName="category_id" [ngModel]="selectedListing?.catergory?.id"
+                [ngClass]="{'border-danger':f.category_id.invalid, 'border-success': f.category_id.valid}">
+                <option selected>Select Category</option>
+                <option *ngFor="let category of category$ | async" [value]="category?.id">{{category?.category_title}}
+                </option>
+              </select>
+              <div *ngIf="f.category_id.invalid && f.category_id.touched" class="invalid-control">
+                Catergory is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <label for=""></label>
+            <textarea type="text" formControlName="description" [ngModel]="selectedListing?.description"
+              [ngClass]="{'border-danger':f.description.invalid, 'border-success': f.description.valid}" rows="5"
+              class="form-control" placeholder="" placeholder="Tell us about your listing :)"></textarea>
+            <div *ngIf="f.description.invalid && f.description.touched" class="invalid-control">
+              Description is required.
+            </div>
+          </div>
+
+          <!-- <div class="col-md-12 mt-4">
+           <app-image-upload (imageUploaded)="handleImageUpload($event)"
+                             (imageError)="handleImageError()">
+            </app-image-upload>
+          </div> -->
+
+        </div>
+        <div class="pt-4">
+          <button type="submit" [disabled]="form.invalid" class="btn btn-info btn-block">Save Detail</button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div>
+<!-- <pre>{{form.value | json}}</pre> -->

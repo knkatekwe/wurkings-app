@@ -17,13 +17,11 @@ export class RegisterComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private route: ActivatedRoute,
 		private router: Router,
-		private userService: UserService
-	) // private alertService: AlertService
-	{
-	}
+		private userService: UserService // private alertService: AlertService
+	) {}
 
 	ngOnInit() {
-    this.isSubmitting = false
+		this.isSubmitting = false;
 		this.form = this.formBuilder.group({
 			username: [ '', Validators.required ],
 			email: [ '', [ Validators.required, Validators.pattern(RegularExpressionConstant.EMAIL) ] ],
@@ -52,7 +50,7 @@ export class RegisterComponent implements OnInit {
 		if (this.f.password.value === this.f.password_confirmation.value) {
 			this.userService.register(this.form.value).subscribe(
 				(data) => {
-          this.isSubmitting = false
+					this.isSubmitting = false;
 					this.router.navigateByUrl('/login');
 				},
 				(err) => {
@@ -62,7 +60,7 @@ export class RegisterComponent implements OnInit {
 				}
 			);
 		} else {
-      this.isSubmitting = false
+			this.isSubmitting = false;
 			this.passwordSimilar = true;
 		}
 	}
