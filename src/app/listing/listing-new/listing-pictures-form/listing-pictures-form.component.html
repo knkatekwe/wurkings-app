@@ -11,21 +11,20 @@
         <input type="text" class="form-control" placeholder="Picture description" formControlName="alt">
       </div>
 
-      <div class="col" >
+      <div class="col">
 
         <ngb-carousel>
           <ng-template ngbSlide *ngFor="let image of listingImages$ | async">
             <div class="picsum-img-wrapper">
-              <img [src]="image.image_url" [alt]="image.alt"
-              class="img-fluid w-75 h-75 mx-auto d-block">
+              <img [src]="image.image_url" height="250px;" [alt]="image.alt" class="img-fluid">
             </div>
           </ng-template>
         </ngb-carousel>
         <!-- <pre>{{listingImages$ | async | json}}</pre> -->
 
-    </div>
+      </div>
 
-        <!-- <div class="">
+      <!-- <div class="">
 
           <label class="image-upload-container btn btn-bwm">
             <span>Select Image</span>
@@ -52,10 +51,11 @@
           <input type="text" class="form-control" formControlName="alt" placeholder="Image Description"/>
 
         </div> -->
-        <div class="d-flex adjust-content-between pt-4">
-          <button type="submit" [disabled]="isSubmitting || form.invalid" class="btn btn-warning btn-block mr-2">Submit Picture</button>
-          <button type="button" class="btn btn-success btn-block" (click)="navigate()">Proceed</button>
-        </div>
+      <div class="d-flex adjust-content-between pt-4">
+        <button type="submit" [disabled]="isSubmitting || form.invalid" class="btn btn-warning btn-block mr-2">Submit
+          Picture</button>
+        <button type="button" class="btn btn-success btn-block" (click)="navigate()">Proceed</button>
+      </div>
     </form>
 
   </div>
