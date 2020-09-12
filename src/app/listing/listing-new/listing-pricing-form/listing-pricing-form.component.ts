@@ -59,12 +59,12 @@ export class ListingPricingFormComponent implements OnInit {
         this.isSubmitting = false
         //this.alertService.confirm('Checkout', 'Order successfully placed', 'Ok')
         this.form.reset()
-        alert('Payement rate added successfully')
+        //alert('Payement rate added successfully')
 				//this.router.navigateByUrl('/listing/rent-out/' + res.id + '/pictures')
 			},
 			(err) => {
         this.isSubmitting = false
-        alert('Payement rate not added')
+        alert('Failed to add payment rate')
         //this.alertService.confirm('Checkout', 'Failed to place order, please try again', 'Ok')
         console.log(err)
 			}

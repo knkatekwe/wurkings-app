@@ -1,21 +1,38 @@
 <div class="container">
 
-  <h2 class="mb-4">Dashboard</h2>
+  <h2 class="mb-4">My listings</h2>
 
   <div class="row">
 
-    <div class="col-md-8">
+    <div class="col-md-12">
 
-      <div class="card w-full">
+      <!-- <div class="card w-full">
         <div class="card-body">
           <h5 class="card-title">Manage Listings</h5>
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         </div>
+      </div> -->
+
+      <!-- <div *ngIf="loading$|async" class="app-article-preview">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border text-success" role="status">
+            <span class="sr-only"></span>
+          </div>
+        </div>
+      </div> -->
+
+        <div class="row">
+
+          <app-listing-preview class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+              *ngFor="let listing of listing"
+              [listing]="listing">
+          </app-listing-preview>
+
       </div>
 
     </div>
 
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
 
       <div class="card w-full">
         <div class="card-body">
@@ -24,8 +41,9 @@
         </div>
       </div>
 
-    </div>
+    </div> -->
 
   </div>
 
 </div>
+<!-- <pre>{{listing|json}}</pre> -->

@@ -19,6 +19,10 @@ export class ListingService {
 		return cacheable(this.store, request$);
   }
 
+  getUserListings(): Observable<Listing[]>{
+    return this.http.get<Listing[]>(API_ENDPOINT + '/user_listings')
+  }
+
   getListing(id): Observable<Listing>{
     return this.http.get<Listing>(API_ENDPOINT + '/listings/' + id)
   }

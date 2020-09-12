@@ -66,9 +66,8 @@ export class ListingPicturesFormComponent implements OnInit {
 				(res) => {
 					this.isSubmitting = false
 					alert('Image uploaded successfully');
-					console.log(res);
-					this.store.add(res);
-					//this.onSuccess(this.imageUrl)
+					this.resetForm()
+          this.store.add(res);
 				},
 				(err) => {
 					this.isSubmitting = false
@@ -80,7 +79,12 @@ export class ListingPicturesFormComponent implements OnInit {
 
 	navigate() {
 		this.router.navigateByUrl('/listing/rent-out/' + this.listingId + '/payment-rate');
-	}
+  }
+
+  resetForm(){
+    this.form.get('image_url').setValue('')
+    this.form.get('alt').setValue('')
+  }
 
 	initForm() {
 		this.form = this.fb.group({

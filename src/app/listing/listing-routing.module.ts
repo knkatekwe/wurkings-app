@@ -7,12 +7,16 @@ import { ListingResolver } from './listing-view/listing-resolver.service';
 import { ListingDetailFormComponent } from './listing-new/listing-detail-form/listing-detail-form.component';
 import { ListingPicturesFormComponent } from './listing-new/listing-pictures-form/listing-pictures-form.component';
 import { ListingPricingFormComponent } from './listing-new/listing-pricing-form/listing-pricing-form.component';
+import { UserListingsResolver } from './user-listings.service';
 // import { ArticleResolver } from './listing-resolver.service';
 
 const routes: Routes = [
   {
     path: '',
     component: ListingComponent,
+    resolve:{
+      listings: UserListingsResolver
+    }
   },
   {
     path: 'preview/:id',

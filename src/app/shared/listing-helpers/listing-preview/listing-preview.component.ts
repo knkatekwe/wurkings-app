@@ -29,8 +29,8 @@ export class ListingPreviewComponent implements OnInit {
     this.category$ = this.categoryQuery.selectEntity(this.listing.category_id)
     this.userService.currentUser.subscribe((userData: User) => {
 			this.user = userData;
-			console.log('...user for listing preview component...');
-			console.log(this.user);
+			//console.log('...user for listing preview component...');
+			//console.log(this.user);
 		});
 	}
 

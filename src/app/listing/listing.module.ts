@@ -12,6 +12,7 @@ import { ListingDetailFormComponent } from './listing-new/listing-detail-form/li
 import { ListingPicturesFormComponent } from './listing-new/listing-pictures-form/listing-pictures-form.component';
 import { ListingPricingFormComponent } from './listing-new/listing-pricing-form/listing-pricing-form.component';
 import { ListingReviewComponent } from './listing-new/listing-review/listing-review.component';
+import { UserListingsResolver } from './user-listings.service';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { ListingReviewComponent } from './listing-new/listing-review/listing-rev
 
   providers: [
     ListingResolver,
+    UserListingsResolver,
   ]
 })
 export class ListingModule {}
