@@ -14,8 +14,11 @@
         <!-- <span class="badge badge-pill badge-info">Info</span> -->
         <span class="badge badge-pill badge-success text-xs">{{category.category_title}}</span>
       </a>
-      <a *ngIf="!(user.id === listing.user_id)" routerLink="/"><i class="fa fa-heart-o fa"></i></a>
-      <a *ngIf="user.id === listing.user_id" [routerLink]="['/listing', listing.id]"><i class="fa fa-pencil"></i></a>
+      <div>
+        <a *ngIf="!(user.id === listing.user_id)" routerLink="/"><i class="fa fa-heart-o fa mr-1"></i></a>
+        <a *ngIf="user.id === listing.user_id" [routerLink]="['/listing', listing.id]"><i class="fa fa-pencil mr-1"></i></a>
+        <a *ngIf="user.id === listing.user_id" [routerLink]="['.']" (click)="remove(listing.id)"><i class="fa fa-trash"></i></a>
+      </div>
     </div>
     <a [routerLink]="['/listing/preview', listing.id]" class="text-decoration-none">
       <h6 class="card-title mt-2">{{listing.title}}</h6>
@@ -29,7 +32,8 @@
       <!-- <small class="text-muted text-sm mt-1" *ngFor="let rate of listing.payment_rates">
         <strong>{{rate.price | currency: 'USD': true}}</strong>/{{rate.title}}</small> -->
       <select style="font-size: 10px;" class="form-control-sm">
-        <option style="font-size: 10px;" *ngFor="let price of listing.payment_rates">{{price.title}}, {{price.price | currency}}</option>
+        <option style="font-size: 10px;" *ngFor="let price of listing.payment_rates">{{price.title}},
+          {{price.price | currency}}</option>
       </select>
     </div>
   </div>

@@ -85,7 +85,14 @@ export class ListingPicturesFormComponent implements OnInit {
 		console.log(data);
 		let r = confirm('Confirm you want to delete picture');
 		if (r == true) {
-			console.log('Image removed')
+			this.listingImageService.delete(data).subscribe(
+				(res) => {
+					console.log(res);
+				},
+				(err) => {
+					console.log(err);
+				}
+			);
 		} else {
 			console.log('Image not removed');
 		}
