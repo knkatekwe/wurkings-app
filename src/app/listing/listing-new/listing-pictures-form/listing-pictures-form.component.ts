@@ -19,8 +19,8 @@ export class ListingPicturesFormComponent implements OnInit {
 	loadingImages$: Observable<boolean>;
 	listingImages$: Observable<ListingImage[]>;
 	listingId: number | string;
-  selectedFile: File = null;
-  isSubmitting: boolean
+	selectedFile: File = null;
+	isSubmitting: boolean;
 
 	constructor(
 		private listingImageService: ListingImageService,
@@ -34,7 +34,7 @@ export class ListingPicturesFormComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-    this.isSubmitting = false
+		this.isSubmitting = false;
 		this.initForm();
 		this.listingId = this.route.snapshot.paramMap.get('listingId');
 		this.listingImageService.get().subscribe();
@@ -52,7 +52,7 @@ export class ListingPicturesFormComponent implements OnInit {
 	}
 
 	onSubmit() {
-    this.isSubmitting = true
+		this.isSubmitting = true;
 		let header = {
 			headers: new HttpHeaders().set('Authorization', `Bearer ${this.jwt.getToken()}`)
 		};
@@ -64,13 +64,13 @@ export class ListingPicturesFormComponent implements OnInit {
 			.post<ListingImage>(API_ENDPOINT + '/listing/' + this.listingId + '/listingImage', formData, header)
 			.subscribe(
 				(res) => {
-					this.isSubmitting = false
+					this.isSubmitting = false;
 					alert('Image uploaded successfully');
-					this.resetForm()
-          this.store.add(res);
+					this.resetForm();
+					this.store.add(res);
 				},
 				(err) => {
-					this.isSubmitting = false
+					this.isSubmitting = false;
 					alert('Image upload failed');
 					console.log(err);
 				}
@@ -79,12 +79,22 @@ export class ListingPicturesFormComponent implements OnInit {
 
 	navigate() {
 		this.router.navigateByUrl('/listing/rent-out/' + this.listingId + '/payment-rate');
-  }
+	}
 
-  resetForm(){
-    this.form.get('image_url').setValue('')
-    this.form.get('alt').setValue('')
-  }
+	delete(data) {
+		console.log(data);
+		let r = confirm('Confirm you want to delete picture');
+		if (r == true) {
+			console.log('Image removed')
+		} else {
+			console.log('Image not removed');
+		}
+	}
+
+	resetForm() {
+		this.form.get('image_url').setValue('');
+		this.form.get('alt').setValue('');
+	}
 
 	initForm() {
 		this.form = this.fb.group({

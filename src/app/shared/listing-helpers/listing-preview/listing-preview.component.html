@@ -28,9 +28,9 @@
       </a>
       <!-- <small class="text-muted text-sm mt-1" *ngFor="let rate of listing.payment_rates">
         <strong>{{rate.price | currency: 'USD': true}}</strong>/{{rate.title}}</small> -->
-        <select class="form-control-sm">
-          <option *ngFor="let price of listing.payment_rates">{{price.title}}, {{price.price | currency}}</option>
-        </select>
+      <select style="font-size: 10px;" class="form-control-sm">
+        <option style="font-size: 10px;" *ngFor="let price of listing.payment_rates">{{price.title}}, {{price.price | currency}}</option>
+      </select>
     </div>
   </div>
 </div>

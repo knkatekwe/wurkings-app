@@ -34,7 +34,7 @@ export class ListingComponent implements OnInit {
 		// Retreive the prefetched listings
 		this.route.data.subscribe((data: { listings: Listing[] }) => {
 			this.listing = data.listings;
-			// console.log(this.listing)
+			console.log(this.listing)
 		});
 	}
 }

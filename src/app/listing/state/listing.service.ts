@@ -24,7 +24,7 @@ export class ListingService {
   }
 
   getListing(id): Observable<Listing>{
-    return this.http.get<Listing>(API_ENDPOINT + '/listings/' + id)
+    return this.http.get<Listing>(API_ENDPOINT + '/listing/' + id)
   }
 
 	add(listing: Listing): Observable<Listing> {

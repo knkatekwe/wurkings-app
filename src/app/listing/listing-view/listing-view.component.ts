@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService, ListingsService, Listing, User, BookingService} from 'src/app/core';
+import { UserService, ListingsService , User, BookingService} from 'src/app/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Listing } from '../state/listing.model';
 
 @Component({
   selector: 'app-listing-view',
@@ -91,9 +92,9 @@ export class ListingViewComponent implements OnInit {
     //   this.totalAmount = this.selectedListing.price + this.serviceFee;
     //   return
     // }
-    this.totalForRental = this.selectedListing.price * this.numberOfDays;
+    this.totalForRental = this.selectedListing?.payment_rates[0]?.price * this.numberOfDays;
     console.log('The total for the rental is: ' + this.totalForRental)
-    this.serviceFee = ((this.selectedListing.price * this.numberOfDays) * 0.05);
+    this.serviceFee = ((this.selectedListing?.payment_rates[0]?.price * this.numberOfDays) * 0.05);
     console.log('The total service fee for the rental is: ' + this.serviceFee)
     this.totalAmount = this.totalForRental + this.serviceFee;
     console.log('The total amount for the rental is: ' + this.totalAmount)

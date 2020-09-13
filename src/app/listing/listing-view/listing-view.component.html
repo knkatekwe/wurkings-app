@@ -1,14 +1,14 @@
 <div class="container">
 
   <div class="row py-2">
-    <div class="d-flex justify-content-between">
+    <!-- <div class="d-flex justify-content-between">
       <a>
         <i class="fa fa-map-marker pl-3" aria-hidden="true"></i>
       </a>
       <a>
         <small class="text-muted pl-1">{{selectedListing.city}}, {{selectedListing.state}}</small>
       </a>
-    </div>
+    </div> -->
 
   </div>
 
@@ -17,9 +17,9 @@
     <div class="col-md-6" >
 
         <ngb-carousel *ngIf="pictures">
-          <ng-template ngbSlide *ngFor="let picture of pictures">
+          <ng-template ngbSlide *ngFor="let picture of selectedListing.listing_images">
             <div class="picsum-img-wrapper">
-              <img [src]="selectedListing.image" alt="Random first slide"
+              <img [src]="picture.image_url" [alt]="picture.alt"
               class="img-fluid w-75 h-75 mx-auto d-block">
             </div>
           </ng-template>
@@ -33,7 +33,7 @@
 
       <div class="d-flex justify-content-between">
         <a routerLink="/">
-          <small class="text-muted">{{selectedListing.catergory.catergoryName}}</small>
+          <small class="text-muted">{{selectedListing.category_id}}</small>
         </a>
         <div>
           <a routerLink="/" class="pr-2"><small class="pr-1">Save</small><i class="fa fa-heart-o fa"></i></a>
@@ -51,17 +51,17 @@
         Conditions/Rules
       </h5>
 
-      <span *ngIf="selectedListing.allCan"><p><i class="fa fa-check-circle pr-1" aria-hidden="true"></i>Anyone can rent</p></span>
+      <!-- <span *ngIf="selectedListing.allCan"><p><i class="fa fa-check-circle pr-1" aria-hidden="true"></i>Anyone can rent</p></span>
       <span *ngIf="selectedListing.onlyStudent"><p><i class="fa fa-check-circle pr-1" aria-hidden="true"></i>Student Can Rent</p></span>
-      <span *ngIf="selectedListing.onlyWorking"><p><i class="fa fa-check-circle pr-1" aria-hidden="true"></i>Working Class</p></span>
+      <span *ngIf="selectedListing.onlyWorking"><p><i class="fa fa-check-circle pr-1" aria-hidden="true"></i>Working Class</p></span> -->
 
       <div class="border-bottom"></div>
 
       <div class="d-flex justify-content-between pt-3">
 
-        <p><strong>Belongs to:</strong> {{selectedListing.owner.username}}</p>
+        <p><strong>Belongs to:</strong> {{selectedListing?.user_id}}</p>
 
-        <a [routerLink]="['/profile', selectedListing.owner.id]">
+        <a [routerLink]="['/profile', selectedListing?.user_id]">
           <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
             width="30"
             height="30" class="rounded-circle border">
@@ -93,8 +93,7 @@
 
           <div class="d-flex justify-content-between">
             <div>
-              <span><h5 class="card-title">{{selectedListing.price | currency: 'USD': 'symbol-narrow'}}/day</h5></span>
-
+              <span><h5 class="card-title">{{selectedListing?.payment_rates[0]?.price | currency: 'USD': 'symbol-narrow'}}/day</h5></span>
             </div>
             <div>
               <a class="pr-2"><i class="fa fa-star-o pr-1"><small class="pr-1 text-muted">5.0(8)</small></i></a>
@@ -161,7 +160,7 @@
           <div [hidden]="show">
             <p class="text-sm text-center mt-2">You won't be charged just yet</p>
           <div class="d-flex justify-content-between">
-            <P>{{selectedListing.price | currency: 'USD': 'symbol-narrow'}} x {{numberOfDays}} days</P>
+            <P>{{selectedListing?.payment_rates[0]?.price | currency: 'USD': 'symbol-narrow'}} x {{numberOfDays}} days</P>
             <P>{{totalForRental | number : '1.2-2' | currency: 'USD': 'symbol-narrow'}}</P>
           </div>
           <div class="d-flex justify-content-between">
