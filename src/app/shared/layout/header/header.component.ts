@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 	templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
-	navbarOpen = false;
-	public isMenuCollapsed = true;
+
+  collapsed = true;
 
 	constructor(private userService: UserService, private route: Router) {}
 
@@ -19,11 +19,6 @@ export class HeaderComponent implements OnInit {
 
 	ngOnInit() {
 		this.currentUser$ = this.userService.currentUser;
-	}
-
-	toggleNavbar() {
-		this.navbarOpen = !this.navbarOpen;
-		console.log('button was clicked');
 	}
 
 	logout() {

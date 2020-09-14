@@ -37,15 +37,20 @@
               <li class="list-group-item d-flex justify-content-between align-items-center"
                 *ngFor="let rate of listingPriceRate$ | async">
                 {{rate.title}}
-                <span class="badge badge-primary badge-pill">{{rate.price | currency}}</span>
+                <div>
+                  <span class="badge badge-success badge-pill mr-1">{{rate.price | currency}}</span>
+                  <a class="mt-2" (click)="delete(rate.id)"><i class="fa fa-trash text-success mt-1"
+                      style="position: absolute;" aria-hidden="true"></i></a>
+                </div>
               </li>
             </ul>
           </div>
           <!-- <pre>{{listingPriceRate$ | async | json}}</pre> -->
         </div>
         <div class="d-flex justify-content-between pt-4">
-          <button type="submit" [disabled]="form.invalid || isSubmitting" class="btn btn-warning btn-block mr-2">Add Payment Rate</button>
-          <button type="button" class="btn btn-success btn-block" (click)="review()">Done</button>
+          <button type="submit" [disabled]="form.invalid || isSubmitting" class="btn btn-warning btn-block mr-2">Add
+            Payment Rate</button>
+          <button type="button" [disabled]="(listingPriceRate$ | async).length === 0" class="btn btn-success btn-block" (click)="review()">Done</button>
         </div>
 
       </div>

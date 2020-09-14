@@ -18,7 +18,7 @@ export class ListingViewComponent implements OnInit {
   selectedListing: Listing;
   currentUser: User;
   canModify: boolean;
-  user: string;
+  user: number | string;
 
   serviceFee: number;
   totalForRental: number;
@@ -61,7 +61,6 @@ export class ListingViewComponent implements OnInit {
   }
 
   form = new FormGroup({
-
     start_date: new FormControl('', [Validators.required]),
     end_date: new FormControl('', [Validators.required]),
     user: new FormControl('', Validators.required),
@@ -70,7 +69,6 @@ export class ListingViewComponent implements OnInit {
     service_fee: new FormControl('', Validators.required),
     total_for_rental: new FormControl('', Validators.required),
     status: new FormControl('PENDING', Validators.required),
-
   });
 
   get f(){
@@ -132,17 +130,5 @@ export class ListingViewComponent implements OnInit {
     let result = (e.valueOf() - s.valueOf())/(1000 * 60 * 60);
     return result
   }
-
-  pictures: {imageUrl: string}[] = [
-    {
-      "imageUrl":"https://www.notebookcheck.net/typo3temp/_processed_/4/b/csm_LenovoE50-80__1__8f23e3bfde.jpg"
-    },
-    {
-      "imageUrl": "https://www.notebookcheck.net/fileadmin/_processed_/csm_4zu3_Lenovo_E51_80_a9251e94ed.jpg"
-    },
-    {
-      "imageUrl": "https://www.notebookcheck.net/fileadmin/_processed_/csm_Lenovo_E51_80_Unterseite_a54dcfafd9.jpg"
-    }
-  ]
 
 }

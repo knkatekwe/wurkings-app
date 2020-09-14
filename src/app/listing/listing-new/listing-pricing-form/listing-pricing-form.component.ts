@@ -69,7 +69,24 @@ export class ListingPricingFormComponent implements OnInit {
         console.log(err)
 			}
 		);
-	}
+  }
+
+  delete(data){
+    console.log(data)
+    let r = confirm('Confirm you want to delete payment rate');
+		if (r == true) {
+			this.paymentRateService.delete(data).subscribe(
+				(res) => {
+					console.log(res);
+				},
+				(err) => {
+					console.log(err);
+				}
+			);
+		} else {
+			console.log('Payment rate not removed');
+		}
+  }
 
 	initForm() {
 		this.form = this.formBuilder.group({

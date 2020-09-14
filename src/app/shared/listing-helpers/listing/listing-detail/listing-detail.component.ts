@@ -56,20 +56,6 @@ export class ListingDetailComponent implements OnInit {
 		);
 	}
 
-	handleImageChange() {
-		this.listing.image = 'https://wurkings.s3.amazonaws.com/photo_1559028012_481c04fa702d_8fe9b4972e.jpeg';
-	}
-
-	handleImageUpload(imageUrl: string) {
-		this.form.controls.image.setValue(imageUrl);
-		console.log('...an image has been set in listing detail component...');
-		console.log(imageUrl);
-	}
-
-	handleImageError() {
-		this.listing.image = '';
-	}
-
 	initForm() {
 		this.form = this.formBuilder.group({
 			id: [ null ],

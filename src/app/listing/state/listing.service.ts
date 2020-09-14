@@ -44,7 +44,7 @@ export class ListingService {
 	}
 
 	update(id, listing: Listing): Observable<any> {
-		return this.http.put(API_ENDPOINT + '/listing/' + id, listing).pipe(
+		return this.http.post(API_ENDPOINT + '/listing/' + id, listing).pipe(
 			tap((listing) => {
 				this.store.update(id, listing);
 			})

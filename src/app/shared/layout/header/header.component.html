@@ -1,13 +1,14 @@
 <!-- Navigation -->
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">Wurkings</a>
+    <a class="navbar-brand" (click)="collapsed = !collapsed" routerLink="/">Wurkings</a>
 
-    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed"
+      aria-label="Toggle navigation" (click)="collapsed = !collapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
       <ul class="navbar-nav ml-auto">
         <!-- <li class="nav-item" *appShowAuthed="true">
           <a class="nav-link text-success" routerLink="/inbox" (click)="isMenuCollapsed = true">Inbox</a>
@@ -15,37 +16,37 @@
         <!-- <li class="nav-item" *appShowAuthed="true">
           <a class="nav-link text-success" routerLink="/notifications" (click)="isMenuCollapsed = true">Notifications</a>
         </li> -->
-        <li class="nav-item" *appShowAuthed="true">
-          <a class="nav-link text-success" routerLink="/admin" (click)="isMenuCollapsed = true">Management</a>
+        <li class="nav-item" *appShowAuthed="true" ngbDropdown>
+          <a class="nav-link text-success" (click)="collapsed = !collapsed" routerLink="/admin" tabindex="0" ngbDropdownToggle id="navbarDropdown1" role="button">Management</a>
         </li>
-        <li class="nav-item" *appShowAuthed="true">
-          <a class="nav-link text-success" [routerLink]="['/requests/to-me']" (click)="isMenuCollapsed = true">Requests</a>
+        <li class="nav-item" *appShowAuthed="true" ngbDropdown>
+          <a class="nav-link text-success" (click)="collapsed = !collapsed" [routerLink]="['/requests/to-me']"
+          tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button">Requests</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-success " [routerLink]="['/help']" (click)="isMenuCollapsed = true">Help</a>
+        <li class="nav-item" ngbDropdown>
+          <a class="nav-link text-success" (click)="collapsed = !collapsed" [routerLink]="['/help']" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">Help</a>
         </li>
-        <li class="nav-item" *appShowAuthed="false">
-          <a class="btn btn-success action-button" role="button" [routerLink]="['/login']" (click)="isMenuCollapsed = true">Sign In</a>
+        <li class="nav-item" *appShowAuthed="false" ngbDropdown>
+          <a class="btn btn-success action-button" (click)="collapsed = !collapsed" role="button" [routerLink]="['/login']"
+          tabindex="0" ngbDropdownToggle id="navbarDropdown4" role="button">Sign In</a>
         </li>
-        <li ngbDropdown class="nav-item" class="d-inline-block" *appShowAuthed="true">
-          <a ngbDropdownToggle id="navbarDropdownMenuLink" class="nav-link" role="button" data-toggle="dropdown"
+        <li class="nav-item" class="d-inline-block" *appShowAuthed="true" ngbDropdown display="dynamic" placement="bottom-right">
+          <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown4" role="button"
             aria-haspopup="true" aria-expanded="false">
-            <img src="../../../../assets/pictures/thumb__ser.png"
-              width="30"
-              height="30" class="rounded-circle">
+            <img src="../../../../assets/pictures/thumb__ser.png" width="30" height="30" class="rounded-circle">
           </a>
-          <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
+          <div ngbDropdownMenu aria-labelledby="navbarDropdown4" class="dropdown-menu">
             <ng-container *ngIf="currentUser$ | async as user">
               <a class="p-2" ngbDropdownItem [routerLink]="['/profile', user.id]">Profile</a>
             </ng-container>
-            <a class="p-2" ngbDropdownItem [routerLink]="['/rentals']">Rentals</a>
+            <a class="p-2" ngbDropdownItem (click)="collapsed = !collapsed" [routerLink]="['/rentals']">Rentals</a>
             <!-- <a class="p-2" ngbDropdownItem routerLink="/wishlist">Wishlist</a> -->
             <!-- <div class="border-top"></div>
             <a class="p-2" ngbDropdownItem routerLink="/inbox">Messages</a>
             <a class="p-2" ngbDropdownItem routerLink="/notifications">Notifications</a> -->
             <div class="border-top"></div>
-            <a class="p-2" ngbDropdownItem [routerLink]="['/listing']">Manage Listings</a>
-            <a class="p-2" ngbDropdownItem [routerLink]="['/profile/settings']">Account</a>
+            <a class="p-2" ngbDropdownItem (click)="collapsed = !collapsed" [routerLink]="['/listing']">Manage Listings</a>
+            <a class="p-2" ngbDropdownItem (click)="collapsed = !collapsed" [routerLink]="['/profile/settings']">Account</a>
             <div class="border-top"></div>
             <a class="p-2" ngbDropdownItem (click)='logout()'>Log out</a>
           </div>
