@@ -75,8 +75,12 @@
           <div class="d-flex justify-content-between">
             <div>
               <span>
-                <h5 class="card-title">
-                  {{selectedListing?.payment_rates[0]?.price | currency: 'USD': 'symbol-narrow'}}/day</h5>
+                <select (change)="setPrice(paymentRateId.value)" [formControl]="paymentRateId"
+                  class="custom-select mr-sm-2" class="form-control-sm">
+                  <option *ngFor="let paymentRate of selectedListing?.payment_rates" [value]="paymentRate.id" selected>
+                    {{paymentRate.title}},
+                    {{paymentRate.price | currency}}</option>
+                </select>
               </span>
             </div>
             <div>
@@ -85,59 +89,69 @@
           </div>
 
           <form [formGroup]="form">
-
             <div class="row">
-              <div class="col">
+              <div class="col-md-6">
                 <div class="form-group">
-                  <input type="hidden" formControlName="user" [ngModel]="currentUser.id" />
-                  <input type="hidden" formControlName="listing" [ngModel]="selectedListing.id" />
-                  <small id="helpId" class="form-text text-muted">From</small>
-                  <input type="date" class="form-control" formControlName="start_date" [(ngModel)]="startDate"
-                    (change)="calculate(startDate, endDate)" aria-describedby="helpId">
+                  <small id="helpId" class="form-text text-muted"><strong>Start date: </strong>
+                    {{f.start_date.value | date}} </small>
+                  <!-- <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [(ngModel)]="period"
+                    (click)="d2.toggle()" ngbDatepicker #d2="ngbDatepicker"> -->
+                  <input class="form-control" (change)='changeDate()' type="date" formControlName="start_date"
+                    [ngClass]="{'border-danger':f.start_date.invalid, 'border-success': f.start_date.valid}">
+                  <div *ngIf="f.start_date.invalid && f.start_date.touched" class="invalid-control">
+                    Date is required.
+                  </div>
                 </div>
               </div>
-              <div class="col">
+              <div class="col-md-6">
                 <div class="form-group">
-                  <small id="helpId" class="form-text text-muted">To</small>
-                  <input type="date" class="form-control" formControlName="end_date" [(ngModel)]="endDate"
-                    (change)="calculate(startDate, endDate)" aria-describedby="helpId">
+                  <small id="duration" class="form-text text-muted"><strong>Select Duration</strong></small>
+                  <input type="text" (change)="changeDuration()"
+                    onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                    class="form-control" formControlName="duration"
+                    [ngClass]="{'border-danger':f.duration.invalid, 'border-success': f.duration.valid}">
+                  <div *ngIf="f.duration.invalid && f.duration.touched" class="invalid-control">
+                    Duration is required.
+                  </div>
+                  <!-- <select class="custom-select mr-sm-2" formControlName="duration">
+                    <option selected>Choose...</option>
+                    <option [value]="digit.number" *ngFor="let digit of digits">{{digit.number}}</option>
+                  </select> -->
                 </div>
               </div>
-              <input type="hidden" formControlName="total_amount" [ngModel]="totalAmount" />
+              <!-- <input type="hidden" formControlName="total_amount" [ngModel]="totalAmount" /> -->
               <input type="hidden" formControlName="service_fee" [ngModel]="serviceFee" />
-              <input type="hidden" formControlName="total_for_rental" [ngModel]="totalForRental" />
-              <input type="hidden" formControlName="status" />
+              <input type="hidden" formControlName="total" [ngModel]="totalForRental" />
+              <!-- <input type="hidden" formControlName="status" /> -->
             </div>
-            <button type="button" class="btn btn-primary btn btn-block" (click)="onSubmit()" [hidden]="currentUser.id ===selectedListing.user_id"
-              [disabled]="!form.valid">Reserve</button>
-
+            <button type="button" class="btn btn-primary btn btn-block" (click)="onSubmit()"
+              [hidden]="currentUser.id ===selectedListing.user_id" [disabled]="!form.valid">Reserve</button>
           </form>
-
-          <div [hidden]="show">
+          <div *ngIf="f.total.value > 0">
             <p class="text-sm text-center mt-2">You won't be charged just yet</p>
             <div class="d-flex justify-content-between">
-              <P>{{selectedListing?.payment_rates[0]?.price | currency: 'USD': 'symbol-narrow'}} x {{numberOfDays}} days
+              <P>{{rate.value | currency: 'USD': 'symbol-narrow'}} x {{f.duration.value}} <span
+                  *ngIf="paymentRateTitle ==='hourly'">hour(s)</span>
+                <span *ngIf="paymentRateTitle ==='daily'">day(s)</span>
+                <span *ngIf="paymentRateTitle ==='weekly'">week(s)</span>
+                <span *ngIf="paymentRateTitle ==='monthly'">month(s)</span>
               </P>
-              <P>{{totalForRental | number : '1.2-2' | currency: 'USD': 'symbol-narrow'}}</P>
+              <P>{{f.price.value * f.duration.value | currency: 'USD': 'symbol-narrow'}}</P>
             </div>
             <div class="d-flex justify-content-between">
               <P>Service Fee</P>
-              <P>{{serviceFee | number : '1.2-2' | currency: 'USD': 'symbol-narrow'}}</P>
+              <P>{{f.service_fee.value | currency: 'USD': 'symbol-narrow'}}</P>
             </div>
             <div class="border-bottom mb-2"></div>
             <div class="d-flex justify-content-between">
               <P>Total</P>
-              <P>{{totalAmount | number : '1.2-2' | currency: 'USD': 'symbol-narrow'}}</P>
+              <P>{{f.total.value | currency: 'USD': 'symbol-narrow'}}</P>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
-
   </div>
-
   <div class="row">
 
     <div class="col-md-12">
@@ -246,4 +260,4 @@
     </div>
 
   </div>
-<pre>{{form.value | json}}</pre>
+  <!-- <pre>{{form.value | json}}</pre> -->

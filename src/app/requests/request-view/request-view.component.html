@@ -2,15 +2,15 @@
   <div class="banner">
     <div class="d-flex justify-content-between">
 
-      <img [src]="selectedBooking.listing.image" class="img-thumbnail" height="150px" width="150px">
+      <img src="" class="img-thumbnail" height="150px" width="150px">
 
       <div class="">
-        <h6 class="text-center">{{selectedBooking.listing.title}}</h6>
-        <p class="text-center"><strong>{{selectedBooking.listing.price | currency: 'USD': true}}</strong> <small>/day</small></p>
+        <h6 class="text-center">{{selectedBooking.listing_id}}</h6>
+        <p class="text-center"><strong>{{selectedBooking.price | currency: 'USD': true}}</strong> <small>/day</small></p>
         <span class="badge badge-pill badge-info">{{selectedBooking.start_date | date: 'longDate'}}</span>
         <span><small> - </small></span>
         <span class="badge badge-pill badge-info">{{selectedBooking.end_date | date: 'longDate'}}</span>
-        <p class="text-center mt-2"><small>Rental Amount:  </small> <strong>{{selectedBooking.total_for_rental | currency: 'USD': true}}</strong></p>
+        <p class="text-center mt-2"><small>Rental Amount:  </small> <strong>{{selectedBooking.total | currency: 'USD': true}}</strong></p>
       </div>
 
       <div class="">
@@ -19,7 +19,7 @@
               class="btn btn-success active"
               role="button">Pay <i class="fa fa-shopping-cart"></i></a></div>
         <div *ngIf="isOwner && isPending" class="mb-2">
-          <a  (click)="acceptBooking(selectedBooking.id, selectedBooking.listing.id)"
+          <a  (click)="acceptBooking(selectedBooking.id, selectedBooking.listing_id)"
               class="btn btn-info active"
               role="button">Accept Deal <i class="fa fa-money-bill"></i></a>
         </div>

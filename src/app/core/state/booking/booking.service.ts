@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { cacheable } from '@datorama/akita';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { API_ENDPOINT } from '../..';
@@ -12,11 +11,7 @@ export class BookingService {
 	constructor(private store: BookingStore, private http: HttpClient) {}
 
 	get(): Observable<Booking[]> {
-		const request$ = this.http
-			.get<Booking[]>(API_ENDPOINT + '/bookings')
-			.pipe(tap((entities) => this.store.set(entities)));
-
-		return cacheable(this.store, request$);
+		return this.http.get<Booking[]>(API_ENDPOINT + '/bookings').pipe(tap((entities) => this.store.set(entities)));
 	}
 
 	getUserBookings(): Observable<Booking[]> {
@@ -49,17 +44,17 @@ export class BookingService {
 				this.store.update(bookingId, booking);
 			})
 		);
-  }
+	}
 
-  acceptBooking(bookingId, booking: Booking): Observable<any> {
+	acceptBooking(bookingId, booking: Booking): Observable<any> {
 		return this.http.post(API_ENDPOINT + `/booking/${bookingId}/accept`, booking).pipe(
 			tap((booking) => {
 				this.store.update(bookingId, booking);
 			})
 		);
-  }
+	}
 
-  cancelBooking(bookingId, booking: Booking): Observable<any> {
+	cancelBooking(bookingId, booking: Booking): Observable<any> {
 		return this.http.post(API_ENDPOINT + `/booking/${bookingId}/cancel`, booking).pipe(
 			tap((booking) => {
 				this.store.update(bookingId, booking);

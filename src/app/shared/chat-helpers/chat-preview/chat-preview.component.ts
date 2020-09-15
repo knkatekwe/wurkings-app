@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Booking } from 'src/app/core';
+import { Booking } from 'src/app/core/state/booking/booking.model';
 
 @Component({
   selector: 'app-chat-preview',

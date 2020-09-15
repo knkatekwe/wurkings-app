@@ -30,7 +30,7 @@ query(config: BookingListConfig): Observable<any> {
 }
 
 queryMyBookings(userId: string): Observable<any>{
-  const param1 = new HttpParams().set('user.id', userId)
+  const param1 = new HttpParams().set('user_id', userId)
   return this.http.get(API_ENDPOINT + '/bookings', {params: param1})
 }
 

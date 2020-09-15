@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Booking, BookingService, UserService, User, Errors, Message, ListingsService } from 'src/app/core';
+import { UserService, User, Errors, Message, ListingsService } from 'src/app/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Booking } from 'src/app/core/state/booking/booking.model';
+import { BookingService } from 'src/app/core/state/booking/booking.service';
 
 @Component({
   selector: 'app-request-view',
@@ -38,7 +40,7 @@ export class RequestViewComponent implements OnInit {
       console.log(this.selectedBooking)
 
 			// Load the messages on this booking
-      this.populateMessages();
+      //this.populateMessages();
 
       // Load the current user's data
 		this.userService.currentUser.subscribe((userData: any) => {
@@ -47,18 +49,18 @@ export class RequestViewComponent implements OnInit {
       console.log(this.currentUser)
       this.user = this.currentUser.id;
 
-      console.log('from selected booking ' + this.selectedBooking.listing.owner)
+      console.log('from selected booking ' + this.selectedBooking.user_id)
       console.log('from currentUser ' + this.user)
 
-      this.isOwner = this.user === this.selectedBooking.listing.owner;
+      this.isOwner = this.user === this.selectedBooking.user_id;
       console.log('im owner is: ' + this.isOwner)
-      this.canPay = this.selectedBooking.status ==='ACCEPTED';
+      this.canPay = this.selectedBooking.status ==='accepted';
       console.log('is accepted: ' + this.isOwner)
-      this.isAccepted = this.selectedBooking.status ==='ACCEPTED';
+      this.isAccepted = this.selectedBooking.status ==='accepted';
       console.log('can be paid for: ' + this.canPay)
-      this.isPending = this.selectedBooking.status ==='PENDING';
+      this.isPending = this.selectedBooking.status ==='pending';
       console.log('is still pending acceptence: ' + this.isPending)
-      this.isCancelled = this.selectedBooking.status ==='CANCELLED';
+      this.isCancelled = this.selectedBooking.status ==='cancelled';
       console.log('is cancelled: ' + this.isCancelled)
     });
 
@@ -86,16 +88,16 @@ export class RequestViewComponent implements OnInit {
     this.isPending = false
   }
 
-  populateMessages(){
-    this.bookingService.getMessages(this.selectedBooking.id)
-      .subscribe(res => {this.messages = res
-        console.log('...these are the messages for the booking...')
-      console.log(this.messages)})
-  }
+  // populateMessages(){
+  //   this.bookingService.getMessages(this.selectedBooking.id)
+  //     .subscribe(res => {this.messages = res
+  //       console.log('...these are the messages for the booking...')
+  //     console.log(this.messages)})
+  // }
 
   acceptBooking(id, idl){
     this.isSubmitting = true;
-    this.bookingService.updateBooking(id, {status: 'ACCEPTED'})
+    this.bookingService.acceptBooking(id, this.selectedBooking)
       .subscribe(res => {
         this.listingService.updateListing(idl, {isReserved: true})
           .subscribe(res =>{this.selectedBooking})
@@ -105,7 +107,7 @@ export class RequestViewComponent implements OnInit {
 
   cancelBooking(id){
     this.isSubmitting = true;
-    this.bookingService.updateBooking(id, {status: 'CANCELLED'})
+    this.bookingService.cancelBooking(id, this.selectedBooking)
       .subscribe(res => {
         this.isSubmitting = false;})
     this.bookingCancelled
@@ -121,18 +123,18 @@ export class RequestViewComponent implements OnInit {
     this.isSubmitting = true;
     const message = this.form.value;
     console.log(message);
-      this.bookingService
-      .sendMessage(this.selectedBooking.id, message)
-      .subscribe(
-        data => {console.log(data)
-          this.form.reset('');
-				  this.isSubmitting = false
-          this.populateMessages()},
-        err => {
-          this.errors = err;
-          this.isSubmitting = false;
-        }
-      );
-  }
+  //     this.bookingService
+  //     .sendMessage(this.selectedBooking.id, message)
+  //     .subscribe(
+  //       data => {console.log(data)
+  //         this.form.reset('');
+	// 			  this.isSubmitting = false
+  //         this.populateMessages()},
+  //       err => {
+  //         this.errors = err;
+  //         this.isSubmitting = false;
+  //       }
+  //     );
+}
 
 }

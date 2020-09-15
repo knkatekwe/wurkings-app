@@ -20,14 +20,15 @@
           <a class="nav-link text-success" (click)="collapsed = !collapsed" routerLink="/admin">Management</a>
         </li>
         <li class="nav-item" *appShowAuthed="true">
-          <a class="nav-link text-success" (click)="collapsed = !collapsed" [routerLink]="['/requests/to-me']">Requests</a>
+          <a class="nav-link text-success" (click)="collapsed = !collapsed"
+            [routerLink]="['/requests/to-me']">Requests</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-success" (click)="collapsed = !collapsed" [routerLink]="['/help']">Help</a>
         </li>
-        <li class="nav-item" *appShowAuthed="false" ngbDropdown>
+        <li class="nav-item" *appShowAuthed="false">
           <a class="btn btn-success action-button" (click)="collapsed = !collapsed" role="button"
-            [routerLink]="['/login']" tabindex="0" ngbDropdownToggle id="navbarDropdown4" role="button">Sign In</a>
+            [routerLink]="['/login']">Sign In</a>
         </li>
         <li class="nav-item" class="d-inline-block" *appShowAuthed="true" ngbDropdown display="dynamic"
           placement="bottom-right">
