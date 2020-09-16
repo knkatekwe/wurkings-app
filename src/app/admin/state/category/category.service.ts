@@ -12,11 +12,9 @@ export class CategoryService {
 	constructor(private store: CategoryStore, private http: HttpClient) {}
 
 	get(): Observable<Category[]> {
-		const request$ = this.http
+		return this.http
 			.get<Category[]>(API_ENDPOINT + '/categories')
 			.pipe(tap((entities) => this.store.set(entities)));
-
-		return cacheable(this.store, request$);
 	}
 
 	getCategory(id): Observable<Category> {

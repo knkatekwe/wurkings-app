@@ -130,7 +130,7 @@
           <div *ngIf="f.total.value > 0">
             <p class="text-sm text-center mt-2">You won't be charged just yet</p>
             <div class="d-flex justify-content-between">
-              <P>{{rate.value | currency: 'USD': 'symbol-narrow'}} x {{f.quantity.value}} <span
+              <P>{{f.price.value | currency: 'USD': 'symbol-narrow'}} x {{f.quantity.value}} <span
                   *ngIf="paymentRateTitle ==='hourly'">hour(s)</span>
                 <span *ngIf="paymentRateTitle ==='daily'">day(s)</span>
                 <span *ngIf="paymentRateTitle ==='weekly'">week(s)</span>
