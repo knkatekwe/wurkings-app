@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Listing, Catergory, PaymentType } from 'src/app/core';
+import { Listing, Catergory } from 'src/app/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/admin/state/category/category.service';
@@ -7,6 +7,7 @@ import { CategoryQuery } from 'src/app/admin/state/category/category.query';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/admin/state/category/category.model';
 import { startWith, switchMap } from 'rxjs/operators';
+import { PaymentType } from 'src/app/core/models/payment-rate.model';
 
 @Component({
 	selector: 'app-listing-detail',

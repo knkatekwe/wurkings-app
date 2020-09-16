@@ -15,7 +15,7 @@ constructor(private userService: UserService,
     state: RouterStateSnapshot
   ): Observable<any> {
 
-    return this.userService.get(route.params['id'])
+    return this.userService.getProfile(route.params['id'])
       .pipe(catchError((err) => this.router.navigateByUrl('/login')));
   }
 

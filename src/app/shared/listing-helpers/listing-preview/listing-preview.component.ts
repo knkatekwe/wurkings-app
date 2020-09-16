@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User, UserService } from 'src/app/core';
+import { Profile, ProfilesService, User, UserService } from 'src/app/core';
 import { ActivatedRoute } from '@angular/router';
 import { Listing } from 'src/app/listing/state/listing.model';
 import { CategoryQuery } from 'src/app/admin/state/category/category.query';
@@ -16,6 +16,7 @@ export class ListingPreviewComponent implements OnInit {
 	@Input() listing: Listing;
 	user: User;
 	category$: Observable<Category>;
+	userProfile: Profile;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -31,14 +32,15 @@ export class ListingPreviewComponent implements OnInit {
 		this.category$ = this.categoryQuery.selectEntity(this.listing.category_id);
 		this.userService.currentUser.subscribe((userData: User) => {
 			this.user = userData;
-			//console.log('...user for listing preview component...');
-			//console.log(this.user);
+		});
+		this.userService.getProfile(this.listing.user_id).subscribe((res) => {
+      this.userProfile = res
 		});
 	}
 
 	remove(data) {
 		console.log(data);
-		let r = confirm('Please note, removing a listing will be permanent. Confirm');
+		let r = confirm('Please note, removing a listing will be permanent!');
 		if (r == true) {
 			this.listingService.delete(data).subscribe(
 				(res) => {

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-// import { AuthModule } from './auth/auth.module';
 import { HomeModule } from './home/home.module';
 import {
   FooterComponent,
@@ -23,7 +22,6 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
 import { AdminModule } from './admin/admin.module';
-import { ListingModule } from './listing/listing.module';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],

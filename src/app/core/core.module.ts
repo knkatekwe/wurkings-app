@@ -10,7 +10,6 @@ import {
   AuthGuard,
   JwtService,
   ProfilesService,
-  TagsService,
   UserService,
   BookingService,
 } from './services';
@@ -29,7 +28,6 @@ import { HttpErrorIntercept } from './interceptors/http.error.interceptor';
     AuthGuard,
     JwtService,
     ProfilesService,
-    TagsService,
     UserService,
     BookingService,
     CatergoryService,

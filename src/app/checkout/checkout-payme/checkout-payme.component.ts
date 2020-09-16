@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
-import { Listing, Booking } from 'src/app/core';
+import { Booking } from 'src/app/core';
 
 declare var paypal;
 

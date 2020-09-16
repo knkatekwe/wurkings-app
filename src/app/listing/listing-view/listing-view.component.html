@@ -32,12 +32,12 @@
       <div class="pt-6"></div>
 
       <div class="d-flex justify-content-between">
-        <a routerLink="/">
-          <small class="text-muted">{{selectedListing.category_id}}</small>
+        <a [routerLink]="['.']">
+          <small class="text-muted">{{(category$|async)?.category_title}}</small>
         </a>
         <div>
-          <a routerLink="/" class="pr-2"><small class="pr-1">Save</small><i class="fa fa-heart-o fa"></i></a>
-          <a routerLink="/"><small class="pr-1">Share</small><i class="fa fa-share-alt-square"></i></a>
+          <a [routerLink]="['.']" class="pr-2"><small class="pr-1">Save</small><i class="fa fa-heart-o fa"></i></a>
+          <a [routerLink]="['.']"><small class="pr-1">Share</small><i class="fa fa-share-alt-square"></i></a>
         </div>
       </div>
 
@@ -57,10 +57,10 @@
 
       <div class="d-flex justify-content-between pt-3">
 
-        <p><strong>Belongs to:</strong> {{selectedListing?.user_id}}</p>
+        <p><strong>Belongs to:</strong> {{userProfile?.username}}</p>
 
         <a [routerLink]="['/profile', selectedListing?.user_id]">
-          <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="30"
+          <img [src]="userProfile?.profile_picture_url" width="30"
             height="30" class="rounded-circle border">
         </a>
       </div>
@@ -105,15 +105,15 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <small id="duration" class="form-text text-muted"><strong>Select Duration</strong></small>
+                  <small id="quantity" class="form-text text-muted"><strong>Duration</strong></small>
                   <input type="text" (change)="changeDuration()"
                     onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-                    class="form-control" formControlName="duration"
-                    [ngClass]="{'border-danger':f.duration.invalid, 'border-success': f.duration.valid}">
-                  <div *ngIf="f.duration.invalid && f.duration.touched" class="invalid-control">
+                    class="form-control" formControlName="quantity"
+                    [ngClass]="{'border-danger':f.quantity.invalid, 'border-success': f.quantity.valid}">
+                  <div *ngIf="f.quantity.invalid && f.quantity.touched" class="invalid-control">
                     Duration is required.
                   </div>
-                  <!-- <select class="custom-select mr-sm-2" formControlName="duration">
+                  <!-- <select class="custom-select mr-sm-2" formControlName="quantity">
                     <option selected>Choose...</option>
                     <option [value]="digit.number" *ngFor="let digit of digits">{{digit.number}}</option>
                   </select> -->
@@ -130,13 +130,13 @@
           <div *ngIf="f.total.value > 0">
             <p class="text-sm text-center mt-2">You won't be charged just yet</p>
             <div class="d-flex justify-content-between">
-              <P>{{rate.value | currency: 'USD': 'symbol-narrow'}} x {{f.duration.value}} <span
+              <P>{{rate.value | currency: 'USD': 'symbol-narrow'}} x {{f.quantity.value}} <span
                   *ngIf="paymentRateTitle ==='hourly'">hour(s)</span>
                 <span *ngIf="paymentRateTitle ==='daily'">day(s)</span>
                 <span *ngIf="paymentRateTitle ==='weekly'">week(s)</span>
                 <span *ngIf="paymentRateTitle ==='monthly'">month(s)</span>
               </P>
-              <P>{{f.price.value * f.duration.value | currency: 'USD': 'symbol-narrow'}}</P>
+              <P>{{f.price.value * f.quantity.value | currency: 'USD': 'symbol-narrow'}}</P>
             </div>
             <div class="d-flex justify-content-between">
               <P>Service Fee</P>

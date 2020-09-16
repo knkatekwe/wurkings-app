@@ -1,68 +1,68 @@
 <div class="container emp-profile">
   <form method="post">
-      <div class="row">
-          <div class="col-md-4">
-              <div class="profile-img">
-                  <img src="../../../../assets/pictures/thumb__ser.png" alt=""/>
-                  <div class="file btn btn-lg btn-primary">
-                      Change Photo
-                      <input type="file" name="file"/>
-                  </div>
-              </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img [src]="user.profile_picture_url" />
+          <div class="file btn btn-lg btn-primary">
+            Change Photo
+            <input type="file" name="file" />
           </div>
-          <div class="col-md-6">
-              <div class="profile-head">
-                          <h5>
-                              Hello, I'm {{user.first_name}}
-                          </h5>
-                          <h6>
-                              Joined in 2020
-                          </h6>
-                          <a *ngIf="canModify" class="proile-rating" routerLink="/profile/reviews">Reviews by you</a>
-                  <hr/>
-
-              </div>
-          </div>
-          <div class="col-md-2">
-              <input *ngIf="canModify" type="submit"
-                     class="profile-edit-btn"
-                     (click)="navigate()"
-                     name="btnAddMore" value="Edit Profile"/>
-          </div>
+        </div>
       </div>
-      <div class="row">
-          <div class="col-md-4">
-              <div class="profile-work">
-                <hr/>
-                  <p>IDENTITY VERIFICATION</p>
-                  <a href="">Identity Verified</a><br/>
-                  <hr/>
-                  <p>{{user.first_name}} Confirmed</p>
-                  <a href="">Email Address</a><br/>
-                  <a href="">Phone Number</a><br/>
-                  <a href="">Identification</a><br/>
-                  <p>Learn more about how confirming account info helps keep the Wurkings community secure.</p>
-              </div>
-          </div>
-          <div class="col-md-8">
+      <div class="col-md-6">
+        <div class="push-down"></div>
+        <div class="profile-head">
+          <h5>
+            Hello, I'm {{user?.username}}
+          </h5>
+          <p>{{user?.about}}</p>
+          <h6>
+            Joined in {{user?.created_at}}
+          </h6>
+          <a *ngIf="user?.username === currentUser?.username" class="proile-rating"
+            routerLink="/profile/reviews">Reviews by you</a>
+          <hr />
 
-            <h3>Reviews</h3>
-            <!--reviews-->
-            <app-review-list></app-review-list>
-
-            <!--/reviews-->
-
-            <!--report user-->
-            <div class="row">
-              <div class="container">
-                <a href="#">Report this profile</a>
-              </div>
-            </div>
-            <!--/report user-->
-
-          </div>
+        </div>
       </div>
+      <div class="col-md-2">
+        <input *ngIf="canModify" type="submit" class="profile-edit-btn" (click)="navigate()" name="btnAddMore"
+          value="Edit Profile" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-work">
+          <hr />
+          <p>IDENTITY VERIFICATION</p>
+          <a href="">{{user.username}}, is verified</a><br />
+          <hr />
+          <p>{{user.username}} confirmed</p>
+          <!-- <a href="">Email Address</a><br/> -->
+          <!-- <a href="">Phone Number</a><br/> -->
+          <!-- <a href="">Identification</a><br/> -->
+          <p>Learn more about how confirming account info helps keep the Wurkings community secure.</p>
+        </div>
+      </div>
+      <div class="col-md-8">
+
+        <h3>Reviews</h3>
+        <!--reviews-->
+        <app-review-list></app-review-list>
+
+        <!--/reviews-->
+
+        <!--report user-->
+        <div class="row">
+          <div class="container">
+            <a [routerLink]="['.']">Report this profile</a>
+          </div>
+        </div>
+        <!--/report user-->
+
+      </div>
+    </div>
   </form>
 </div>
-
 <!-- <pre>{{user|json}}</pre> -->

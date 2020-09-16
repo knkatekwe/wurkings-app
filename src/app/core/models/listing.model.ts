@@ -1,7 +1,7 @@
 import { Catergory } from './catergory.model';
 import { User } from './user.model';
 import { Location } from './location.model';
-import { PaymentType } from '.';
+import { PaymentType } from './payment-rate.model';
 
 export class Listing {
   id: string;

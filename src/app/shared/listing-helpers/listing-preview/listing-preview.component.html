@@ -16,8 +16,10 @@
       </a>
       <div>
         <a *ngIf="!(user.id === listing.user_id)" routerLink="/"><i class="fa fa-heart-o fa mr-1"></i></a>
-        <a *ngIf="user.id === listing.user_id" [routerLink]="['/listing', listing.id]"><i class="fa fa-pencil mr-1"></i></a>
-        <a *ngIf="user.id === listing.user_id" [routerLink]="['.']" (click)="remove(listing.id)"><i class="fa fa-trash"></i></a>
+        <a *ngIf="user.id === listing.user_id" [routerLink]="['/listing', listing.id]"><i
+            class="fa fa-pencil mr-1"></i></a>
+        <a *ngIf="user.id === listing.user_id" [routerLink]="['.']" (click)="remove(listing.id)"><i
+            class="fa fa-trash"></i></a>
       </div>
     </div>
     <a [routerLink]="['/listing/preview', listing.id]" class="text-decoration-none">
@@ -25,9 +27,10 @@
     </a>
     <!-- <p class="card-text">{{listing.description | slice:0:30}}</p> -->
     <div class="d-flex justify-content-between">
-      <a [routerLink]="['/profile', listing.user_id]" class="text-decoration-none">
-        <p class="text-muted"><img src="../../../../assets/pictures/thumb__ser.png" width="25" height="25"
-            class="rounded-circle border"><small class="ml-1">{{listing.user_id}}</small></p>
+      <a [routerLink]="['/profile', listing.user_id]" class="text-decoration-none" placement="top"
+        [ngbTooltip]="userProfile?.username">
+        <p class="text-muted"><img [src]="userProfile?.profile_picture_url" width="25" height="25"
+            class="rounded-circle border"></p>
       </a>
       <!-- <small class="text-muted text-sm mt-1" *ngFor="let rate of listing.payment_rates">
         <strong>{{rate.price | currency: 'USD': true}}</strong>/{{rate.title}}</small> -->

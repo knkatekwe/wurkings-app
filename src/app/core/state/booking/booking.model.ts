@@ -4,7 +4,7 @@ export interface Booking {
   start_date: string;
   listing_id: number | string;
   status: string;
-  period: number;
+  quantity: number;
   end_date: string;
   payment_rate_id: string;
   price: number;

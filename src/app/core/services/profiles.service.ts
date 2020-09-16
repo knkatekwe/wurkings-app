@@ -11,17 +11,21 @@ export class ProfilesService {
     private apiService: ApiService
   ) {}
 
-  get(username: string): Observable<Profile> {
-    return this.apiService.get('/profiles/' + username)
+  getProfile(userId: number | string): Observable<Profile> {
+    return this.apiService.get(`/userdetails/${userId}`)
       .pipe(map((data: {profile: Profile}) => data.profile));
   }
 
-  follow(username: string): Observable<Profile> {
-    return this.apiService.post('/profiles/' + username + '/follow');
+  getUserReviews(userId: number | string): Observable<Profile> {
+    return this.apiService.post(`/profiles/${userId}/follow`);
   }
 
-  unfollow(username: string): Observable<Profile> {
-    return this.apiService.delete('/profiles/' + username + '/follow');
+  follow(userId: number | string): Observable<Profile> {
+    return this.apiService.post(`/profiles/${userId}/follow`);
+  }
+
+  unfollow(userId: number | string): Observable<Profile> {
+    return this.apiService.delete(`/profiles/${userId}/follow`);
   }
 
 }

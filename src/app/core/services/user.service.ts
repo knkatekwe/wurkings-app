@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject, ReplaySubject } from 'rxjs';
 
 import { ApiService, API_ENDPOINT } from './api.service';
 import { JwtService } from './jwt.service';
-import { User, UserObject, Uzer } from '../models';
+import { Profile, User } from '../models';
 import { map, distinctUntilChanged } from 'rxjs/operators';
 
 @Injectable()
@@ -92,7 +92,7 @@ export class UserService {
 		return this.apiService.post('/auth/signup', data).pipe(
 			map(
 				(res) => {
-					console.log(res);
+					//console.log(res);
 					return res;
 				},
 				(err) => {
@@ -122,11 +122,11 @@ export class UserService {
 		return this.http.get(API_ENDPOINT + '/auth/logout').pipe(
 			map(
 				(res) => {
-					console.log(res);
+					//console.log(res);
 					return res;
 				},
 				(err) => {
-					console.log(err);
+					//console.log(err);
 					return err;
 				}
 			)
@@ -141,19 +141,19 @@ export class UserService {
 		return this.http.get(API_ENDPOINT + '/auth/user').pipe(
 			map(
 				(res) => {
-					console.log(res);
+					//console.log(res);
 					return res;
 				},
 				(err) => {
-					console.log(err);
+					//console.log(err);
 					return err;
 				}
 			)
 		);;
 	}
 
-	get(id): Observable<UserObject> {
-		return this.apiService.get('/auth/' + id).pipe(map((data) => data));
+	getProfile(userId): Observable<Profile> {
+		return this.http.get<Profile>(API_ENDPOINT + `/userdetails/${userId}`).pipe(map((data) => data));
 	}
 
 	// Update the user on the server (email, pass, etc)
