@@ -16,6 +16,14 @@ export class BookingService {
 
 	getUserBookings(): Observable<Booking[]> {
 		return this.http.get<Booking[]>(API_ENDPOINT + '/user_bookings');
+  }
+
+  getBookingsByUser(): Observable<Booking[]> {
+		return this.http.get<Booking[]>(API_ENDPOINT + '/ownBookings');
+  }
+
+  getBookingsToUser(): Observable<Booking[]> {
+		return this.http.get<Booking[]>(API_ENDPOINT + '/listingBookings');
 	}
 
 	getBooking(bookingId): Observable<Booking> {

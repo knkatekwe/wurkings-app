@@ -23,7 +23,7 @@
       <div class="media-body small">
         <p class="">{{listing.title}} <span class="badge badge-info"
             *ngIf="(paymentRate$ | async) as payment">{{payment.price | currency}}/{{payment.title}}</span></p>
-        <p class="text-gray-dark font-italic" style="margin-top: -16px;">{{listing.description | slice:1:75}}...</p>
+        <p class="text-gray-dark font-italic" style="margin-top: -16px;">{{listing.description | slice:0:75}}...</p>
       </div>
     </div>
   </div>

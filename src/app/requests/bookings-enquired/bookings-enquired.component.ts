@@ -19,7 +19,7 @@ export class BookingsEnquiredComponent implements OnInit {
 			//this.favoritesConfig.filters.favorited = this.profile.username;
 		});
 
-		this.bookingService.get().subscribe((data) => {
+		this.bookingService.getBookingsToUser().subscribe((data) => {
 			this.results = data;
 		});
 	}

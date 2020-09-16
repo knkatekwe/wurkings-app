@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookingService, BookingListConfig, Booking } from 'src/app/core';
+import { BookingListConfig } from 'src/app/core';
+import { Booking } from 'src/app/core/state/booking/booking.model';
+import { BookingService } from 'src/app/core/state/booking/booking.service';
 
 @Component({
 	selector: 'app-bookings-made',
@@ -22,7 +24,6 @@ export class BookingsMadeComponent implements OnInit {
 			//this.favoritesConfig.filters.favorited = this.profile.username;
 		});
 
-    this.bookingService.queryMyBookings(this.currentUser.id)
-    .subscribe(data => this.results = data);
+		this.bookingService.getBookingsByUser().subscribe((data) => (this.results = data));
 	}
 }
