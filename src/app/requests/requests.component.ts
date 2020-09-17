@@ -51,7 +51,7 @@ export class RequestsComponent implements OnInit {
     // this.bookingService.queryBookings(this.currentUser.id).subscribe(data => {console.log(data)})
     // this.bookingService.queryMyBookings(this.currentUser.id).subscribe(data => {console.log(data)})
 
-    this.router.navigateByUrl('/requests/to-me')
+    this.router.navigateByUrl('/bookings/to-me')
   }
 
   listConfig: BookingListConfig = {

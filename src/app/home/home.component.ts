@@ -15,45 +15,38 @@ export class HomeComponent implements OnInit {
     private userService: UserService
   ) {}
 
-  opened = false;
-  prompt = 'error';
-  isAuthenticated: boolean;
-  currentUser;
-  listConfig: ListingListConfig = {
-    type: 'all',
-    filters: {
-      outbound: false,
-      isReserved: false
-    }
-  };
-  tags: Array<string> = [];
-  tagsLoaded = false;
+  // opened = false;
+  // prompt = 'error';
+  // isAuthenticated: boolean;
+  // currentUser;
+  // listConfig: ListingListConfig = {
+  //   type: 'all',
+  //   filters: {
+  //     outbound: false,
+  //     isReserved: false
+  //   }
+  // };
+  // tags: Array<string> = [];
+  // tagsLoaded = false;
 
   ngOnInit() {
-    this.userService.isAuthenticated.subscribe(
-      (authenticated) => {
-        this.isAuthenticated = authenticated;
-        console.log(this.isAuthenticated)
-      }
-    );
-
-    this.currentUser = this.userService.getCurrentUser()
-    console.log(this.currentUser)
-
-    // this.tagsService.getAll()
-    // .subscribe(tags => {
-    //   this.tags = tags;
-    //   this.tagsLoaded = true;
-    // });
+    // this.userService.isAuthenticated.subscribe(
+    //   (authenticated) => {
+    //     this.isAuthenticated = authenticated;
+    //     console.log(this.isAuthenticated)
+    //   }
+    // );
+    // this.currentUser = this.userService.getCurrentUser()
+    //console.log(this.currentUser)
   }
 
-  open() {
-    this.opened = !this.opened;
-  }
+  // open() {
+  //   this.opened = !this.opened;
+  // }
 
-  cancel() {
-    this.opened = false;
-  }
+  // cancel() {
+  //   this.opened = false;
+  // }
 
   setListTo(type: string = '', filters: Object = {}) {
     // If feed is requested but user is not authenticated, redirect to login
@@ -63,7 +56,7 @@ export class HomeComponent implements OnInit {
     // }
 
     // Otherwise, set the list object
-    this.listConfig = {type: type, filters: filters};
+    //this.listConfig = {type: type, filters: filters};
   }
 
 }

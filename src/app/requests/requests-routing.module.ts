@@ -34,9 +34,9 @@ const routes: Routes = [
     }
   },
   {
-		path: 'requests',
+		path: 'bookings',
 		pathMatch: 'full',
-		redirectTo: '/requests/to-me'
+		redirectTo: '/bookings/to-me'
 	}
 
 ];

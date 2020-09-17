@@ -25,21 +25,21 @@ export class UserService {
 			this.apiService.get('/auth/user').subscribe(
 				(data) => {
 					this.setAuth1(data);
-					console.log('tapfuura nepo king, token riripo!!!!!!');
+					// console.log('tapfuura nepo king, token riripo!!!!!!');
 				},
 				(err) => {
 					this.purgeAuth();
-					console.log(err);
-					console.log('tapfuura nepano, then purged the token!!!!!!');
+					// console.log(err);
+					// console.log('tapfuura nepano, then purged the token!!!!!!');
 				}
 			);
 			//console.log()
 		} else {
 			// Remove any potential remnants of previous auth states
-			console.log('tabva tabvisa token racho repa localStorage!!!!!');
+			// console.log('tabva tabvisa token racho repa localStorage!!!!!');
 			this.purgeAuth();
 		}
-		console.log();
+
 	}
 
 	setAuth1(user: User) {
@@ -55,10 +55,10 @@ export class UserService {
 		this.jwtService.saveToken(user.access_token);
 		//console.log('token has been set!')
 		// Set current user data into observable
-    // this.currentUserSubject.next(user);
-    this.populate()
+		// this.currentUserSubject.next(user);
+		this.populate();
 		// Set isAuthenticated to true
-		this.isAuthenticatedSubject.next(true);
+		//this.isAuthenticatedSubject.next(true);
 	}
 
 	purgeAuth() {
@@ -149,7 +149,7 @@ export class UserService {
 					return err;
 				}
 			)
-		);;
+		);
 	}
 
 	getProfile(userId): Observable<Profile> {
