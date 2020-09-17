@@ -149,7 +149,7 @@ export class ListingViewComponent implements OnInit {
 		if (this.currentUser) {
 			this.bookingService.add(this.selectedListing.id, booking).subscribe(
 				(data) => {
-					this.router.navigateByUrl('/bookings/by-me');
+					this.router.navigateByUrl('/bookings/outgoing');
 				},
 				(err) => {
 					this.errors = err;

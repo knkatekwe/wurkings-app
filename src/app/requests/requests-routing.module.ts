@@ -17,11 +17,11 @@ const routes: Routes = [
     },
     children:[
       {
-        path: 'by-me',
+        path: 'outgoing',
         component: BookingsMadeComponent
       },
       {
-        path: 'to-me',
+        path: 'incoming',
         component: BookingsEnquiredComponent
       }
     ]
@@ -36,7 +36,7 @@ const routes: Routes = [
   {
 		path: 'bookings',
 		pathMatch: 'full',
-		redirectTo: '/bookings/to-me'
+		redirectTo: '/bookings/incoming'
 	}
 
 ];
