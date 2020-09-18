@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
-import { Booking } from '../../models';
+import { Booking } from './booking.model';
 import { BookingStore, BookingState } from './booking.store';
 
 @Injectable({ providedIn: 'root' })

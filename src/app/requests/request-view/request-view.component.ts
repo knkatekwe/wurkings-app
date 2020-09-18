@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService, User, Errors, Message, ListingsService, Profile } from 'src/app/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Booking } from 'src/app/core/state/booking/booking.model';
 import { BookingService } from 'src/app/core/state/booking/booking.service';
@@ -21,26 +21,22 @@ import { Observable } from 'rxjs';
 	styleUrls: [ './request-view.component.css' ]
 })
 export class RequestViewComponent implements OnInit {
-	selectedBooking: Booking;
+  selectedBooking: Booking;
 	messages: Message[];
 	messageControl = new FormControl();
+	bookingForm: FormGroup;
 
-	isCurrentUser: boolean;
 	isSubmitting: boolean;
 	errors: Errors;
 	currentUser: User;
-	isOwner: boolean;
-	canPay: boolean;
-	isCancelled: boolean;
-	isPending: boolean;
-	isAccepted: boolean;
-  user: string;
+	user: number | string;
 
-  userDetail: Profile;
+	userDetail: Profile;
 	owner: Profile;
 	listing$: Observable<Listing>;
 	paymentRate$: Observable<PaymentRate>;
-	category$: Observable<Category>;
+  category$: Observable<Category>;
+  booking$: Observable<Booking>;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -53,67 +49,50 @@ export class RequestViewComponent implements OnInit {
 		private paymentRateQuery: PaymentRateQuery,
 		private categoryService: CategoryService,
 		private categoryQuery: CategoryService,
+		private fb: FormBuilder,
 		private router: Router
 	) {}
 
 	ngOnInit() {
+    this.initBookingForm()
 		// Retreive the prefetched booking
 		this.route.data.subscribe((data: { booking: Booking }) => {
 			this.selectedBooking = data.booking;
-			console.log(this.selectedBooking);
+			//console.log(this.selectedBooking);
 
 			this.userService.currentUser.subscribe((userData: any) => {
 				this.currentUser = userData;
 
 				console.log(this.currentUser);
 				this.user = this.currentUser.id;
-
-				console.log('from selected booking ' + this.selectedBooking.user_id);
-				console.log('from currentUser ' + this.user);
-
-				this.isOwner = this.user === this.selectedBooking.user_id;
-				console.log('im owner is: ' + this.isOwner);
-				this.canPay = this.selectedBooking.status === 'accepted';
-				console.log('is accepted: ' + this.isOwner);
-				this.isAccepted = this.selectedBooking.status === 'accepted';
-				console.log('can be paid for: ' + this.canPay);
-				this.isPending = this.selectedBooking.status === 'pending';
-				console.log('is still pending acceptence: ' + this.isPending);
-				this.isCancelled = this.selectedBooking.status === 'cancelled';
-				console.log('is cancelled: ' + this.isCancelled);
 			});
     });
 
-    this.listing$ = this.listingService.getListing(this.selectedBooking.listing_id);
-    this.paymentRate$ = this.paymentRateService.getPaymentRate(this.selectedBooking.payment_rate_id)
+    this.booking$ = this.bookingQuery.selectEntity(this.selectedBooking.id)
+
+		this.listing$ = this.listingService.getListing(this.selectedBooking.listing_id);
+		this.paymentRate$ = this.paymentRateService.getPaymentRate(this.selectedBooking.payment_rate_id);
 		this.listing$.subscribe((res) => {
 			this.userService.getProfile(res.user_id).subscribe((res) => {
-        this.owner = res;
-        // console.log('..this is the owner...')
-        // console.log(this.owner)
+				this.owner = res;
+				// console.log('..this is the owner...')
+				// console.log(this.owner)
 			});
-    });
-
+		});
 	}
 
 	form = new FormGroup({
 		message_body: new FormControl('', [ Validators.required ])
 	});
 
+	initBookingForm() {
+		this.bookingForm = this.fb.group({
+			_method: [ 'PATCH' ]
+		});
+	}
+
 	get f() {
 		return this.form.controls;
-	}
-
-	bookingAccepted() {
-		this.isAccepted = true;
-		this.isCancelled = false;
-		this.isPending = false;
-	}
-
-	bookingCancelled() {
-		this.isAccepted = false;
-		this.isCancelled = true;
-		this.isPending = false;
 	}
 
 	// populateMessages(){
@@ -123,22 +102,35 @@ export class RequestViewComponent implements OnInit {
 	//     console.log(this.messages)})
 	// }
 
-	acceptBooking(id, idl) {
+	acceptBooking(id) {
+    console.log(id)
 		this.isSubmitting = true;
-		// this.bookingService.acceptBooking(id, this.selectedBooking)
-		//   .subscribe(res => {
-		//     this.listingService.updateListing(idl, {isReserved: true})
-		//       .subscribe(res =>{this.selectedBooking})
-		//     this.isSubmitting = false;})
-		this.bookingAccepted;
+		this.bookingService.acceptBooking(id, this.bookingForm.value).subscribe(
+			(res) => {
+				this.isSubmitting = false;
+        console.log(res);
+        this.selectedBooking.status = 'accepted'
+			},
+			(err) => {
+				this.isSubmitting = false;
+				console.log(err);
+			}
+		);
 	}
 
 	cancelBooking(id) {
 		this.isSubmitting = true;
-		this.bookingService.cancelBooking(id, this.selectedBooking).subscribe((res) => {
-			this.isSubmitting = false;
-		});
-		this.bookingCancelled;
+		this.bookingService.cancelBooking(id, this.bookingForm.value).subscribe(
+			(res) => {
+        this.isSubmitting = false;
+        this.selectedBooking.status = 'cancelled'
+				console.log(res);
+			},
+			(err) => {
+				this.isSubmitting = false;
+				console.log(err);
+			}
+		);
 	}
 
 	checkout(id) {

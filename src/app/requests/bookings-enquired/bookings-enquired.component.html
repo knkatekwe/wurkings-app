@@ -3,3 +3,10 @@
     [booking]="booking">
 </app-chat-preview>
 <!-- <pre>{{results | json}}</pre> -->
+<div class="card w-full" *ngIf="results?.length < 1">
+  <div class="card-body">
+   <p>Oops, No bookings yet.</p>
+  </div>
+</div>
+
+

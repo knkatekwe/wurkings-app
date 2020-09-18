@@ -30,18 +30,18 @@ export class BookingService {
 		return this.http.get<Booking>(API_ENDPOINT + `/booking/${bookingId}`);
 	}
 
-	add(listingId, booking: Booking): Observable<Booking> {
-		return this.http.post<Booking>(API_ENDPOINT + `/listing/${listingId}/booking`, booking).pipe(
+	add(bookingId, booking: Booking): Observable<Booking> {
+		return this.http.post<Booking>(API_ENDPOINT + `/listing/${bookingId}/booking`, booking).pipe(
 			tap((booking) => {
 				this.store.add(booking);
 			})
 		);
 	}
 
-	delete(listingId): Observable<any> {
-		return this.http.delete(API_ENDPOINT + `/booking/${listingId}`).pipe(
+	delete(bookingId): Observable<any> {
+		return this.http.delete(API_ENDPOINT + `/booking/${bookingId}`).pipe(
 			tap((booking) => {
-				this.store.remove(listingId);
+				this.store.remove(bookingId);
 			})
 		);
 	}
@@ -54,7 +54,7 @@ export class BookingService {
 		);
 	}
 
-	acceptBooking(bookingId, booking: Booking): Observable<any> {
+	acceptBooking(bookingId, booking): Observable<any> {
 		return this.http.post(API_ENDPOINT + `/booking/${bookingId}/accept`, booking).pipe(
 			tap((booking) => {
 				this.store.update(bookingId, booking);
@@ -62,7 +62,7 @@ export class BookingService {
 		);
 	}
 
-	cancelBooking(bookingId, booking: Booking): Observable<any> {
+	cancelBooking(bookingId, booking): Observable<any> {
 		return this.http.post(API_ENDPOINT + `/booking/${bookingId}/cancel`, booking).pipe(
 			tap((booking) => {
 				this.store.update(bookingId, booking);

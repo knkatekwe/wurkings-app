@@ -1,4 +1,4 @@
-<div class="">
+<div class="container">
   <div class="banner">
     <div class="row">
       <div class="col mt-2">
@@ -8,28 +8,52 @@
         <h6 class="text-center">{{(listing$|async)?.title}}</h6>
         <p class="text-center"><strong>{{(paymentRate$|async)?.price | currency: 'USD': true}}</strong>
           <small> {{(paymentRate$|async)?.title}}</small></p>
-        <p class="text-center"><span class="badge badge-pill badge-info p-1">{{selectedBooking?.status}}</span></p>
+        <p class="text-center"><span class="badge badge-warning"
+            *ngIf="selectedBooking?.status === 'pending'">{{selectedBooking?.status}}</span><span
+            class="badge badge-success"
+            *ngIf="selectedBooking?.status === 'accepted'">{{selectedBooking?.status}}</span><span
+            class="badge badge-danger"
+            *ngIf="selectedBooking?.status === 'cancelled'">{{selectedBooking?.status}}</span><span
+            class="badge badge-info" *ngIf="selectedBooking?.status === ''">{{selectedBooking?.status}}</span></p>
       </div>
       <div class="col mt-2">
-        <div *ngIf="!isOwner && canPay" class="mb-2">
-          <a (click)="checkout(selectedBooking?.id)" class="btn btn-success active" role="button"><img
-              src="https://img.icons8.com/bubbles/50/000000/card-in-use.png" /> <i class="fa fa-shopping-cart"></i></a>
+        <div *ngIf="currentUser?.id === selectedBooking?.user_id && selectedBooking?.status === 'accepted'"
+          class="mb-2">
+          <button (click)="checkout(selectedBooking?.id)" [disabled]="isSubmitting" class="btn btn-success active"
+            role="button"><img src="https://img.icons8.com/bubbles/50/000000/card-in-use.png" height="30px;" /></button>
         </div>
-        <div *ngIf="isOwner && isPending" class="mb-2">
-          <a (click)="acceptBooking(selectedBooking?.id, selectedBooking?.listing_id)" class="btn btn-info active"
-            role="button"><img src="https://img.icons8.com/bubbles/50/000000/approval.png" /><i
-              class="fa fa-money-bill"></i></a>
+        <div *ngIf="currentUser?.id === (listing$|async)?.user_id && (selectedBooking?.status ==='pending')"
+          class="mb-2">
+          <button (click)="acceptBooking(selectedBooking?.id)" [disabled]="isSubmitting" class="btn btn-info active"
+            role="button"><img src="https://img.icons8.com/bubbles/50/000000/approval.png" height="30px;" /></button>
         </div>
-        <div *ngIf="isAccepted" class="mb-2">
+        <div *ngIf="selectedBooking?.status === 'accepted'" class="mb-2">
           <a class="btn btn-info disabled" role="button"><img
-              src="https://img.icons8.com/bubbles/50/000000/time-machine.png" /><i class="fa fa-money-bill"></i></a>
+              src="https://img.icons8.com/bubbles/50/000000/time-machine.png" height="30px;" /></a>
         </div>
-        <div *ngIf="isCancelled" class="mb-2">
-          <a class="btn btn-danger disabled" role="button">Deal Cancelled <i class="fa fa-money-bill"></i></a>
+        <div *ngIf="selectedBooking?.status === 'cancelled'" class="mb-2">
+          <a class="btn btn-danger disabled" role="button"><img
+              src="https://img.icons8.com/bubbles/50/000000/cancel.png" height="30px;" /></a>
         </div>
-        <div *ngIf="isPending" class="mb-2">
-          <a (click)="cancelBooking(selectedBooking.id)" class="btn btn-danger active" role="button"><img
-              src="https://img.icons8.com/bubbles/50/000000/cancel.png" /><i class="fa fa-shopping-cart"></i></a>
+        <div *ngIf="selectedBooking?.status === 'pending'" class="mb-2">
+          <button (click)="cancelBooking(selectedBooking?.id)" [disabled]="isSubmitting" class="btn btn-danger active"
+            role="button"><img src="https://img.icons8.com/bubbles/50/000000/cancel.png" height="30px;" /></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: -20px;">
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <div>
+          <span class="badge badge-pill badge-info p-1">{{selectedBooking?.start_date | date: 'longDate'}}</span>
+          <span><small> --- </small></span>
+          <span class="badge badge-pill badge-info p-1">{{selectedBooking?.end_date | date: 'longDate'}}</span>
+        </div>
+        <div>
+          <span class="text-center mt-2"><small>Rental Amount: </small>
+            <strong>{{selectedBooking.total | currency: 'USD': true}}</strong></span>
         </div>
       </div>
     </div>
