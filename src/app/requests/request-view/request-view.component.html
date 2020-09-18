@@ -1,78 +1,65 @@
-<div class="container">
+<div class="">
   <div class="banner">
-    <div class="d-flex justify-content-between">
-
-      <img src="" class="img-thumbnail" height="150px" width="150px">
-
-      <div class="">
-        <h6 class="text-center">{{selectedBooking.listing_id}}</h6>
-        <p class="text-center"><strong>{{selectedBooking.price | currency: 'USD': true}}</strong> <small>/day</small></p>
-        <span class="badge badge-pill badge-info">{{selectedBooking.start_date | date: 'longDate'}}</span>
-        <span><small> - </small></span>
-        <span class="badge badge-pill badge-info">{{selectedBooking.end_date | date: 'longDate'}}</span>
-        <p class="text-center mt-2"><small>Rental Amount:  </small> <strong>{{selectedBooking.total | currency: 'USD': true}}</strong></p>
+    <div class="row">
+      <div class="col mt-2">
+        <img [src]="(listing$|async)?.listing_images[0]?.image_url" class="img-thumbnail" height="150px" width="150px">
       </div>
-
-      <div class="">
+      <div class="col mt-2">
+        <h6 class="text-center">{{(listing$|async)?.title}}</h6>
+        <p class="text-center"><strong>{{(paymentRate$|async)?.price | currency: 'USD': true}}</strong>
+          <small> {{(paymentRate$|async)?.title}}</small></p>
+        <p class="text-center"><span class="badge badge-pill badge-info p-1">{{selectedBooking?.status}}</span></p>
+      </div>
+      <div class="col mt-2">
         <div *ngIf="!isOwner && canPay" class="mb-2">
-          <a  (click)="checkout(selectedBooking.id)"
-              class="btn btn-success active"
-              role="button">Pay <i class="fa fa-shopping-cart"></i></a></div>
+          <a (click)="checkout(selectedBooking?.id)" class="btn btn-success active" role="button"><img
+              src="https://img.icons8.com/bubbles/50/000000/card-in-use.png" /> <i class="fa fa-shopping-cart"></i></a>
+        </div>
         <div *ngIf="isOwner && isPending" class="mb-2">
-          <a  (click)="acceptBooking(selectedBooking.id, selectedBooking.listing_id)"
-              class="btn btn-info active"
-              role="button">Accept Deal <i class="fa fa-money-bill"></i></a>
+          <a (click)="acceptBooking(selectedBooking?.id, selectedBooking?.listing_id)" class="btn btn-info active"
+            role="button"><img src="https://img.icons8.com/bubbles/50/000000/approval.png" /><i
+              class="fa fa-money-bill"></i></a>
         </div>
         <div *ngIf="isAccepted" class="mb-2">
-          <a class="btn btn-info disabled"
-              role="button">Deal Accepted <i class="fa fa-money-bill"></i></a>
+          <a class="btn btn-info disabled" role="button"><img
+              src="https://img.icons8.com/bubbles/50/000000/time-machine.png" /><i class="fa fa-money-bill"></i></a>
         </div>
         <div *ngIf="isCancelled" class="mb-2">
-          <a  class="btn btn-danger disabled"
-              role="button">Deal Cancelled <i class="fa fa-money-bill"></i></a>
+          <a class="btn btn-danger disabled" role="button">Deal Cancelled <i class="fa fa-money-bill"></i></a>
         </div>
         <div *ngIf="isPending" class="mb-2">
-          <a  (click)="cancelBooking(selectedBooking.id)"
-              class="btn btn-danger active"
-              role="button">Cancel Deal <i class="fa fa-shopping-cart"></i></a>
+          <a (click)="cancelBooking(selectedBooking.id)" class="btn btn-danger active" role="button"><img
+              src="https://img.icons8.com/bubbles/50/000000/cancel.png" /><i class="fa fa-shopping-cart"></i></a>
         </div>
       </div>
-
-
     </div>
   </div>
 
   <div class="h-100">
-	  <div class="msg_history" *ngFor="let message of messages">
+    <div class="msg_history" *ngFor="let message of messages">
 
-		<div [class]="message.user.id === currentUser.id? 'outgoing_msg':'incoming_msg'">
-		  <div [hidden]="message.user.id === currentUser.id" class="incoming_msg_img">
-        <img src="https://ptetutorials.com/images/user-profile.png"
-             alt="sunil"> </div>
-		  <div [class]="message.user.id === currentUser.id? '':'received_msg'">
-			<div [class]="message.user.id === currentUser.id? 'sent_msg':'received_withd_msg'">
-			  <p>{{message.message_body}}</p>
-			  <span class="time_date">{{message.createdAt | date: 'medium'}}</span></div>
-		  </div>
+      <div [class]="message.user.id === currentUser.id? 'outgoing_msg':'incoming_msg'">
+        <div [hidden]="message.user.id === currentUser.id" class="incoming_msg_img">
+          <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+        <div [class]="message.user.id === currentUser.id? '':'received_msg'">
+          <div [class]="message.user.id === currentUser.id? 'sent_msg':'received_withd_msg'">
+            <p>{{message.message_body}}</p>
+            <span class="time_date">{{message.createdAt | date: 'medium'}}</span>
+          </div>
+        </div>
+      </div>
+
     </div>
-
-	  </div>
-	  <div class="type_msg">
-		<div class="input_msg_write">
-		  <form [formGroup]="form" novalidate>
-        <input type="text"
-               class="write_msg"
-               formControlName="message_body"
-               [disabled]="isSubmitting"
-               placeholder="Type a message" />
-        <button class="msg_send_btn"
-                type="submit"
-                [disabled]="!form.valid"
-                (click)="send()"><i class="fa fa-paper-plane-o"></i></button>
-      </form>
-		</div>
+    <div class="type_msg">
+      <div class="input_msg_write">
+        <form [formGroup]="form" novalidate>
+          <input type="text" class="write_msg" formControlName="message_body" [disabled]="isSubmitting"
+            placeholder="Type a message" />
+          <button class="msg_send_btn" type="submit" [disabled]="!form.valid" (click)="send()"><i
+              class="fa fa-paper-plane-o"></i></button>
+        </form>
+      </div>
     </div>
     <div style="bottom: 0;"></div>
   </div>
-
 </div>
